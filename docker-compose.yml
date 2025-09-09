@@ -1,0 +1,11 @@
+services:
+    frontend:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: s7te-janelas
+        ports:
+            - '5173:5173'
+        volumes:
+            - .:/app
+        command: npm run dev

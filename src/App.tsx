@@ -1,5 +1,5 @@
 import { Workspace } from '@/components';
-import './App.css';
+import './styles/index.scss';
 
 function App() {
     return (

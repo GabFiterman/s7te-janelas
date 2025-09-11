@@ -1,0 +1,37 @@
+@import '@/styles/variables';
+
+.fixed-menu {
+    height: 2.5em;
+    width: 100%;
+
+    /* TODO: Criar arquivo para as variáveis CSS */
+    background: $fixed-menu-gradient;
+    border-radius: 5px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(62, 129, 201, 0.96);
+
+    .menu-item {
+        max-height: 100%;
+    }
+
+    img.menu-icon {
+        height: 1.5em;
+        width: 1.5em;
+        background: $icon-bright-gradient;
+        padding: 0.5em;
+        border-radius: 50%;
+        border: 1px solid rgb(14, 84, 134);
+
+        &:hover {
+            cursor: pointer;
+            box-shadow: 0 0 25px #02e5fd;
+            transform: scale(1.15);
+            filter: brightness(1.5);
+            transition: $transition-default;
+            border: 1px solid #02e5fd;
+        }
+    }
+
+}

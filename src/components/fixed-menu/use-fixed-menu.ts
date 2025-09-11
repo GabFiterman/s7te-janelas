@@ -4,7 +4,7 @@ function useFixedMenuStates() {
             id: 1,
             label: 'FloatMenu',
             link: '/float-menu',
-            icon: '@/../public/logo/windows-logo.png',
+            icon: '/logo/windows-logo.png',
         },
     ];
     return {

@@ -1,5 +1,5 @@
-import useFixedMenuStates from './states';
-import './styles.css';
+import useFixedMenuStates from './use-fixed-menu';
+import './fixed-menu.scss';
 
 function FixedMenu() {
     const { menuItems } = useFixedMenuStates();

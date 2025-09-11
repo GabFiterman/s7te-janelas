@@ -1,0 +1,13 @@
+@import 'variables';
+
+.App {
+    width: 100vw;
+    height: 100vh;
+}
+
+.d-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $gap-md;
+}

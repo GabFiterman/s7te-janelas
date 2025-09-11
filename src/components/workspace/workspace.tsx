@@ -1,7 +1,7 @@
 import { FixedMenu } from '@/components';
 import defaultWallpaper from '/wallpapers/main-background.jpg';
 
-import './styles.css';
+import './workspace.scss';
 
 function Workspace() {
     const style = {

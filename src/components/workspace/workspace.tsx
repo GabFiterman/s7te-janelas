@@ -1,4 +1,4 @@
-import { FixedMenu } from '@/components';
+import { FixedMenu, IconLinkLabel } from '@/components';
 import defaultWallpaper from '/wallpapers/main-background.jpg';
 
 import './workspace.scss';
@@ -11,8 +11,13 @@ function Workspace() {
     return (
         <>
             <div className="workspace" style={style}>
-                <div>Workspace</div>
-                <FixedMenu />
+                <div className="workspace-canvas">
+                    <IconLinkLabel label="documentos importantes" />
+                    <IconLinkLabel label="arquivos" />
+                </div>
+                <div className="w-100">
+                    <FixedMenu />
+                </div>
             </div>
         </>
     );

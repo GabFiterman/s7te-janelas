@@ -1,10 +1,11 @@
 import { FixedMenu, IconLinkLabel } from '@/components';
-import defaultWallpaper from '@/assets/wallpapers/main-background.jpg';
-import defaultWallpaper from '/wallpapers/main-background.jpg';
+import useUIStore from '@/store/uiStore';
 
+import defaultWallpaper from '@/assets/wallpapers/main-background.jpg';
 import './workspace.scss';
 
 function Workspace() {
+    const icons = useUIStore((state) => state.icons);
     const style = {
         backgroundImage: `url(${defaultWallpaper})`,
     };
@@ -13,8 +14,16 @@ function Workspace() {
         <>
             <div className="workspace" style={style}>
                 <div className="workspace-canvas">
-                    <IconLinkLabel label="documentos importantes" />
-                    <IconLinkLabel label="arquivos" />
+                    <div className="workspace-canvas-icons">
+                        {icons.map((icon) => (
+                            <IconLinkLabel
+                                key={icon.id}
+                                id={icon.id}
+                                label={icon.label}
+                                icon={icon.iconUrl}
+                            />
+                        ))}
+                    </div>
                 </div>
                 <div className="w-100">
                     <FixedMenu />

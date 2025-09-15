@@ -54,7 +54,6 @@ function IconLinkLabel({
         updateIconPosition(id, newX, newY);
     };
 
-
     return (
         <motion.div
             className={`icon-link-label`}

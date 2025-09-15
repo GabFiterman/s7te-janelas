@@ -17,9 +17,9 @@ $spacing-md: 1em;
 $spacing-lg: 2em;
 $spacing-xl: 4em;
 
-$gap-xs: .125em;
-$gap-sm: .25em;
-$gap-md: .5em;
+$gap-xs: 0.125em;
+$gap-sm: 0.25em;
+$gap-md: 0.5em;
 $gap-lg: 1em;
 $gap-xl: 2em;
 
@@ -34,14 +34,12 @@ $fixed-menu-gradient: rgba(85, 117, 148, 0.5)
         rgba(105, 177, 250, 0.31) 0%,
         rgba(220, 234, 250, 0.31) 68%,
         rgba(92, 167, 247, 0.9) 100%
-    )
-;
+    );
 
-$icon-bright-gradient: #02e5fd 
+$icon-bright-gradient: #02e5fd
     linear-gradient(
         180deg,
         rgba(2, 229, 253, 1) 0%,
         rgba(1, 58, 98, 1) 68%,
         rgba(196, 209, 220, 1) 100%
-    )
-;
+    );

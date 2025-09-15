@@ -1,13 +1,13 @@
 // NOTE: Loop for generating width classes from 0 to 100
 @for $i from 0 through 100 {
     .w-#{$i} {
-        width: #{$i}#{"%"};
+        width: #{$i}#{'%'};
     }
 }
 
 // NOTE: Loop for generating height classes from 0 to 100
 @for $i from 0 through 100 {
     .h-#{$i} {
-        height: #{$i}#{"%"};
+        height: #{$i}#{'%'};
     }
 }

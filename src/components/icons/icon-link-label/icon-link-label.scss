@@ -12,11 +12,15 @@
     text-align: center;
     text-decoration: none;
     text-shadow: -2px 2px 2px rgb(0, 0, 0);
-    position: relative;;
-    
+    position: relative;
+
     &:hover {
-        background: linear-gradient(180deg,rgba(121, 210, 247, .15) 0%,rgba(152, 229, 237, .35) 100%);
-        border: 1px solid rgba(108, 201, 212, .9);
+        background: linear-gradient(
+            180deg,
+            rgba(121, 210, 247, 0.15) 0%,
+            rgba(152, 229, 237, 0.35) 100%
+        );
+        border: 1px solid rgba(108, 201, 212, 0.9);
         cursor: pointer;
     }
 
@@ -31,10 +35,14 @@
     }
 
     &.selected {
-        background: linear-gradient(180deg,rgba(121, 210, 247, .2) 0%,rgba(152, 229, 237, .5) 100%);
-        border: 1px solid rgba(108, 201, 212, .9);
+        background: linear-gradient(
+            180deg,
+            rgba(121, 210, 247, 0.2) 0%,
+            rgba(152, 229, 237, 0.5) 100%
+        );
+        border: 1px solid rgba(108, 201, 212, 0.9);
     }
-    
+
     .label {
         word-break: break-word;
     }

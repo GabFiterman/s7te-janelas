@@ -8,4 +8,3 @@ services:
             - '5173:5173'
         volumes:
             - .:/app
-        command: npm run dev

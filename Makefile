@@ -7,7 +7,7 @@ NPM = npm
 
 all: up
 
-up: ## Sobe os containers da aplicação em modo de desenvolvimento.
+app: ## Sobe os containers da aplicação em modo de desenvolvimento.
 	@echo "\n #### Iniciando os containers do projeto... ####\n"
 	$(DOCKER_COMPOSE) up --build
 

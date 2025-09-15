@@ -1,10 +1,9 @@
-@import '@/styles/variables';
+@use '@/styles/variables' as *;
 
 .fixed-menu {
     height: 2.5em;
     width: 100%;
 
-    /* TODO: Criar arquivo para as variáveis CSS */
     background: $fixed-menu-gradient;
     border-radius: 5px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);

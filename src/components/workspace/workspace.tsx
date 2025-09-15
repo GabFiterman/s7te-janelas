@@ -1,4 +1,5 @@
 import { FixedMenu, IconLinkLabel } from '@/components';
+import defaultWallpaper from '@/assets/wallpapers/main-background.jpg';
 import defaultWallpaper from '/wallpapers/main-background.jpg';
 
 import './workspace.scss';

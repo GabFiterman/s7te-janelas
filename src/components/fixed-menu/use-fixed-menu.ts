@@ -1,10 +1,12 @@
+import windowIcon from '@/assets/logo/windows-logo.png';
+
 function useFixedMenuStates() {
     const menuItems = [
         {
             id: 1,
             label: 'FloatMenu',
             link: '/float-menu',
-            icon: '/logo/windows-logo.png',
+            icon: windowIcon,
         },
     ];
     return {

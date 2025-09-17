@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import folderIcon from '@/assets/icons/folder-1.ico';
+import folderIcon from '@/assets/icons/folder-1.webp';
 
 interface Icon {
     id: string;

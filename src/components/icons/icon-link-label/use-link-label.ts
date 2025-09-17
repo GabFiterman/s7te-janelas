@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import folderIcon from '@/assets/icons/folder-1.ico';
+import folderIcon from '@/assets/icons/folder-1.webp';
 
 interface UseLinkLabelProps {
     icon?: string;

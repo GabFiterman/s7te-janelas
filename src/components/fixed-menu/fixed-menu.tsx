@@ -6,15 +6,11 @@ function FixedMenu() {
     return (
         <>
             <div className="fixed-menu">
-                {menuItems.map((item) => (
-                    <a key={item.id} href={item.link} className="menu-item">
-                        <img
-                            src={item.icon}
-                            alt={item.label}
-                            className="menu-icon"
-                        />
-                    </a>
-                ))}
+                <img
+                    src={menuItems[0].icon}
+                    alt={menuItems[0].label}
+                    className="main-icon"
+                />
             </div>
         </>
     );

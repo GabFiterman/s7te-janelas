@@ -13,7 +13,7 @@ interface IconLinkLabelProps {
     size?: number;
 }
 
-const GRID_SIZE = 80;
+const GRID_SIZE = 20;
 
 function IconLinkLabel({
     id,

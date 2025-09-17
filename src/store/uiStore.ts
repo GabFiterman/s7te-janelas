@@ -16,6 +16,9 @@ interface UIState {
         newX: number,
         newY: number,
     ) => void;
+    isStartMenuOpen: boolean;
+    setIsStartMenuOpen: (isOpen: boolean) => void;
+    toggleIsStartMenuOpen: () => void;
 }
 
 const useUIStore = create<UIState>((set) => ({
@@ -24,14 +27,14 @@ const useUIStore = create<UIState>((set) => ({
             id: '1',
             label: 'documentos importantes',
             iconUrl: folderIcon,
-            x: -850,
+            x: 0,
             y: 0,
         },
         {
             id: '2',
             label: 'arquivos',
             iconUrl: folderIcon,
-            x: -850,
+            x: 0,
             y: 30,
         },
     ],
@@ -41,6 +44,10 @@ const useUIStore = create<UIState>((set) => ({
                 icon.id === id ? { ...icon, x: newX, y: newY } : icon,
             ),
         })),
+    isStartMenuOpen: false,
+    setIsStartMenuOpen: (isOpen) => set({ isStartMenuOpen: isOpen }),
+    toggleIsStartMenuOpen: () =>
+        set((state) => ({ isStartMenuOpen: !state.isStartMenuOpen })),
 }));
 
 export default useUIStore;

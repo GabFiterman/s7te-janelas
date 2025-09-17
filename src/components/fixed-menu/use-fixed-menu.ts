@@ -1,13 +1,17 @@
+import useUIStore from '@/store/uiStore';
+
 import windowIcon from '@/assets/logo/windows-logo.png';
 import internetExplorerIcon from '@/assets/icons/internet_explorer.webp';
 import pictureIcon from '@/assets/icons/picture.webp';
 import fileExplorerIcon from '@/assets/icons/file_explorer.webp';
 
 function useFixedMenuStates() {
+    const { toggleIsStartMenuOpen } = useUIStore();
+
     const mainItem = {
         id: 1,
         label: 'FloatMenu',
-        action: () => console.log('FloatMenu'),
+        action: toggleIsStartMenuOpen,
         icon: windowIcon,
     };
 

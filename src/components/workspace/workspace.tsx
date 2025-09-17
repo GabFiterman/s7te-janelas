@@ -1,4 +1,4 @@
-import { FixedMenu, IconLinkLabel } from '@/components';
+import { FixedMenu, IconLinkLabel, StartMenu } from '@/components';
 import useUIStore from '@/store/uiStore';
 
 import defaultWallpaper from '@/assets/wallpapers/main-background.jpg';
@@ -9,12 +9,16 @@ function Workspace() {
     const style = {
         backgroundImage: `url(${defaultWallpaper})`,
     };
+    const setIsStartMenuOpen = useUIStore((state) => state.setIsStartMenuOpen);
 
     return (
         <>
             <div className="workspace" style={style}>
                 <div className="workspace-canvas">
-                    <div className="workspace-canvas-icons">
+                    <div
+                        className="workspace-canvas-icons"
+                        onClick={() => setIsStartMenuOpen(false)}
+                    >
                         {icons.map((icon) => (
                             <IconLinkLabel
                                 key={icon.id}
@@ -25,7 +29,10 @@ function Workspace() {
                         ))}
                     </div>
                 </div>
-                <div className="w-100">
+                <div className="workspace-floating-menu-container">
+                    <StartMenu />
+                </div>
+                <div className="workspace-fixed-menu-container">
                     <FixedMenu />
                 </div>
             </div>

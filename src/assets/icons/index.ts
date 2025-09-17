@@ -6,6 +6,7 @@ export { default as folderIcon } from './folder-1.webp';
 export { default as gameHubIcon } from './game_hub.webp';
 export { default as indicationArrowIcon } from './indication_arrow.svg';
 export { default as internetExplorerIcon } from './internet_explorer.webp';
+export { default as personalUserIcon } from './personal_user.webp';
 export { default as pictureIcon } from './picture.webp';
 export { default as sheetMusicIcon } from './sheet_music.webp';
 export { default as usersIcon } from './users.webp';

@@ -23,10 +23,12 @@ function IconLinkLabel({
     size = 64,
 }: IconLinkLabelProps) {
     const controls = useAnimation();
-    const updateIconPosition = useUIStore((state) => state.updateIconPosition);
+    const updateIconPosition = useUIStore(
+        (state) => state.updateWorkspaceIconPosition,
+    );
 
     const currentIcon = useUIStore((state) =>
-        state.icons.find((i) => i.id === id),
+        state.workspaceIcons.find((i) => i.id === id),
     );
     if (!currentIcon) return null;
 

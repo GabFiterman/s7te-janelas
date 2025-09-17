@@ -5,7 +5,7 @@ import defaultWallpaper from '@/assets/wallpapers/main-background.jpg';
 import './workspace.scss';
 
 function Workspace() {
-    const icons = useUIStore((state) => state.icons);
+    const icons = useUIStore((state) => state.workspaceIcons);
     const style = {
         backgroundImage: `url(${defaultWallpaper})`,
     };

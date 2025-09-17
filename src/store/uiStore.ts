@@ -10,12 +10,16 @@ interface Icon {
 }
 
 interface UIState {
-    icons: Icon[];
-    updateIconPosition: (id: string, newX: number, newY: number) => void;
+    workspaceIcons: Icon[];
+    updateWorkspaceIconPosition: (
+        id: string,
+        newX: number,
+        newY: number,
+    ) => void;
 }
 
 const useUIStore = create<UIState>((set) => ({
-    icons: [
+    workspaceIcons: [
         {
             id: '1',
             label: 'documentos importantes',
@@ -31,9 +35,9 @@ const useUIStore = create<UIState>((set) => ({
             y: 30,
         },
     ],
-    updateIconPosition: (id, newX, newY) =>
+    updateWorkspaceIconPosition: (id, newX, newY) =>
         set((state) => ({
-            icons: state.icons.map((icon) =>
+            workspaceIcons: state.workspaceIcons.map((icon) =>
                 icon.id === id ? { ...icon, x: newX, y: newY } : icon,
             ),
         })),

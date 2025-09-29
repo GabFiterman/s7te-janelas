@@ -35,6 +35,7 @@ function useFixedMenuStates() {
             icon: pictureIcon,
         },
     ];
+
     return {
         menuItems,
         mainItem,

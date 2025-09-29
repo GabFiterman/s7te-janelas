@@ -1,4 +1,5 @@
 import useFixedMenuStates from './use-fixed-menu';
+import { DatetimeWidget } from '../widgets';
 import './fixed-menu.scss';
 
 function FixedMenu() {
@@ -27,8 +28,11 @@ function FixedMenu() {
                     ))}
                 </div>
 
-                {/* TODO: Adicionar componente container de widgets aqui */}
-                <div className="menu-widgets-container">widgets</div>
+                <div className="menu-widgets-container">
+                    <div className="menu-widget-container">
+                        <DatetimeWidget />
+                    </div>
+                </div>
             </div>
         </>
     );

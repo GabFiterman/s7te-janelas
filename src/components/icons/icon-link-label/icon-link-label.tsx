@@ -38,7 +38,7 @@ function IconLinkLabel({
     };
 
     const handlePan = (
-        event: MouseEvent | TouchEvent | PointerEvent,
+        _event: MouseEvent | TouchEvent | PointerEvent,
         info: PanInfo,
     ) => {
         controls.set({
@@ -48,7 +48,7 @@ function IconLinkLabel({
     };
 
     const handlePanEnd = (
-        event: MouseEvent | TouchEvent | PointerEvent,
+        _event: MouseEvent | TouchEvent | PointerEvent,
         info: PanInfo,
     ) => {
         const newX = formatOnGrid(currentIcon.x + info.offset.x);

@@ -5,8 +5,12 @@ import internetExplorerIcon from '@/assets/icons/internet_explorer.webp';
 import pictureIcon from '@/assets/icons/picture.webp';
 import fileExplorerIcon from '@/assets/icons/file_explorer.webp';
 
+// TODO: Utilizar UUID para gerar os ids do sistema
+const generateId = () =>
+    Date.now().toString() + Math.random().toString(36).substring(2, 9);
+
 function useFixedMenuStates() {
-    const { toggleIsStartMenuOpen } = useUIStore();
+    const { toggleIsStartMenuOpen, openWindow } = useUIStore();
 
     const mainItem = {
         id: 1,
@@ -17,9 +21,16 @@ function useFixedMenuStates() {
 
     const menuItems = [
         {
-            id: 2,
+            id: generateId(),
             label: 'Internet Explorer',
-            action: () => console.log('Internet Explorer'),
+            action: () =>
+                openWindow({
+                    id: generateId(),
+                    title: 'Internet Explorer',
+                    appName: 'InternetExplorer',
+                    width: 600,
+                    height: 400,
+                }),
             icon: internetExplorerIcon,
         },
         {

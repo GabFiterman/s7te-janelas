@@ -5,7 +5,7 @@ import { indicationArrowIcon, personalUserIcon } from '@/assets/icons';
 import './start-menu.scss';
 
 function StartMenu() {
-    const isStartMenuOpen = useUIStore((state) => state.isStartMenuOpen);
+    const { isStartMenuOpen } = useUIStore();
 
     const { startMenuApps, startMenuShortcuts } = useStartMenuStates();
 

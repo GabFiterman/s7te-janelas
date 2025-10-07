@@ -1,6 +1,7 @@
-import { motion, useAnimation } from 'motion/react';
-import type { PanInfo } from 'motion/react';
+import { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 
+import { useDraggableElement, useWindowSize } from '@/hooks';
 import useUIStore from '@/store/uiStore';
 
 import './icon-link-label.scss';
@@ -13,61 +14,58 @@ interface IconLinkLabelProps {
     size?: number;
 }
 
-const GRID_SIZE = 20;
-
 function IconLinkLabel({
     id,
     className,
-    // icon = '',
+    // icon = '', // TODO: Implementar recebimento de ícone externo;
     label = 'My Folder',
     size = 64,
 }: IconLinkLabelProps) {
-    const controls = useAnimation();
-    const updateIconPosition = useUIStore(
-        (state) => state.updateWorkspaceIconPosition,
-    );
-
+    const viewportSize = useWindowSize();
+    const { dragProps } = useDraggableElement(id, 'icon');
     const currentIcon = useUIStore((state) =>
         state.workspaceIcons.find((i) => i.id === id),
     );
+
+    const iconRef = useRef<HTMLDivElement>(null);
+    const [iconDimensions, setIconDimensions] = useState({
+        width: 0,
+        height: 0,
+    });
+
+    useEffect(() => {
+        if (iconRef.current && iconDimensions.width === 0) {
+            const { offsetWidth, offsetHeight } = iconRef.current;
+            setIconDimensions({ width: offsetWidth, height: offsetHeight });
+        }
+    }, [iconDimensions.width]);
+
     if (!currentIcon) return null;
+    const { x: currentX, y: currentY } = currentIcon;
 
-    const formatOnGrid = (value: number) => {
-        if (value < GRID_SIZE) return value;
-        return Math.round(value / GRID_SIZE) * GRID_SIZE;
-    };
+    const iconWidth = iconDimensions.width || size * 1.5;
+    const iconHeight = iconDimensions.height || size * 1.5;
+    const FIXED_MENU_HEIGHT = 60;
 
-    const handlePan = (
-        _event: MouseEvent | TouchEvent | PointerEvent,
-        info: PanInfo,
-    ) => {
-        controls.set({
-            x: currentIcon.x + info.offset.x,
-            y: currentIcon.y + info.offset.y,
-        });
-    };
-
-    const handlePanEnd = (
-        _event: MouseEvent | TouchEvent | PointerEvent,
-        info: PanInfo,
-    ) => {
-        const newX = formatOnGrid(currentIcon.x + info.offset.x);
-        const newY = formatOnGrid(currentIcon.y + info.offset.y);
-        updateIconPosition(id, newX, newY);
+    const dragConstraints = {
+        left: -currentX,
+        top: -currentY,
+        right: viewportSize.width - iconWidth - currentX,
+        bottom: viewportSize.height - FIXED_MENU_HEIGHT - iconHeight - currentY,
     };
 
     return (
         <motion.div
             className={`icon-link-label`}
-            animate={controls}
-            onPan={handlePan}
-            onPanEnd={handlePanEnd}
+            dragConstraints={dragConstraints}
             style={{
                 x: currentIcon.x,
                 y: currentIcon.y,
                 touchAction: 'none',
                 userSelect: 'none',
             }}
+            ref={iconRef}
+            {...dragProps}
         >
             <div className="icon-container">
                 <div className="icon-image">

@@ -5,9 +5,7 @@ import defaultWallpaper from '@/assets/wallpapers/main-background.jpg';
 import './workspace.scss';
 
 function Workspace() {
-    const icons = useUIStore((state) => state.workspaceIcons);
-    const windows = useUIStore((state) => state.windows);
-    const setIsStartMenuOpen = useUIStore((state) => state.setIsStartMenuOpen);
+    const { workspaceIcons, windows, setIsStartMenuOpen } = useUIStore();
 
     const style = {
         backgroundImage: `url(${defaultWallpaper})`,
@@ -25,7 +23,7 @@ function Workspace() {
                         className="workspace-canvas-icons"
                         onClick={() => setIsStartMenuOpen(false)}
                     >
-                        {icons.map((icon) => (
+                        {workspaceIcons.map((icon) => (
                             <IconLinkLabel
                                 key={icon.id}
                                 id={icon.id}

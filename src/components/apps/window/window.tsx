@@ -1,8 +1,7 @@
 import { motion } from 'framer-motion';
-import type { PanInfo } from 'framer-motion';
 
 import useUIStore from '@/store/uiStore';
-import { useWindowSize } from '@/hooks';
+import { useDraggableElement, useWindowSize } from '@/hooks';
 import { getAppComponent } from '@/components/apps/app-config';
 
 import './window.scss';
@@ -16,14 +15,10 @@ function Window({ id }: WindowProps) {
         state.windows.find((win) => win.id === id),
     );
 
-    const {
-        closeWindow,
-        updateWindowPosition,
-        updateWindowStatus,
-        focusWindow,
-    } = useUIStore();
+    const { closeWindow, focusWindow, updateWindowStatus } = useUIStore();
 
     const viewportSize = useWindowSize();
+    const { dragProps } = useDraggableElement(id, 'window');
 
     if (!windowData) return null;
 
@@ -34,39 +29,29 @@ function Window({ id }: WindowProps) {
         return null;
     }
 
-    const handleDragEnd = (
-        _event: MouseEvent | TouchEvent | PointerEvent,
-        info: PanInfo,
-    ) => {
-        updateWindowPosition(id, info.point.x, info.point.y);
-    };
-
     const AppComponent = getAppComponent(appName);
 
     const dragConstraints = {
         left: 0,
         top: 0,
-        right: viewportSize.width - width,
-        bottom: viewportSize.height - height,
+        right: viewportSize.width - width - 3,
+        bottom: viewportSize.height - height - 3,
     };
 
     return (
         <motion.div
             className={`window ${status}`}
-            drag={true}
             dragConstraints={dragConstraints}
-            dragElastic={0}
-            dragMomentum={false}
-            onDragEnd={handleDragEnd}
             onMouseDown={() => focusWindow(id)}
             style={{ x, y, width, height, zIndex }}
+            {...dragProps}
         >
             <div className="title-bar">
                 <span className="title">
                     {/*TODO: Adicionar ícone do app aqui*/} {title}
                 </span>
                 <div className="controls">
-                    {/* TODO: Atualizar ícones */}
+                    {/* TODO: Atualizar ícones de controle*/}
                     <button onClick={() => updateWindowStatus(id, 'minimized')}>
                         _
                     </button>

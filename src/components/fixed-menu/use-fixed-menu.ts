@@ -28,15 +28,24 @@ function useFixedMenuStates() {
                     id: generateId(),
                     title: 'Internet Explorer',
                     appName: 'InternetExplorer',
-                    width: 600,
-                    height: 400,
+                    width: 1200,
+                    height: 800,
+                    iconSrc: internetExplorerIcon,
                 }),
             icon: internetExplorerIcon,
         },
         {
             id: 3,
             label: 'File Explorer',
-            action: () => console.log('File Explorer'),
+            action: () =>
+                openWindow({
+                    id: generateId(),
+                    title: 'File Explorer',
+                    appName: 'InternetExplorer',
+                    width: 1200,
+                    height: 800,
+                    iconSrc: fileExplorerIcon,
+                }),
             icon: fileExplorerIcon,
         },
         {

@@ -27,6 +27,8 @@ function IconLinkLabel({
         state.workspaceIcons.find((i) => i.id === id),
     );
 
+    const { FIXED_MENU_HEIGHT } = useUIStore();
+
     const iconRef = useRef<HTMLDivElement>(null);
     const [iconDimensions, setIconDimensions] = useState({
         width: 0,
@@ -45,7 +47,6 @@ function IconLinkLabel({
 
     const iconWidth = iconDimensions.width || size * 1.5;
     const iconHeight = iconDimensions.height || size * 1.5;
-    const FIXED_MENU_HEIGHT = 60;
 
     const dragConstraints = {
         left: -currentX,
@@ -58,6 +59,7 @@ function IconLinkLabel({
         <motion.div
             className={`icon-link-label`}
             dragConstraints={dragConstraints}
+            drag={true}
             style={{
                 x: currentIcon.x,
                 y: currentIcon.y,

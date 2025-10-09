@@ -36,7 +36,6 @@ export function useDraggableElement(id: string, type: ElementType) {
     return {
         handleDragEnd,
         dragProps: {
-            drag: true,
             dragMomentum: false,
             dragElastic: 0,
             onDragEnd: handleDragEnd,

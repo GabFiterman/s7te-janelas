@@ -10,9 +10,10 @@ interface Icon {
 }
 
 export interface WindowState {
-    id: string;
     appName: AppName;
     height: number;
+    iconSrc: string;
+    id: string;
     status: 'normal' | 'minimized' | 'maximized';
     title: string;
     width: number;
@@ -27,7 +28,8 @@ interface UIState {
     isStartMenuOpen: boolean;
     maxZIndex: number;
     openWindow: (
-        window: Omit<WindowState, 'x' | 'y' | 'zIndex' | 'status'>,
+        window: Omit<WindowState, 'zIndex' | 'status' | 'x' | 'y'> &
+            Partial<Pick<WindowState, 'x' | 'y' | 'width' | 'height'>>,
     ) => void;
     setIsStartMenuOpen: (isOpen: boolean) => void;
     toggleIsStartMenuOpen: () => void;
@@ -40,13 +42,16 @@ interface UIState {
     ) => void;
     windows: WindowState[];
     workspaceIcons: Icon[];
+
+    FIXED_MENU_HEIGHT: number;
 }
 
 const useUIStore = create<UIState>((set) => ({
-    closeWindow: (id) =>
+    closeWindow: (id) => {
         set((state) => ({
             windows: state.windows.filter((window) => window.id !== id),
-        })),
+        }));
+    },
     focusWindow: (id) =>
         set((state) => {
             const newZIndex = state.maxZIndex + 1;
@@ -69,12 +74,13 @@ const useUIStore = create<UIState>((set) => ({
                     ...state.windows,
                     {
                         ...newWindow,
-                        height: 400,
+                        height: newWindow.height ?? 600,
                         status: 'normal',
-                        width: 600,
-                        x: 50,
-                        y: 50,
+                        width: newWindow.width ?? 1000,
+                        x: newWindow.x ?? 50,
+                        y: newWindow.y ?? 50,
                         zIndex: newZIndex,
+                        iconSrc: newWindow.iconSrc,
                     },
                 ],
                 maxZIndex: newZIndex,
@@ -89,12 +95,24 @@ const useUIStore = create<UIState>((set) => ({
                 window.id === id ? { ...window, x: newX, y: newY } : window,
             ),
         })),
-    updateWindowStatus: (id, newStatus) =>
+    updateWindowStatus: (id, newStatus) => {
         set((state) => ({
-            windows: state.windows.map((window) =>
-                window.id === id ? { ...window, status: newStatus } : window,
-            ),
-        })),
+            windows: state.windows.map((window) => {
+                if (window.id === id) {
+                    const newProps: Partial<WindowState> = {
+                        status: newStatus,
+                    };
+                    if (newStatus === 'maximized') {
+                        newProps.x = 0;
+                        newProps.y = 0;
+                    }
+
+                    return { ...window, ...newProps };
+                }
+                return window;
+            }),
+        }));
+    },
     updateWorkspaceIconPosition: (id, newX, newY) =>
         set((state) => ({
             workspaceIcons: state.workspaceIcons.map((icon) =>
@@ -132,6 +150,8 @@ const useUIStore = create<UIState>((set) => ({
             y: 150,
         },
     ],
+
+    FIXED_MENU_HEIGHT: 60,
 }));
 
 export default useUIStore;

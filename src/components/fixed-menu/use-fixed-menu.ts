@@ -6,60 +6,59 @@ import pictureIcon from '@/assets/icons/picture.webp';
 import fileExplorerIcon from '@/assets/icons/file_explorer.webp';
 
 // TODO: Utilizar UUID para gerar os ids do sistema
-const generateId = () =>
-    Date.now().toString() + Math.random().toString(36).substring(2, 9);
+const generateId = () => Date.now().toString() + Math.random().toString(36).substring(2, 9);
 
 function useFixedMenuStates() {
-    const { toggleIsStartMenuOpen, openWindow } = useUIStore();
+  const { toggleIsStartMenuOpen, openWindow } = useUIStore();
 
-    const mainItem = {
-        id: 1,
-        label: 'FloatMenu',
-        action: toggleIsStartMenuOpen,
-        icon: windowIcon,
-    };
+  const mainItem = {
+    id: 1,
+    label: 'FloatMenu',
+    action: toggleIsStartMenuOpen,
+    icon: windowIcon,
+  };
 
-    const menuItems = [
-        {
-            id: generateId(),
-            label: 'Internet Explorer',
-            action: () =>
-                openWindow({
-                    id: generateId(),
-                    title: 'Internet Explorer',
-                    appName: 'InternetExplorer',
-                    width: 1200,
-                    height: 800,
-                    iconSrc: internetExplorerIcon,
-                }),
-            icon: internetExplorerIcon,
-        },
-        {
-            id: 3,
-            label: 'File Explorer',
-            action: () =>
-                openWindow({
-                    id: generateId(),
-                    title: 'File Explorer',
-                    appName: 'InternetExplorer',
-                    width: 1200,
-                    height: 800,
-                    iconSrc: fileExplorerIcon,
-                }),
-            icon: fileExplorerIcon,
-        },
-        {
-            id: 4,
-            label: 'Picture',
-            action: () => console.log('Picture'),
-            icon: pictureIcon,
-        },
-    ];
+  const menuItems = [
+    {
+      id: generateId(),
+      label: 'Internet Explorer',
+      action: () =>
+        openWindow({
+          id: generateId(),
+          title: 'Internet Explorer',
+          appName: 'InternetExplorer',
+          width: 1200,
+          height: 800,
+          iconSrc: internetExplorerIcon,
+        }),
+      icon: internetExplorerIcon,
+    },
+    {
+      id: 3,
+      label: 'File Explorer',
+      action: () =>
+        openWindow({
+          id: generateId(),
+          title: 'File Explorer',
+          appName: 'InternetExplorer',
+          width: 1200,
+          height: 800,
+          iconSrc: fileExplorerIcon,
+        }),
+      icon: fileExplorerIcon,
+    },
+    {
+      id: 4,
+      label: 'Picture',
+      action: () => console.log('Picture'),
+      icon: pictureIcon,
+    },
+  ];
 
-    return {
-        menuItems,
-        mainItem,
-    };
+  return {
+    menuItems,
+    mainItem,
+  };
 }
 
 export default useFixedMenuStates;

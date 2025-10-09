@@ -5,43 +5,35 @@ import defaultWallpaper from '@/assets/wallpapers/main-background.jpg';
 import './workspace.scss';
 
 function Workspace() {
-    const { workspaceIcons, windows, setIsStartMenuOpen } = useUIStore();
+  const { workspaceIcons, windows, setIsStartMenuOpen } = useUIStore();
 
-    const style = {
-        backgroundImage: `url(${defaultWallpaper})`,
-    };
+  const style = {
+    backgroundImage: `url(${defaultWallpaper})`,
+  };
 
-    return (
-        <>
-            <div className="workspace" style={style}>
-                <div className="workspace-canvas">
-                    {windows.map((window) => (
-                        <Window key={window.id} id={window.id} />
-                    ))}
+  return (
+    <>
+      <div className="workspace" style={style}>
+        <div className="workspace-canvas">
+          {windows.map((window) => (
+            <Window key={window.id} id={window.id} />
+          ))}
 
-                    <div
-                        className="workspace-canvas-icons"
-                        onClick={() => setIsStartMenuOpen(false)}
-                    >
-                        {workspaceIcons.map((icon) => (
-                            <IconLinkLabel
-                                key={icon.id}
-                                id={icon.id}
-                                label={icon.label}
-                                icon={icon.iconUrl}
-                            />
-                        ))}
-                    </div>
-                </div>
-                <div className="workspace-floating-menu-container">
-                    <StartMenu />
-                </div>
-                <div className="workspace-fixed-menu-container">
-                    <FixedMenu />
-                </div>
-            </div>
-        </>
-    );
+          <div className="workspace-canvas-icons" onClick={() => setIsStartMenuOpen(false)}>
+            {workspaceIcons.map((icon) => (
+              <IconLinkLabel key={icon.id} id={icon.id} label={icon.label} icon={icon.iconUrl} />
+            ))}
+          </div>
+        </div>
+        <div className="workspace-floating-menu-container">
+          <StartMenu />
+        </div>
+        <div className="workspace-fixed-menu-container">
+          <FixedMenu />
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default Workspace;

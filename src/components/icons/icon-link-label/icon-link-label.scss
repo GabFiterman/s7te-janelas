@@ -1,50 +1,42 @@
 @use '@/styles/variables' as *;
 
 .icon-link-label {
-    align-items: center;
-    border: 1px solid rgba(0, 0, 0, 0);
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    justify-content: center;
-    padding: $spacing-sm;
-    position: absolute;
-    text-align: center;
-    text-decoration: none;
-    text-shadow: -2px 2px 2px rgb(0, 0, 0);
-    width: 7em;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: center;
+  padding: $spacing-sm;
+  position: absolute;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: -2px 2px 2px rgb(0, 0, 0);
+  width: 7em;
 
-    &:hover {
-        background: linear-gradient(
-            180deg,
-            rgba(121, 210, 247, 0.15) 0%,
-            rgba(152, 229, 237, 0.35) 100%
-        );
-        border: 1px solid rgba(108, 201, 212, 0.9);
-        cursor: pointer;
-    }
+  &:hover {
+    background: linear-gradient(180deg, rgba(121, 210, 247, 0.15) 0%, rgba(152, 229, 237, 0.35) 100%);
+    border: 1px solid rgba(108, 201, 212, 0.9);
+    cursor: pointer;
+  }
 
-    .icon-container {
-        max-width: 7em;
-    }
+  .icon-container {
+    max-width: 7em;
+  }
 
-    .icon-image {
-        padding: $spacing-xs;
-        width: min-content;
-        margin: 0 auto;
-    }
+  .icon-image {
+    padding: $spacing-xs;
+    width: min-content;
+    margin: 0 auto;
+  }
 
-    &.selected {
-        background: linear-gradient(
-            180deg,
-            rgba(121, 210, 247, 0.2) 0%,
-            rgba(152, 229, 237, 0.5) 100%
-        );
-        border: 1px solid rgba(108, 201, 212, 0.9);
-    }
+  &.selected {
+    background: linear-gradient(180deg, rgba(121, 210, 247, 0.2) 0%, rgba(152, 229, 237, 0.5) 100%);
+    border: 1px solid rgba(108, 201, 212, 0.9);
+  }
 
-    .label {
-        word-break: break-word;
-    }
+  .label {
+    word-break: break-word;
+  }
 }

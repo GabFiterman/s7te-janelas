@@ -29,17 +29,7 @@ $transition-default: all 0.3s ease-in-out;
 // NOTE: SPECIALS
 
 $fixed-menu-gradient: rgba(85, 117, 148, 0.5)
-    linear-gradient(
-        90deg,
-        rgba(105, 177, 250, 0.31) 0%,
-        rgba(220, 234, 250, 0.31) 68%,
-        rgba(92, 167, 247, 0.9) 100%
-    );
+  linear-gradient(90deg, rgba(105, 177, 250, 0.31) 0%, rgba(220, 234, 250, 0.31) 68%, rgba(92, 167, 247, 0.9) 100%);
 
 $icon-bright-gradient: #02e5fd
-    linear-gradient(
-        180deg,
-        rgba(2, 229, 253, 1) 0%,
-        rgba(1, 58, 98, 1) 68%,
-        rgba(196, 209, 220, 1) 100%
-    );
+  linear-gradient(180deg, rgba(2, 229, 253, 1) 0%, rgba(1, 58, 98, 1) 68%, rgba(196, 209, 220, 1) 100%);

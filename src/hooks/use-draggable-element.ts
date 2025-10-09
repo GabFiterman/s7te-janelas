@@ -9,38 +9,35 @@ type ElementType = 'icon' | 'window';
  * @param type Tipo do elemento ('icon' ou 'window').
  */
 export function useDraggableElement(id: string, type: ElementType) {
-    const { updateWorkspaceIconPosition, updateWindowPosition } = useUIStore();
+  const { updateWorkspaceIconPosition, updateWindowPosition } = useUIStore();
 
-    const handleDragEnd = (
-        _event: MouseEvent | TouchEvent | PointerEvent,
-        info: PanInfo,
-    ) => {
-        const newX = info.point.x;
-        const newY = info.point.y;
+  const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    const newX = info.point.x;
+    const newY = info.point.y;
 
-        switch (type) {
-            case 'icon': {
-                updateWorkspaceIconPosition(id, newX, newY);
-                break;
-            }
-            case 'window': {
-                updateWindowPosition(id, newX, newY);
-                break;
-            }
-            default:
-                console.error('Tipo de elemento não suportado:', type);
-                break;
-        }
-    };
+    switch (type) {
+      case 'icon': {
+        updateWorkspaceIconPosition(id, newX, newY);
+        break;
+      }
+      case 'window': {
+        updateWindowPosition(id, newX, newY);
+        break;
+      }
+      default:
+        console.error('Tipo de elemento não suportado:', type);
+        break;
+    }
+  };
 
-    return {
-        handleDragEnd,
-        dragProps: {
-            dragMomentum: false,
-            dragElastic: 0,
-            onDragEnd: handleDragEnd,
-        },
-    };
+  return {
+    handleDragEnd,
+    dragProps: {
+      dragMomentum: false,
+      dragElastic: 0,
+      onDragEnd: handleDragEnd,
+    },
+  };
 }
 
 export default useDraggableElement;

@@ -1,26 +1,26 @@
 @use 'variables' as *;
 
 body {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .App {
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
 
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 
-    font-family: 'Roboto', Avenir, Helvetica, Arial, sans-serif;
-    font-synthesis: none;
-    font-weight: 400;
-    line-height: 1.5;
-    text-rendering: optimizeLegibility;
+  font-family: 'Roboto', Avenir, Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+  font-weight: 400;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
 }
 
 .d-flex {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: $gap-md;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $gap-md;
 }

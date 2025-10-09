@@ -1,60 +1,60 @@
 .window {
-    background-color: #d2e0ed;
-    border: 1px solid #8596a5;
-    box-shadow: 3px 3px 18px 3px rgba(0, 0, 0, 0.333);
-    -webkit-box-shadow: 3px 3px 18px 3px rgba(0, 0, 0, 0.333);
-    overflow: hidden;
-    position: absolute;
+  background-color: #d2e0ed;
+  border: 1px solid #8596a5;
+  box-shadow: 3px 3px 18px 3px rgba(0, 0, 0, 0.333);
+  -webkit-box-shadow: 3px 3px 18px 3px rgba(0, 0, 0, 0.333);
+  overflow: hidden;
+  position: absolute;
 
-    .title-bar {
-        display: flex;
-        justify-content: center;
-        justify-content: flex-end;
-        padding: 0.25em;
+  .title-bar {
+    display: flex;
+    justify-content: center;
+    justify-content: flex-end;
+    padding: 0.25em;
 
-        .title {
-            align-items: center;
-            display: flex;
-            flex-grow: 2;
-            gap: 0.25em;
-            justify-content: flex-start;
-            width: 100%;
+    .title {
+      align-items: center;
+      display: flex;
+      flex-grow: 2;
+      gap: 0.25em;
+      justify-content: flex-start;
+      width: 100%;
 
-            img {
-                height: 1.5em;
-            }
-        }
-
-        .controls {
-            align-items: center;
-            display: flex;
-            flex-shrink: 1;
-            gap: 0.25em;
-            justify-content: flex-end;
-
-            button {
-                background: none;
-                border-radius: 0.25em;
-                border: 1px solid #526475;
-                padding: 0.08em 0.8em;
-
-                &:hover {
-                    background: #e1eaf3;
-                    cursor: pointer;
-                }
-
-                &:disabled {
-                    border: 1px solid #526475;
-                    color: #526475;
-                    cursor: not-allowed;
-                    opacity: 0.5;
-                }
-            }
-        }
+      img {
+        height: 1.5em;
+      }
     }
 
-    .content {
-        height: 100%;
-        width: 100%;
+    .controls {
+      align-items: center;
+      display: flex;
+      flex-shrink: 1;
+      gap: 0.25em;
+      justify-content: flex-end;
+
+      button {
+        background: none;
+        border-radius: 0.25em;
+        border: 1px solid #526475;
+        padding: 0.08em 0.8em;
+
+        &:hover {
+          background: #e1eaf3;
+          cursor: pointer;
+        }
+
+        &:disabled {
+          border: 1px solid #526475;
+          color: #526475;
+          cursor: not-allowed;
+          opacity: 0.5;
+        }
+      }
     }
+  }
+
+  .content {
+    height: 100%;
+    width: 100%;
+  }
 }

@@ -1,5 +1,5 @@
 function useInternetExplorer() {
-    console.log('Internet Explorer');
+  console.log('Internet Explorer');
 }
 
 export default useInternetExplorer;

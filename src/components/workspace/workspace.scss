@@ -1,33 +1,33 @@
 @use '@/styles/variables' as *;
 
 .workspace {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1;
+
+  .workspace-canvas,
+  .workspace-canvas-icons {
     width: 100%;
     height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    overflow: hidden;
+  }
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 1;
+  .workspace-fixed-menu-container {
+    z-index: 600;
+  }
 
-    .workspace-canvas,
-    .workspace-canvas-icons {
-        width: 100%;
-        height: 100%;
-    }
-
-    .workspace-fixed-menu-container {
-        z-index: 600;
-    }
-
-    .workspace-floating-menu-container {
-        position: absolute;
-        z-index: 500;
-        bottom: 3.65em;
-        left: 0;
-    }
+  .workspace-floating-menu-container {
+    position: absolute;
+    z-index: 500;
+    bottom: 3.65em;
+    left: 0;
+  }
 }

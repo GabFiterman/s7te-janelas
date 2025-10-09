@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 
-import { useDraggableElement, useWindowSize } from '@/hooks';
+import { useDraggableElement } from '@/hooks';
 import useUIStore from '@/store/uiStore';
 
 import './icon-link-label.scss';
@@ -12,20 +12,21 @@ interface IconLinkLabelProps {
   icon?: string;
   label?: string;
   size?: number;
+  constraintsRef?: React.RefObject<HTMLDivElement | null>;
 }
 
 function IconLinkLabel({
   id,
   className,
+  constraintsRef,
   // icon = '', // TODO: Implementar recebimento de ícone externo;
   label = 'My Folder',
   size = 64,
 }: IconLinkLabelProps) {
-  const viewportSize = useWindowSize();
+  const dragConstraints = constraintsRef;
+
   const { dragProps } = useDraggableElement(id, 'icon');
   const currentIcon = useUIStore((state) => state.workspaceIcons.find((i) => i.id === id));
-
-  const { FIXED_MENU_HEIGHT } = useUIStore();
 
   const iconRef = useRef<HTMLDivElement>(null);
   const [iconDimensions, setIconDimensions] = useState({
@@ -40,20 +41,7 @@ function IconLinkLabel({
     }
   }, [iconDimensions.width]);
 
-  if (!currentIcon) return null;
-  const { x: currentX, y: currentY } = currentIcon;
-
-  const iconWidth = iconDimensions.width || size * 1.5;
-  const iconHeight = iconDimensions.height || size * 1.5;
-
-  const dragConstraints = {
-    left: -currentX,
-    top: -currentY,
-    right: viewportSize.width - iconWidth - currentX,
-    bottom: viewportSize.height - FIXED_MENU_HEIGHT - iconHeight - currentY,
-  };
-
-  return (
+  return currentIcon ? (
     <motion.div
       className={`icon-link-label`}
       dragConstraints={dragConstraints}
@@ -85,7 +73,7 @@ function IconLinkLabel({
         </span>
       </div>
     </motion.div>
-  );
+  ) : null;
 }
 
 export default IconLinkLabel;

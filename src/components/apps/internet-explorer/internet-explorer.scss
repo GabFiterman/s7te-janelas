@@ -9,66 +9,61 @@
   height: 100%;
   justify-content: flex-start;
   width: 100%;
+
   .ie-header {
     background: #d2e0ed;
     display: flex;
     flex-direction: row;
+    gap: 0.25em;
+    padding: 0.25em 0;
     width: 100%;
-    padding: .25em .5em;
-    gap: .25em;
-  
+
     .button-group {
+      align-items: center;
       display: flex;
       flex-direction: row;
+      gap: 0.25em;
+      margin: 0 0.5em;
       width: fit-content;
-      gap: .25em;
-      align-items: center;
-  
+
       &:hover {
         cursor: pointer;
       }
-  
       button {
-        width: 2em;
-        height: 2em;
-        // TODO: refazer este gradiente
-        background: linear-gradient(360deg, rgba(2, 229, 253, 1) 0%, rgba(1, 58, 98, 1) 68%, rgba(196, 209, 220, 1) 100%);;
+        background: linear-gradient(
+          360deg,
+          rgba(121, 233, 247, 1) 0%,
+          rgba(0, 22, 93, 1) 68%,
+          rgb(88, 135, 196) 70%,
+          rgba(122, 143, 198, 1) 100%
+        );
         border-radius: 50%;
         color: #ffffff;
-        filter: brightness(1.25);
-  
+        height: 2em;
+        width: 2em;
+
         &:hover {
           cursor: pointer;
+          filter: brightness(1.25);
         }
       }
-      
     }
-  
+
     .query-container {
-      width: 100%;
+      align-items: center;
       display: flex;
       flex-direction: row;
-      align-items: center;
-      // gap: .25em;
-
-      input {
-        font-size: 16px;
-        padding: .15em .5em;
-
-        width: 100%;
-        
-        &:focus {
-          outline: none;
-        }
-      }
+      width: 100%;
 
       .controller {
         display: flex;
-        
-        svg {
-          background: #ffffff;
-          padding: .25em .5em;
-          outline: 1px solid #767676;
+        height: -webkit-fill-available;
+
+        button {
+          background: transparent;
+          border: none;
+          border-left: 1px solid #a0a0a0;
+          padding: 0 0.75em;
         }
       }
     }
@@ -79,8 +74,7 @@
 
     .search-container {
       flex: 1;
-      margin-left: .5em;
+      margin: 0 0.5em;
     }
   }
-
 }

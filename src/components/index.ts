@@ -4,4 +4,5 @@ export { default as Workspace } from './workspace/workspace';
 
 export * from './apps';
 export * from './icons';
+export * from './inputs';
 export * from './widgets';

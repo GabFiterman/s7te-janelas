@@ -1,4 +1,10 @@
 import { ArrowLeft, ArrowRight, ArrowDropdown, Reload, Close, Search } from '@/assets/icons';
+import { InputAndIcon } from '@/components';
+import { internetExplorerIcon } from '@/assets/icons';
+
+function IEIcon() {
+  return <img src={internetExplorerIcon} alt="Internet Explorer" style={{ width: '1.5em', height: '1.5em' }} />;
+}
 
 function IeHeader() {
   return (
@@ -12,21 +18,45 @@ function IeHeader() {
         </button>
         <ArrowDropdown color="#3791CB" size={22} />
       </div>
+
       <div className="query-container url-container">
-        {/* ícone antes da URL
-        <img />  */}
-        <input type="text" placeholder="Pesquisar" />
-        <div className="controller">
-          <Reload />
-          <Close />
-        </div>
+        <InputAndIcon
+          placeholder="https://www.bing.com/"
+          childBefore={
+            <>
+              <IEIcon />
+            </>
+          }
+          childAfter={
+            <>
+              <div className="controller">
+                <button>
+                  <Reload color="#3791CB" size={18} />
+                </button>
+                <button>
+                  <Close color="#cb3737ff" size={22} />
+                </button>
+              </div>
+            </>
+          }
+        />
       </div>
+
       <div className="query-container search-container">
-        {/* ícone antes da URL
-        <img />  */}
-        <input type="text" placeholder="Bing" />
-        <Search />
-        <ArrowDropdown size={18} />
+        <InputAndIcon
+          placeholder="Bing"
+          childBefore={
+            <>
+              <IEIcon />
+            </>
+          }
+          childAfter={
+            <>
+              <Search color="#3791CB" size={20} />
+              <ArrowDropdown size={22} />
+            </>
+          }
+        />
       </div>
     </div>
   );

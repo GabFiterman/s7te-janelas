@@ -1,3 +1,16 @@
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { IoMdArrowDropdown, IoMdClose, IoIosSearch } from 'react-icons/io';
+import { TfiReload } from 'react-icons/tfi';
+
+export {
+  FaArrowLeft as ArrowLeft,
+  FaArrowRight as ArrowRight,
+  IoMdArrowDropdown as ArrowDropdown,
+  TfiReload as Reload,
+  IoMdClose as Close,
+  IoIosSearch as Search,
+};
+
 export { default as blocksIcon } from './blocks.webp';
 export { default as cdPlayerIcon } from './cd_player.webp';
 export { default as computerColorsIcon } from './computer_colors.webp';

@@ -7,12 +7,11 @@ function useWorkspace() {
   const constraintsRef = useRef(null);
   const isStartMenuOpen = useUIStore((state) => state.isStartMenuOpen);
   const setIsStartMenuOpen = useUIStore((state) => state.setIsStartMenuOpen);
-
-  const randomWallpaper = Math.random() < 0.5;
-  const wallpaper = randomWallpaper ? defaultWallpaper : leavesWallpaper;
+  const randomWallpaper = useRef(Math.random() < 0.5);
+  const wallpaper = useRef(randomWallpaper.current ? defaultWallpaper : leavesWallpaper);
 
   const style = {
-    backgroundImage: `url(${wallpaper})`,
+    backgroundImage: `url(${wallpaper.current})`,
   };
 
   function handleIconClick() {

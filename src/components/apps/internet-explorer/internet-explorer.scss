@@ -77,4 +77,10 @@
       margin: 0 0.5em;
     }
   }
+
+  .ie-webview {
+    flex-grow: 1;
+    width: 100%;
+    border: none;
+  }
 }

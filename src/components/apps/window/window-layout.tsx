@@ -29,9 +29,7 @@ function WindowLayout({
           {title}
         </span>
         <div className="controls">
-          <button onClick={handleMinimize} disabled>
-            _
-          </button>
+          <button onClick={handleMinimize}>_</button>
           <button onClick={handleMaximize}>▢</button>
           <button className="close" onClick={handleClose}>
             X

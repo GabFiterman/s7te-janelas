@@ -23,6 +23,10 @@ export interface WindowState {
   zIndex: number;
 }
 
+export interface GroupedWindows {
+  [appName: string]: WindowState[];
+}
+
 interface UIState {
   FIXED_MENU_HEIGHT: number;
 
@@ -30,6 +34,8 @@ interface UIState {
   maxZIndex: number;
   windows: WindowState[];
   workspaceIcons: Icon[];
+
+  activeWindowsByApp: () => GroupedWindows;
 
   closeWindow: (id: string) => void;
   focusWindow: (id: string) => void;
@@ -44,7 +50,7 @@ interface UIState {
   updateWorkspaceIconPosition: (id: string, newX: number, newY: number) => void;
 }
 
-const useUIStore = create<UIState>((set) => ({
+const useUIStore = create<UIState>((set, get) => ({
   FIXED_MENU_HEIGHT: 60,
 
   isStartMenuOpen: false,
@@ -80,6 +86,19 @@ const useUIStore = create<UIState>((set) => ({
       y: 150,
     },
   ],
+
+  activeWindowsByApp: () => {
+    const windows = get().windows;
+
+    return windows.reduce((acc, window) => {
+      const { appName } = window;
+      if (!acc[appName]) {
+        acc[appName] = [];
+      }
+      acc[appName].push(window);
+      return acc;
+    }, {} as GroupedWindows);
+  },
 
   closeWindow: (id) => {
     set((state) => ({

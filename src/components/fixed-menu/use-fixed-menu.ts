@@ -1,9 +1,9 @@
 import useUIStore from '@/store/uiStore';
 
+import { type AppName } from '@/components/apps/app-config';
+
+import { internetExplorerIcon, pictureIcon, fileExplorerIcon } from '@/assets/icons';
 import windowIcon from '@/assets/logo/windows-logo.png';
-import internetExplorerIcon from '@/assets/icons/internet_explorer.webp';
-import pictureIcon from '@/assets/icons/picture.webp';
-import fileExplorerIcon from '@/assets/icons/file_explorer.webp';
 
 // TODO: Utilizar UUID para gerar os ids do sistema
 const generateId = () => Date.now().toString() + Math.random().toString(36).substring(2, 9);
@@ -12,16 +12,17 @@ function useFixedMenuStates() {
   const { toggleIsStartMenuOpen, openWindow } = useUIStore();
 
   const mainItem = {
-    id: 1,
+    id: '1',
     label: 'FloatMenu',
     action: toggleIsStartMenuOpen,
     icon: windowIcon,
   };
 
-  const menuItems = [
+  const menuItems: (typeof mainItem & { appName?: AppName })[] = [
     {
       id: generateId(),
       label: 'Internet Explorer',
+      appName: 'InternetExplorer',
       action: () =>
         openWindow({
           id: generateId(),
@@ -34,13 +35,14 @@ function useFixedMenuStates() {
       icon: internetExplorerIcon,
     },
     {
-      id: 3,
+      id: generateId(),
       label: 'File Explorer',
+      appName: 'FileExplorer',
       action: () =>
         openWindow({
           id: generateId(),
           title: 'File Explorer',
-          appName: 'InternetExplorer',
+          appName: 'FileExplorer',
           width: 1200,
           height: 800,
           iconSrc: fileExplorerIcon,
@@ -48,7 +50,7 @@ function useFixedMenuStates() {
       icon: fileExplorerIcon,
     },
     {
-      id: 4,
+      id: generateId(),
       label: 'Picture',
       action: () => console.log('Picture'),
       icon: pictureIcon,

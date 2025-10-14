@@ -1,6 +1,7 @@
 import useUIStore from '@/store/uiStore';
 import useStartMenuStates from './use-start-menu';
 
+// import { InputAndIcon } from '@/components';
 import { indicationArrowIcon, personalUserIcon } from '@/assets/icons';
 import './start-menu.scss';
 
@@ -29,7 +30,8 @@ function StartMenu() {
               <span>Todos os programas</span>
             </div>
             <div className="start-menu-app-search">
-              {/* TODO: Fazer componente personalizado para input, com o ícone embutido */}
+              {/* TODO: Investigar por que clicar neste InputAndIcon fecha o menu. */}
+              {/* <InputAndIcon type="text" placeholder="Pesquisar programas e arquivos" /> */}
               <input id="start-menu-app-search" type="text" placeholder="Pesquisar programas e arquivos" />
             </div>
           </div>

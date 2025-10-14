@@ -2,7 +2,6 @@
 
 .internet-explorer-container {
   align-items: flex-start;
-  background: #ffffff;
   display: flex;
   flex-direction: column;
   font-family: 'Courier New', Courier, monospace;
@@ -11,74 +10,14 @@
   width: 100%;
 
   .ie-header {
-    background: #d2e0ed;
     display: flex;
     flex-direction: row;
-    gap: 0.25em;
-    padding: 0.25em 0;
-    width: 100%;
-
-    .button-group {
-      align-items: center;
-      display: flex;
-      flex-direction: row;
-      gap: 0.25em;
-      margin: 0 0.5em;
-      width: fit-content;
-
-      &:hover {
-        cursor: pointer;
-      }
-      button {
-        background: linear-gradient(
-          360deg,
-          rgba(121, 233, 247, 1) 0%,
-          rgba(0, 22, 93, 1) 68%,
-          rgb(88, 135, 196) 70%,
-          rgba(122, 143, 198, 1) 100%
-        );
-        border-radius: 50%;
-        color: #ffffff;
-        height: 2em;
-        width: 2em;
-
-        &:hover {
-          cursor: pointer;
-          filter: brightness(1.25);
-        }
-      }
-    }
-
-    .query-container {
-      align-items: center;
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-
-      .controller {
-        display: flex;
-        height: -webkit-fill-available;
-
-        button {
-          background: transparent;
-          border: none;
-          border-left: 1px solid #a0a0a0;
-          padding: 0 0.75em;
-        }
-      }
-    }
-
-    .url-container {
-      flex: 2;
-    }
-
-    .search-container {
-      flex: 1;
-      margin: 0 0.5em;
-    }
+    gap: 1em;
+    width: 99.5%;
   }
 
   .ie-webview {
+    background: #ffffff;
     flex-grow: 1;
     width: 100%;
     border: none;

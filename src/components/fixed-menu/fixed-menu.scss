@@ -48,7 +48,7 @@
       align-items: center;
       display: flex;
       justify-content: center;
-      
+
       &:hover {
         cursor: pointer;
         filter: brightness(1.25);
@@ -57,10 +57,10 @@
       }
 
       &.taskbar-item {
-        padding: .5em 1em;
+        padding: 0.5em 1em;
 
         &.active {
-          background: linear-gradient(145deg,rgba(194, 204, 217, 1) 0%, rgba(143, 165, 189, 1) 100%);
+          background: linear-gradient(145deg, rgba(194, 204, 217, 1) 0%, rgba(143, 165, 189, 1) 100%);
           border-radius: 5px;
           border: 2px solid rgba(16, 57, 100, 1);
         }
@@ -121,8 +121,8 @@
                 color: #ff4d4d;
               }
             }
+          }
         }
-      }
       }
     }
 

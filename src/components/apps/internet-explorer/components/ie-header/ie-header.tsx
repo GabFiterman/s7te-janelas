@@ -1,8 +1,8 @@
 import { useCallback, type ChangeEvent, type KeyboardEvent } from 'react';
 
 import { useInternetExplorer } from '../../use-internet-explorer';
-import { InputAndIcon } from '@/components';
-import { ArrowDropdown, ArrowLeft, ArrowRight, Close, Reload, Search, internetExplorerIcon } from '@/assets/icons';
+import { BtnForwardBackward, InputAndIcon } from '@/components';
+import { ArrowDropdown, Close, internetExplorerIcon, Reload, Search } from '@/assets/icons';
 
 function IeIcon() {
   return <img src={internetExplorerIcon} alt="Internet Explorer" style={{ width: '1.5em', height: '1.5em' }} />;
@@ -30,16 +30,11 @@ function IeHeader() {
 
   return (
     <div className="ie-header">
-      <div className="button-group">
-        <button>
-          <ArrowLeft />
-        </button>
-        <button>
-          <ArrowRight />
-        </button>
-        <ArrowDropdown color="#3791CB" size={22} />
-      </div>
-
+      <BtnForwardBackward
+        handleLeftClick={() => console.log('backward')}
+        handleRightClick={() => console.log('forward')}
+        handleDownClick={() => console.log('downward')}
+      />
       <div className="query-container url-container">
         <InputAndIcon
           placeholder="https://www.bing.com/"

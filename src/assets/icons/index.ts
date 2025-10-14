@@ -23,3 +23,4 @@ export { default as personalUserIcon } from './personal_user.webp';
 export { default as pictureIcon } from './picture.webp';
 export { default as sheetMusicIcon } from './sheet_music.webp';
 export { default as usersIcon } from './users.webp';
+export { default as folderUserIcon } from './folder-user.webp';

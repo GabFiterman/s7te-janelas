@@ -3,7 +3,7 @@ import useUIStore from '@/store/uiStore';
 
 import useFixedMenuStates from './use-fixed-menu';
 import { FixedMenuTaskbarItem } from './components';
-import { DatetimeWidget } from '../widgets';
+import { DatetimeWidget } from '../common/widgets';
 import './fixed-menu.scss';
 
 interface GroupedWindows {

@@ -1,4 +1,6 @@
 .file-explorer {
+  height: 96%;
+
   .file-explorer-header {
     background: #d2e0ed;
     display: flex;
@@ -70,5 +72,22 @@
       }
     }
 
+  }
+
+  .file-explorer-content {
+    height: 92%;
+    display: flex;
+
+    aside.file-explorer-side-menu {
+      background: #fff;
+      height: -webkit-fill-available;
+      width: -webkit-max-content;
+      overflow-y: auto;
+      padding: .5em 0;
+
+      .side-menu-item:not(:first-child) {
+        margin-top: 1em;
+      }
+    }
   }
 }

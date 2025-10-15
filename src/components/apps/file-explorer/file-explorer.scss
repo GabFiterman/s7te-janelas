@@ -77,16 +77,39 @@
   .file-explorer-content {
     height: 92%;
     display: flex;
+    gap: .25em;
 
     aside.file-explorer-side-menu {
       background: #fff;
       height: -webkit-fill-available;
-      width: -webkit-max-content;
+      width: -webkit-min-content;
+      min-width: 14em;
       overflow-y: auto;
       padding: .5em 0;
 
       .side-menu-item:not(:first-child) {
         margin-top: 1em;
+      }
+    }
+  }
+
+  .file-explorer-canvas {
+    background: #ffffff;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    gap: .5em;
+
+    display: flex;
+
+    .canvas-icon {
+      padding: .75em 0;
+
+      width: 10em;
+      min-height: 7em;
+
+      span {
+        max-width: 6em;
       }
     }
   }

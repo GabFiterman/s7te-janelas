@@ -1,4 +1,4 @@
-import { FileExplorerHeader, FileExplorerController, FileExplorerSideMenu } from './components';
+import { FileExplorerHeader, FileExplorerController, FileExplorerSideMenu, FileExplorerCanvas } from './components';
 
 import './file-explorer.scss';
 
@@ -13,7 +13,7 @@ function FileExplorer() {
       </section>
       <section className="file-explorer-content py-2 px-10">
         <FileExplorerSideMenu />
-        <main>main content</main>
+        <FileExplorerCanvas />
       </section>
     </div>
   );

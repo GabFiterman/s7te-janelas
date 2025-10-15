@@ -8,11 +8,12 @@ interface BtnIconTextLinkProps {
   className?: string;
   style?: React.CSSProperties;
   iconSize?: string;
+  orientation?: 'vertical' | 'horizontal';
 }
 
-function BtnIconTextLink({ text, icon, className, style, iconSize }: BtnIconTextLinkProps) {
+function BtnIconTextLink({ text, icon, className, style, iconSize, orientation = 'horizontal' }: BtnIconTextLinkProps) {
   return (
-    <button className={`btn-icon-text-link ${className ? className : ''}`} style={style}>
+    <button className={`btn-icon-text-link ${orientation} ${className ? className : ''}`} style={style}>
       <picture className="icon">
         {typeof icon === 'string' ? <img src={icon} alt={text} style={{ width: iconSize, height: iconSize }} /> : icon}
       </picture>

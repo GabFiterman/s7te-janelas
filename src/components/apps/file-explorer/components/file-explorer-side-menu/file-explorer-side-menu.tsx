@@ -107,19 +107,14 @@ function FileExplorerSideMenu() {
       {sideMenuItems &&
         sideMenuItems.map((item) => (
           <>
-            <BtnIconTextLink
-              text={item.text}
-              icon={item.icon}
-              className="side-menu-item pl-15 pr-50 py-1"
-              key={item.id}
-            />
+            <BtnIconTextLink text={item.text} icon={item.icon} className="side-menu-item pl-15 py-1" key={item.id} />
             {item?.items &&
               item?.items.length > 0 &&
               item.items.map((subItem) => (
                 <BtnIconTextLink
                   text={subItem.text}
                   icon={subItem.icon}
-                  className="side-menu-subitem pl-28 pr-50 py-1"
+                  className="side-menu-subitem pl-28 py-1"
                   key={subItem.id}
                 />
               ))}

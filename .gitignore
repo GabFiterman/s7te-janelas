@@ -13,6 +13,8 @@ dist-ssr
 *.local
 windows_resources
 
+src/assets/icons/_new
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

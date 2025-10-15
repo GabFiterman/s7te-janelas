@@ -1,53 +1,61 @@
-// NOTE: Loop for generating width classes from 0 to 100
 @for $i from 0 through 100 {
+  $UNIT: '%';
   .w-#{$i} {
-    width: #{$i}#{'%'};
+    width: #{$i}#{$UNIT};
   }
-}
 
-// NOTE: Loop for generating height classes from 0 to 100
-@for $i from 0 through 100 {
   .h-#{$i} {
-    height: #{$i}#{'%'};
+    height: #{$i}#{$UNIT};
   }
 }
 
 @for $i from 0 through 500 {
+  $UNIT: 'px';
+
   .p-#{$i} {
-    padding: #{$i}#{'px'};
+    padding: #{$i}#{$UNIT};
   }
-}
 
-@for $i from 0 through 500 {
   .px-#{$i} {
-    padding-left: #{$i}#{'px'};
-    padding-right: #{$i}#{'px'};
+    padding-left: #{$i}#{$UNIT};
+    padding-right: #{$i}#{$UNIT};
   }
-}
 
-@for $i from 0 through 500 {
   .py-#{$i} {
-    padding-top: #{$i}#{'px'};
-    padding-bottom: #{$i}#{'px'};
+    padding-top: #{$i}#{$UNIT};
+    padding-bottom: #{$i}#{$UNIT};
+  }
+
+  .pl-#{$i} {
+    padding-left: #{$i}#{$UNIT};
+  }
+
+  .pr-#{$i} {
+    padding-right: #{$i}#{$UNIT};
+  }
+
+  .pt-#{$i} {
+    padding-top: #{$i}#{$UNIT};
+  }
+
+  .pb-#{$i} {
+    padding-bottom: #{$i}#{$UNIT};
   }
 }
 
 @for $i from 0 through 500 {
+  $UNIT: 'px';
   .m-#{$i} {
-    margin: #{$i}#{'px'};
+    margin: #{$i}#{$UNIT};
   }
-}
 
-@for $i from 0 through 500 {
   .mx-#{$i} {
-    margin-left: #{$i}#{'px'};
-    margin-right: #{$i}#{'px'};
+    margin-left: #{$i}#{$UNIT};
+    margin-right: #{$i}#{$UNIT};
   }
-}
 
-@for $i from 0 through 500 {
   .my-#{$i} {
-    margin-top: #{$i}#{'px'};
-    margin-bottom: #{$i}#{'px'};
+    margin-top: #{$i}#{$UNIT};
+    margin-bottom: #{$i}#{$UNIT};
   }
 }

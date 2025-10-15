@@ -38,7 +38,7 @@ function FileExplorerHeader() {
 
       <div className="query-container search-container">
         <InputAndIcon
-          placeholder="Pessquisar Fiterman"
+          placeholder="Pesquisar Fiterman"
           disabled
           childAfter={
             <>

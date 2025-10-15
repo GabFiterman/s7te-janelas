@@ -1,7 +1,8 @@
 import useWorkspace from './use-workspace';
 import useUIStore from '@/store/uiStore';
 
-import { FixedMenu, IconLinkLabel, StartMenu, Window } from '@/components';
+import { FixedMenu, StartMenu, Window } from '@/components';
+import { IconLinkLabel } from './components';
 
 import './workspace.scss';
 

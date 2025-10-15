@@ -11,3 +11,43 @@
     height: #{$i}#{'%'};
   }
 }
+
+@for $i from 0 through 500 {
+  .p-#{$i} {
+    padding: #{$i}#{'px'};
+  }
+}
+
+@for $i from 0 through 500 {
+  .px-#{$i} {
+    padding-left: #{$i}#{'px'};
+    padding-right: #{$i}#{'px'};
+  }
+}
+
+@for $i from 0 through 500 {
+  .py-#{$i} {
+    padding-top: #{$i}#{'px'};
+    padding-bottom: #{$i}#{'px'};
+  }
+}
+
+@for $i from 0 through 500 {
+  .m-#{$i} {
+    margin: #{$i}#{'px'};
+  }
+}
+
+@for $i from 0 through 500 {
+  .mx-#{$i} {
+    margin-left: #{$i}#{'px'};
+    margin-right: #{$i}#{'px'};
+  }
+}
+
+@for $i from 0 through 500 {
+  .my-#{$i} {
+    margin-top: #{$i}#{'px'};
+    margin-bottom: #{$i}#{'px'};
+  }
+}

@@ -1,4 +1,10 @@
-import { FileExplorerHeader, FileExplorerController, FileExplorerSideMenu, FileExplorerCanvas } from './components';
+import {
+  FileExplorerCanvas,
+  FileExplorerController,
+  FileExplorerFooter,
+  FileExplorerHeader,
+  FileExplorerSideMenu,
+} from './components';
 
 import './file-explorer.scss';
 
@@ -15,6 +21,9 @@ function FileExplorer() {
         <FileExplorerSideMenu />
         <FileExplorerCanvas />
       </section>
+      <footer>
+        <FileExplorerFooter />
+      </footer>
     </div>
   );
 }

@@ -13,7 +13,7 @@ import { BtnIconTextLink } from '@/components';
 // } from '@/assets/icons';
 
 function FileExplorerCanvas() {
-  const { currentDirectoryContents, navigateTo } = useFileExplorerStore();
+  const { currentDirectoryContents, getIsItemSelected, navigateTo, toggleItemSelection } = useFileExplorerStore();
 
   // const canvasItems = [
   //   {
@@ -59,19 +59,30 @@ function FileExplorerCanvas() {
   // ];
 
   return (
-    <main className="file-explorer-canvas">
+    <main
+      className="file-explorer-canvas"
+      onClick={(event) => {
+        event.stopPropagation();
+        event.preventDefault();
+        toggleItemSelection(event, null);
+      }}
+    >
       {currentDirectoryContents?.length > 0 &&
         currentDirectoryContents.map((item) => (
           <BtnIconTextLink
-            text={item.name}
-            icon={item.iconSrc}
-            // TODO: Gerar um UUID !?
-            key={item.name}
-            orientation="vertical"
             className="canvas-icon"
+            icon={item.iconSrc}
             iconSize="40px"
-            // onClick={(e) => console.log(`Clique único em: ${item.name}`, { e })}
+            // TODO: Gerar um UUID !?
+            key={item.path}
+            onClick={(event) => {
+              event.stopPropagation();
+              toggleItemSelection(event, item);
+            }}
             onDoubleClick={() => navigateTo(item.path)}
+            orientation="vertical"
+            selected={getIsItemSelected(item)}
+            text={item.name}
           />
         ))}
     </main>

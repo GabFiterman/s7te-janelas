@@ -6,6 +6,15 @@
   font-size: 1em;
   border: 1px solid transparent;
 
+  &.selected {
+    background: linear-gradient(180deg, rgba(121, 210, 247, 0.25) 0%, rgba(152, 229, 237, 0.45) 100%);
+    border: 2px solid rgba(107, 165, 172, 0.8);
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+
   &.horizontal {
     flex-direction: row;
     align-items: center;

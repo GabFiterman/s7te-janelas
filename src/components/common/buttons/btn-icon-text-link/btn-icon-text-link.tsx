@@ -7,6 +7,7 @@ interface BtnIconTextLinkProps {
   icon: string | JSX.Element;
   iconSize?: string;
   orientation?: 'vertical' | 'horizontal';
+  selected?: boolean;
   style?: React.CSSProperties;
   text: string;
 
@@ -19,6 +20,7 @@ function BtnIconTextLink({
   icon,
   iconSize,
   orientation = 'horizontal',
+  selected,
   style,
   text,
 
@@ -27,7 +29,7 @@ function BtnIconTextLink({
 }: BtnIconTextLinkProps) {
   return (
     <button
-      className={`btn-icon-text-link ${orientation} ${className ? className : ''}`}
+      className={`btn-icon-text-link ${orientation} ${className ? className : ''} ${selected ? 'selected' : ''}`}
       style={style}
       onClick={(e) => onClick && onClick(e)}
       onDoubleClick={(e) => onDoubleClick && onDoubleClick(e)}

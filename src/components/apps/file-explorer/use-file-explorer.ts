@@ -1,7 +1,8 @@
 import { create } from 'zustand';
-import { folderIcon, pictureIcon, sheetMusicIcon } from '@/assets/icons';
+import { folderIcon, pictureIcon, sheetMusicIcon, fileExplorerIcon } from '@/assets/icons';
 
 interface FileSystemItem {
+  alias: string;
   iconSrc: string;
   name: string;
   path: string;
@@ -13,12 +14,15 @@ interface FileExplorerState {
   currentPath: string;
   history: string[];
   historyIndex: number;
-  selectedItems: FileSystemItem[];
+  selectedItemPaths: string[];
 
   getCurrentDirectoryContentsLength: () => number;
   getHistoryLength: () => number;
   getIsItemSelected: (item: FileSystemItem) => boolean;
+  getSelectedItems: () => FileSystemItem[];
   getSelectedItemsLength: () => number;
+
+  setCurrentPath: (newPath: string) => void;
 
   goBack: () => void;
   goForward: () => void;
@@ -36,28 +40,85 @@ interface FileExplorerState {
   ) => void;
 }
 
-const INITIAL_PATH = 'C:';
+// NOTE: Backend Simulado
+const FILE_SYSTEM_MAP: Record<string, FileSystemItem[]> = {
+  // DRIVE ROOT
+  'C:': [
+    { name: 'Usuários', type: 'folder', iconSrc: folderIcon, path: 'C:/Usuários', alias: 'usuarios/' },
+    { name: 'Program Files', type: 'folder', iconSrc: folderIcon, path: 'C:/Program Files', alias: 'programas/' },
+    { name: 'Windows', type: 'folder', iconSrc: folderIcon, path: 'C:/Windows', alias: 'windows/' },
+  ],
 
-const mockGetContents = (path: string): FileSystemItem[] => {
-  return [
-    { name: 'Meus Projetos', type: 'folder', iconSrc: folderIcon, path: `${path}/Meus Projetos` },
-    { name: 'Imagens do Desktop', type: 'folder', iconSrc: pictureIcon, path: `${path}/Imagens do Desktop` },
-    { name: 'README.txt', type: 'file', iconSrc: sheetMusicIcon, path: `${path}/README.txt` },
-  ];
+  // USUÁRIOS
+  'C:/USUÁRIOS': [
+    { name: 'Fiterman', type: 'folder', iconSrc: folderIcon, path: 'C:/Usuários/Fiterman', alias: 'fiterman/' },
+    { name: 'Público', type: 'folder', iconSrc: folderIcon, path: 'C:/Usuários/Público', alias: 'publico/' },
+  ],
+
+  // CONTEÚDO DO USUÁRIO
+  'C:/USUÁRIOS/FITERMAN': [
+    {
+      name: 'Documentos',
+      type: 'folder',
+      iconSrc: fileExplorerIcon,
+      path: 'C:/Usuários/Fiterman/Documentos',
+      alias: 'documentos/',
+    },
+    { name: 'Imagens', type: 'folder', iconSrc: pictureIcon, path: 'C:/Usuários/Fiterman/Imagens', alias: 'imagens/' },
+    {
+      name: 'Projetos',
+      type: 'folder',
+      iconSrc: folderIcon,
+      path: 'C:/Usuários/Fiterman/Projetos',
+      alias: 'projetos/',
+    },
+    {
+      name: 'currículo.pdf',
+      type: 'file',
+      iconSrc: sheetMusicIcon,
+      path: 'C:/Usuários/Fiterman/currículo.pdf',
+      alias: 'curriculo.pdf',
+    },
+  ],
+
+  // PASTA VAZIA (Exemplo)
+  'C:/USUÁRIOS/FITERMAN/PROJETOS': [
+    // Vazio
+  ],
 };
 
+const getContentsByPath = (path: string): FileSystemItem[] => {
+  const normalizedPath = path.toUpperCase();
+  console.log({ normalizedPath });
+  return FILE_SYSTEM_MAP[normalizedPath] || [];
+};
+
+const INITIAL_PATH = 'C:';
+
 export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
-  currentDirectoryContents: mockGetContents(INITIAL_PATH),
+  currentDirectoryContents: getContentsByPath(INITIAL_PATH),
   currentPath: INITIAL_PATH,
   history: [INITIAL_PATH],
   historyIndex: 0,
-  // TODO: Considerar uma seleção apenas por Index;
-  selectedItems: [],
+  selectedItemPaths: [],
 
   getCurrentDirectoryContentsLength: () => get().currentDirectoryContents.length,
   getHistoryLength: () => get().history.length - 1,
-  getIsItemSelected: (item) => get().selectedItems.includes(item),
-  getSelectedItemsLength: () => get().selectedItems.length,
+  getIsItemSelected: (item) => get().selectedItemPaths.includes(item.path),
+  getSelectedItems: () => {
+    const { selectedItemPaths, currentDirectoryContents } = get();
+    const contentsMap = new Map(currentDirectoryContents.map((item) => [item.path, item]));
+
+    return selectedItemPaths
+      .map((path) => contentsMap.get(path))
+      .filter((item): item is FileSystemItem => item !== undefined);
+  },
+  getSelectedItemsLength: () => get().selectedItemPaths.length,
+
+  setCurrentPath: (newPath) =>
+    set(() => {
+      return { currentPath: newPath };
+    }),
 
   goBack: () =>
     set((state) => {
@@ -65,7 +126,7 @@ export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
       if (newIndex >= 0) {
         const newPath = state.history[newIndex];
         return {
-          currentDirectoryContents: mockGetContents(newPath),
+          currentDirectoryContents: getContentsByPath(newPath),
           currentPath: newPath,
           historyIndex: newIndex,
         };
@@ -78,7 +139,7 @@ export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
       if (newIndex < state.history.length) {
         const newPath = state.history[newIndex];
         return {
-          currentDirectoryContents: mockGetContents(newPath),
+          currentDirectoryContents: getContentsByPath(newPath),
           currentPath: newPath,
           historyIndex: newIndex,
         };
@@ -87,42 +148,57 @@ export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
     }),
   navigateTo: (newPath) =>
     set((state) => {
-      const { history, historyIndex } = state;
-      const newHistory = history.slice(0, historyIndex + 1);
-
+      const newHistory = state.history.slice(0, state.historyIndex + 1);
       newHistory.push(newPath);
 
       return {
-        currentDirectoryContents: mockGetContents(newPath),
+        currentDirectoryContents: getContentsByPath(newPath),
         currentPath: newPath,
         history: newHistory,
         historyIndex: newHistory.length - 1,
+        selectedItemPaths: [],
       };
     }),
   toggleItemSelection: (_event, item) =>
     set((state) => {
       if (item === null) {
-        return { selectedItems: [] };
+        return { selectedItemPaths: [] };
       }
 
-      const { selectedItems, currentDirectoryContents } = state;
-
-      let newItems = [item];
+      const { selectedItemPaths, currentDirectoryContents } = state;
+      const itemPath = item.path;
+      let newPaths = [...selectedItemPaths];
 
       if (_event?.ctrlKey) {
-        newItems = selectedItems.includes(item) ? selectedItems.filter((i) => i !== item) : [...selectedItems, item];
-      } else if (_event?.shiftKey) {
-        if (selectedItems.length === 0) {
-          return { selectedItems: [item] };
+        if (selectedItemPaths.includes(itemPath)) {
+          newPaths = selectedItemPaths.filter((path) => path !== itemPath);
+        } else {
+          newPaths.push(itemPath);
         }
-        const selectedItemMainArrayIndex = currentDirectoryContents.findIndex((i) => i === item);
-        const firstSelectedIndex = currentDirectoryContents.indexOf(selectedItems[0]);
+      } else if (_event?.shiftKey) {
+        if (selectedItemPaths.length === 0) {
+          return { selectedItemPaths: [itemPath] };
+        }
+
+        const selectedItemMainArrayIndex = currentDirectoryContents.findIndex((i) => i.path === itemPath);
+        const firstSelectedItem = currentDirectoryContents.find((i) => i.path === selectedItemPaths[0]);
+
+        if (!firstSelectedItem) return { selectedItemPaths: [itemPath] };
+
+        const firstSelectedIndex = currentDirectoryContents.indexOf(firstSelectedItem);
+
         const startIndex = Math.min(selectedItemMainArrayIndex, firstSelectedIndex);
         const endIndex = Math.max(selectedItemMainArrayIndex, firstSelectedIndex);
 
-        newItems = currentDirectoryContents.slice(startIndex, endIndex + 1);
+        newPaths = currentDirectoryContents.slice(startIndex, endIndex + 1).map((i) => i.path);
+      } else {
+        if (selectedItemPaths.length === 1 && selectedItemPaths.includes(itemPath)) {
+          newPaths = [];
+        } else {
+          newPaths = [itemPath];
+        }
       }
 
-      return { selectedItems: newItems };
+      return { selectedItemPaths: newPaths };
     }),
 }));

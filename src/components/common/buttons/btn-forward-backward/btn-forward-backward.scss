@@ -20,6 +20,16 @@
       color: #ffffff;
       height: 2em;
       width: 2em;
+
+      &:disabled {
+        background: #cccccc;
+        transition: all none;
+        cursor: not-allowed;
+
+        &:hover {
+          filter: none;
+        }
+      }
     }
 
     &.button-dropdown {

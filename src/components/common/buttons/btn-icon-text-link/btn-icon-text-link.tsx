@@ -3,17 +3,35 @@ import { type JSX } from 'react';
 import './btn-icon-text-link.scss';
 
 interface BtnIconTextLinkProps {
-  text: string;
-  icon: string | JSX.Element;
   className?: string;
-  style?: React.CSSProperties;
+  icon: string | JSX.Element;
   iconSize?: string;
   orientation?: 'vertical' | 'horizontal';
+  style?: React.CSSProperties;
+  text: string;
+
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onDoubleClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-function BtnIconTextLink({ text, icon, className, style, iconSize, orientation = 'horizontal' }: BtnIconTextLinkProps) {
+function BtnIconTextLink({
+  className,
+  icon,
+  iconSize,
+  orientation = 'horizontal',
+  style,
+  text,
+
+  onClick,
+  onDoubleClick,
+}: BtnIconTextLinkProps) {
   return (
-    <button className={`btn-icon-text-link ${orientation} ${className ? className : ''}`} style={style}>
+    <button
+      className={`btn-icon-text-link ${orientation} ${className ? className : ''}`}
+      style={style}
+      onClick={(e) => onClick && onClick(e)}
+      onDoubleClick={(e) => onDoubleClick && onDoubleClick(e)}
+    >
       <picture className="icon">
         {typeof icon === 'string' ? <img src={icon} alt={text} style={{ width: iconSize, height: iconSize }} /> : icon}
       </picture>

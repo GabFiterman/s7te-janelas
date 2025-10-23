@@ -48,6 +48,7 @@ function InputAndIcon({
 
       <input
         defaultValue={value}
+        value={value}
         disabled={disabled}
         onBlur={() => handleFocusChange(false)}
         onChange={onChange}

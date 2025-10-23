@@ -2,24 +2,30 @@ import { ArrowDropdown, ArrowLeft, ArrowRight } from '@/assets/icons';
 import './btn-forward-backward.scss';
 
 interface BtnForwardBackwardProps {
+  disableLeftClick?: boolean;
+  disableRightClick?: boolean;
+  showDownClick?: boolean;
+
+  handleDownClick?: () => void;
   handleLeftClick?: () => void;
   handleRightClick?: () => void;
-  handleDownClick?: () => void;
-  showDownClick?: boolean;
 }
 
 function BtnForwardBackward({
+  disableLeftClick = false,
+  disableRightClick = false,
+  showDownClick = true,
+
+  handleDownClick,
   handleLeftClick,
   handleRightClick,
-  handleDownClick,
-  showDownClick = true,
 }: BtnForwardBackwardProps) {
   return (
     <div className="btn-forward-backward-container">
-      <button onMouseDown={handleLeftClick} className="btn-forward-backward button-left">
+      <button onMouseDown={handleLeftClick} className="btn-forward-backward button-left" disabled={disableLeftClick}>
         <ArrowLeft />
       </button>
-      <button onMouseDown={handleRightClick} className="btn-forward-backward button-right">
+      <button onMouseDown={handleRightClick} className="btn-forward-backward button-right" disabled={disableRightClick}>
         <ArrowRight />
       </button>
       {showDownClick && (

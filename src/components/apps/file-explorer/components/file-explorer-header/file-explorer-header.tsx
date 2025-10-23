@@ -1,23 +1,28 @@
+import { useFileExplorerStore } from '../../use-file-explorer';
 import { BtnForwardBackward, InputAndIcon } from '@/components';
 import { folderUserIcon, Reload, Search, ArrowDropdown } from '@/assets/icons';
 
 function FileExplorerHeader() {
+  const { currentPath, getHistoryLength, goBack, goForward, historyIndex } = useFileExplorerStore();
+
   return (
     <div className="file-explorer-header">
       <div className="buttons-container">
         <BtnForwardBackward
-          handleLeftClick={() => console.log('backward')}
-          handleRightClick={() => console.log('forward')}
+          handleLeftClick={() => goBack()}
+          handleRightClick={() => goForward()}
           handleDownClick={() => console.log('downward')}
+          disableLeftClick={getHistoryLength() === 0 || historyIndex === 0}
+          disableRightClick={getHistoryLength() === historyIndex}
         />
       </div>
 
       <div className="query-container url-container">
         <InputAndIcon
-          placeholder="https://www.bing.com/"
+          placeholder="C:/Users/Fiterman/Documents"
           type="file-path"
-          value={'C:/Users/Fiterman/Documents'}
-          disabled
+          value={currentPath}
+          // disabled
           childBefore={
             <>
               <img src={folderUserIcon} alt="folder icon" width={30} height={30} />

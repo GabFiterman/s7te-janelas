@@ -17,7 +17,8 @@ body {
   line-height: 1.5;
   text-rendering: optimizeLegibility;
 
-  .disabled {
+  .disabled,
+  *:disabled {
     * {
       cursor: not-allowed !important;
       filter: grayscale(1) opacity(0.75) !important;

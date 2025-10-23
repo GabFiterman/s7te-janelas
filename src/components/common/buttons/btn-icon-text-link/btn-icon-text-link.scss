@@ -10,13 +10,13 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    gap: .75em;
+    gap: 0.75em;
     width: 100%;
 
     &:hover {
-      background: #F7F8F8;
-      background: linear-gradient(180deg,rgba(247, 248, 248, 1) 35%, rgba(229, 229, 229, 1) 65%);
-      border: 1px solid #D9D9D9;
+      background: #f7f8f8;
+      background: linear-gradient(180deg, rgba(247, 248, 248, 1) 35%, rgba(229, 229, 229, 1) 65%);
+      border: 1px solid #d9d9d9;
     }
   }
 
@@ -24,17 +24,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    gap: .25em;
+    gap: 0.25em;
     height: fit-content;
 
     &:hover {
       background: linear-gradient(180deg, rgba(121, 210, 247, 0.15) 0%, rgba(152, 229, 237, 0.35) 100%);
       border: 1px solid rgba(108, 201, 212, 0.9);
-      border: 1px solid #D9D9D9;
+      border: 1px solid #d9d9d9;
     }
   }
-
-
 
   picture > img,
   picture > svg {

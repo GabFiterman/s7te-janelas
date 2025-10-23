@@ -47,7 +47,6 @@ function InputAndIcon({
       <div className="icon-container child-before">{childBefore}</div>
 
       <input
-        defaultValue={value}
         value={value}
         disabled={disabled}
         onBlur={() => handleFocusChange(false)}

@@ -106,7 +106,7 @@ function FileExplorerSideMenu() {
     <aside className="file-explorer-side-menu">
       {sideMenuItems &&
         sideMenuItems.map((item) => (
-          <>
+          <div className="side-menu-container" key={item.id}>
             <BtnIconTextLink text={item.text} icon={item.icon} className="side-menu-item pl-15 py-1" key={item.id} />
             {item?.items &&
               item?.items.length > 0 &&
@@ -118,7 +118,7 @@ function FileExplorerSideMenu() {
                   key={subItem.id}
                 />
               ))}
-          </>
+          </div>
         ))}
     </aside>
   );

@@ -3,7 +3,8 @@ import { BtnForwardBackward, InputAndIcon } from '@/components';
 import { folderUserIcon, Reload, Search, ArrowDropdown } from '@/assets/icons';
 
 function FileExplorerHeader() {
-  const { currentPath, getHistoryLength, goBack, goForward, historyIndex } = useFileExplorerStore();
+  const { currentPath, /* setCurrentPath ,*/ getHistoryLength, goBack, goForward, historyIndex } =
+    useFileExplorerStore();
 
   return (
     <div className="file-explorer-header">
@@ -22,7 +23,8 @@ function FileExplorerHeader() {
           placeholder="C:/Users/Fiterman/Documents"
           type="file-path"
           value={currentPath}
-          // disabled
+          // onChange={(val) => setCurrentPath(val.target.value)}
+          disabled
           childBefore={
             <>
               <img src={folderUserIcon} alt="folder icon" width={30} height={30} />

@@ -95,7 +95,7 @@
       overflow-y: auto;
       width: -webkit-min-content;
 
-      .side-menu-item:not(:first-child) {
+      .side-menu-container:not(:first-child) {
         margin-top: 1em;
       }
     }

@@ -39,7 +39,7 @@ function FixedMenu() {
             const windowsForApp = activeWindowsByApp[item.appName as string] || [];
             return (
               <FixedMenuTaskbarItem
-                key={item.appName}
+                key={item.id}
                 appName={item.appName as string}
                 iconSrc={item.icon}
                 windows={windowsForApp}

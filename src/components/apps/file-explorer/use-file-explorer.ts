@@ -19,6 +19,7 @@ interface FileExplorerState {
   getCurrentDirectoryContentsLength: () => number;
   getHistoryLength: () => number;
   getIsItemSelected: (item: FileSystemItem) => boolean;
+  getPathByAlias: (alias: string) => string | undefined;
   getSelectedItems: () => FileSystemItem[];
   getSelectedItemsLength: () => number;
 
@@ -87,9 +88,21 @@ const FILE_SYSTEM_MAP: Record<string, FileSystemItem[]> = {
   ],
 };
 
+const ALIAS_TO_PATH_MAP = new Map<string, string>();
+
+const initializeFileSystemMaps = () => {
+  for (const path in FILE_SYSTEM_MAP) {
+    FILE_SYSTEM_MAP[path].forEach((item) => {
+      if (item.alias) {
+        ALIAS_TO_PATH_MAP.set(item.alias.toUpperCase(), item.path);
+      }
+    });
+  }
+};
+initializeFileSystemMaps();
+
 const getContentsByPath = (path: string): FileSystemItem[] => {
   const normalizedPath = path.toUpperCase();
-  console.log({ normalizedPath });
   return FILE_SYSTEM_MAP[normalizedPath] || [];
 };
 
@@ -105,6 +118,9 @@ export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
   getCurrentDirectoryContentsLength: () => get().currentDirectoryContents.length,
   getHistoryLength: () => get().history.length - 1,
   getIsItemSelected: (item) => get().selectedItemPaths.includes(item.path),
+  getPathByAlias: (alias: string): string | undefined => {
+    return ALIAS_TO_PATH_MAP.get(alias.toUpperCase());
+  },
   getSelectedItems: () => {
     const { selectedItemPaths, currentDirectoryContents } = get();
     const contentsMap = new Map(currentDirectoryContents.map((item) => [item.path, item]));
@@ -115,10 +131,16 @@ export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
   },
   getSelectedItemsLength: () => get().selectedItemPaths.length,
 
-  setCurrentPath: (newPath) =>
-    set(() => {
-      return { currentPath: newPath };
-    }),
+  setCurrentPath: (newPath) => {
+    const contents = getContentsByPath(newPath);
+    set({
+      currentPath: newPath,
+      currentDirectoryContents: contents,
+      history: [newPath],
+      historyIndex: 0,
+      selectedItemPaths: [],
+    });
+  },
 
   goBack: () =>
     set((state) => {

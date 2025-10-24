@@ -52,8 +52,8 @@ const FILE_SYSTEM_MAP: Record<string, FileSystemItem[]> = {
       name: 'Músicas',
       type: 'folder',
       iconSrc: musicsIcon,
-      path: 'C:/Usuários/Fiterman/Música',
-      alias: 'musica/',
+      path: 'C:/Usuários/Fiterman/Músicas',
+      alias: 'musicas/',
     },
     {
       name: 'Vídeos',

@@ -1,7 +1,7 @@
 import { create } from 'zustand';
-import { folderIcon, pictureIcon, sheetMusicIcon, fileExplorerIcon } from '@/assets/icons';
+import { FILE_SYSTEM_MAP } from '@/constants';
 
-interface FileSystemItem {
+export interface FileSystemItem {
   alias: string;
   iconSrc: string;
   name: string;
@@ -40,53 +40,6 @@ interface FileExplorerState {
     item: FileSystemItem | null
   ) => void;
 }
-
-// NOTE: Backend Simulado
-const FILE_SYSTEM_MAP: Record<string, FileSystemItem[]> = {
-  // DRIVE ROOT
-  'C:': [
-    { name: 'Usuários', type: 'folder', iconSrc: folderIcon, path: 'C:/Usuários', alias: 'usuarios/' },
-    { name: 'Program Files', type: 'folder', iconSrc: folderIcon, path: 'C:/Program Files', alias: 'programas/' },
-    { name: 'Windows', type: 'folder', iconSrc: folderIcon, path: 'C:/Windows', alias: 'windows/' },
-  ],
-
-  // USUÁRIOS
-  'C:/USUÁRIOS': [
-    { name: 'Fiterman', type: 'folder', iconSrc: folderIcon, path: 'C:/Usuários/Fiterman', alias: 'fiterman/' },
-    { name: 'Público', type: 'folder', iconSrc: folderIcon, path: 'C:/Usuários/Público', alias: 'publico/' },
-  ],
-
-  // CONTEÚDO DO USUÁRIO
-  'C:/USUÁRIOS/FITERMAN': [
-    {
-      name: 'Documentos',
-      type: 'folder',
-      iconSrc: fileExplorerIcon,
-      path: 'C:/Usuários/Fiterman/Documentos',
-      alias: 'documentos/',
-    },
-    { name: 'Imagens', type: 'folder', iconSrc: pictureIcon, path: 'C:/Usuários/Fiterman/Imagens', alias: 'imagens/' },
-    {
-      name: 'Projetos',
-      type: 'folder',
-      iconSrc: folderIcon,
-      path: 'C:/Usuários/Fiterman/Projetos',
-      alias: 'projetos/',
-    },
-    {
-      name: 'currículo.pdf',
-      type: 'file',
-      iconSrc: sheetMusicIcon,
-      path: 'C:/Usuários/Fiterman/currículo.pdf',
-      alias: 'curriculo.pdf',
-    },
-  ],
-
-  // PASTA VAZIA (Exemplo)
-  'C:/USUÁRIOS/FITERMAN/PROJETOS': [
-    // Vazio
-  ],
-};
 
 const ALIAS_TO_PATH_MAP = new Map<string, string>();
 

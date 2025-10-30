@@ -77,21 +77,21 @@ const FILE_SYSTEM_MAP: Record<string, FileSystemItem[]> = {
       type: 'file',
       iconSrc: documentsIcon,
       path: 'C:/Usuários/Fiterman/Documentos/primeirodocumento.pdf',
-      alias: 'primeirodocumento.pdf',
+      alias: 'documentos/primeirodocumento.pdf',
     },
     {
       name: 'Receita de bolo',
       type: 'file',
       iconSrc: documentsIcon,
       path: 'C:/Usuários/Fiterman/Documentos/receitadebolo.txt',
-      alias: 'receitadebolo.txt',
+      alias: 'documentos/receitadebolo.txt',
     },
     {
       name: 'Documento 3',
       type: 'file',
       iconSrc: documentsIcon,
       path: 'C:/Usuários/Fiterman/Documentos/documento3.pdf',
-      alias: 'documento3.pdf',
+      alias: 'documentos/documento3.pdf',
     },
   ],
 
@@ -101,14 +101,14 @@ const FILE_SYSTEM_MAP: Record<string, FileSystemItem[]> = {
       type: 'file',
       iconSrc: downloadsIcon,
       path: 'C:/Usuários/Fiterman/Downloads/download1.pdf',
-      alias: 'download1.pdf',
+      alias: 'downloads/download1.pdf',
     },
     {
       name: 'Download Folder 1',
       type: 'folder',
       iconSrc: folderIcon,
       path: 'C:/Usuários/Fiterman/Downloads/Download Folder 1',
-      alias: 'downloadfolder1/',
+      alias: 'downloads/downloadfolder1/',
     },
   ],
 
@@ -117,15 +117,15 @@ const FILE_SYSTEM_MAP: Record<string, FileSystemItem[]> = {
       name: 'Heavy Metal',
       type: 'file',
       iconSrc: musicsIcon,
-      path: 'C:/Usuários/Fiterman/Música/HeavyMetal.mp3',
-      alias: 'heavymetal.mp3',
+      path: 'C:/Usuários/Fiterman/Músicas/HeavyMetal.mp3',
+      alias: 'musicas/heavymetal.mp3',
     },
     {
       name: 'Trance Music',
       type: 'file',
       iconSrc: musicsIcon,
-      path: 'C:/Usuários/Fiterman/Música/TranceMusic.mp3',
-      alias: 'trancemusic.mp3',
+      path: 'C:/Usuários/Fiterman/Músicas/TranceMusic.mp3',
+      alias: 'musicas/trancemusic.mp3',
     },
   ],
 
@@ -135,18 +135,17 @@ const FILE_SYSTEM_MAP: Record<string, FileSystemItem[]> = {
       type: 'file',
       iconSrc: pictureIcon,
       path: 'C:/Usuários/Fiterman/Imagens/maracujá.jpg',
-      alias: 'maracuja.jpg',
+      alias: 'imagens/maracuja.jpg',
     },
     {
       name: 'Alface',
       type: 'file',
       iconSrc: pictureIcon,
       path: 'C:/Usuários/Fiterman/Imagens/alface.png',
-      alias: 'alface.png',
+      alias: 'imagens/alface.png',
     },
   ],
 
-  // PASTA VAZIA (Exemplo)
   'C:/USUÁRIOS/FITERMAN/PROJETOS': [
     // Vazio
   ],

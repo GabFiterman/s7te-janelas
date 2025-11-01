@@ -1,0 +1,25 @@
+@use '@/styles/variables' as *;
+
+.internet-explorer-container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Courier New', Courier, monospace;
+  height: 100%;
+  justify-content: flex-start;
+  width: 100%;
+
+  .ie-header {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    width: 99.5%;
+  }
+
+  .ie-webview {
+    background: #ffffff;
+    flex-grow: 1;
+    width: 100%;
+    border: none;
+  }
+}

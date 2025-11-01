@@ -1,0 +1,51 @@
+.btn-forward-backward-container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 0.25em;
+  margin: 0 0.5em;
+  width: fit-content;
+
+  .btn-forward-backward {
+    &.button-left,
+    &.button-right {
+      background: linear-gradient(
+        360deg,
+        rgba(121, 233, 247, 1) 0%,
+        rgba(0, 22, 93, 1) 68%,
+        rgb(88, 135, 196) 70%,
+        rgba(122, 143, 198, 1) 100%
+      );
+      border-radius: 50%;
+      color: #ffffff;
+      height: 2em;
+      width: 2em;
+
+      &:disabled {
+        background: #cccccc;
+        transition: all none;
+        cursor: not-allowed;
+
+        &:hover {
+          filter: none;
+        }
+      }
+    }
+
+    &.button-dropdown {
+      background: transparent;
+      border: none;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 2em;
+      width: 2em;
+    }
+
+    &:hover {
+      cursor: pointer;
+      filter: brightness(1.25);
+    }
+  }
+}

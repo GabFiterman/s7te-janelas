@@ -1,0 +1,51 @@
+.btn-icon-text-link {
+  display: flex;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  border: 1px solid transparent;
+
+  &.selected {
+    background: linear-gradient(180deg, rgba(121, 210, 247, 0.25) 0%, rgba(152, 229, 237, 0.45) 100%);
+    border: 2px solid rgba(107, 165, 172, 0.8);
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &.horizontal {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.75em;
+    width: 100%;
+
+    &:hover {
+      background: #f7f8f8;
+      background: linear-gradient(180deg, rgba(247, 248, 248, 1) 35%, rgba(229, 229, 229, 1) 65%);
+      border: 1px solid #d9d9d9;
+    }
+  }
+
+  &.vertical {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.25em;
+    height: fit-content;
+
+    &:hover {
+      background: linear-gradient(180deg, rgba(121, 210, 247, 0.15) 0%, rgba(152, 229, 237, 0.35) 100%);
+      border: 1px solid rgba(108, 201, 212, 0.9);
+      border: 1px solid #d9d9d9;
+    }
+  }
+
+  picture > img,
+  picture > svg {
+    width: 1.5em;
+    height: 1.5em;
+  }
+}

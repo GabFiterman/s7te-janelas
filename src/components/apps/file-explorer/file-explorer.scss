@@ -1,0 +1,139 @@
+.file-explorer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .file-explorer-header,
+  .file-explorer-controller,
+  aside.file-explorer-side-menu,
+  .file-explorer-footer {
+    flex-shrink: 0;
+  }
+
+  .file-explorer-header {
+    background: #d2e0ed;
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    width: 100%;
+  }
+
+  .file-explorer-controller {
+    align-items: center;
+    background: #f8fbff;
+    background: linear-gradient(180deg, rgba(248, 251, 255, 1) 35%, rgba(223, 235, 248, 1) 65%);
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    justify-content: space-between;
+    width: 100%;
+
+    span > svg {
+      margin-top: 0.5em;
+      &:hover {
+        filter: brightness(1.15);
+        cursor: pointer;
+        transform: scale(1.15);
+      }
+    }
+
+    button {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 1em;
+      color: #213042;
+      padding: 0.25em 0.5em;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 0.3em;
+      height: 100%;
+
+      &:hover {
+        background: #cbd6e4;
+      }
+    }
+
+    .controller-items,
+    .controller-actions {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: -webkit-fill-available;
+      padding: 0 1em;
+    }
+
+    .file-explorer-controller-action {
+      padding: 0.25em 0.5em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+
+        &:hover {
+          filter: brightness(1.15);
+        }
+      }
+    }
+  }
+
+  .file-explorer-content {
+    display: flex;
+    flex: 1;
+    gap: 0.25em;
+    height: auto;
+
+    aside.file-explorer-side-menu {
+      background: #fff;
+      height: 100%;
+      min-width: 14em;
+      overflow-y: auto;
+      width: -webkit-min-content;
+
+      .side-menu-container:not(:first-child) {
+        margin-top: 1em;
+      }
+    }
+  }
+
+  .file-explorer-canvas {
+    background: #ffffff;
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    gap: 0.5em;
+
+    display: flex;
+
+    .canvas-icon {
+      padding: 0.75em 0;
+
+      width: 10em;
+      min-height: 7em;
+
+      span {
+        max-width: 6em;
+      }
+    }
+  }
+
+  .file-explorer-footer {
+    align-items: flex-start;
+    background: #f1f5fb;
+    display: flex;
+    justify-content: flex-start;
+    margin: 0.25em 0.5em 0.5em 0.5em;
+    padding: 0.5em;
+
+    img {
+      height: 4em;
+      width: auto;
+    }
+  }
+}

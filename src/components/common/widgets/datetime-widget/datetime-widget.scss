@@ -1,0 +1,17 @@
+.datetime-widget {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 0 10px;
+  height: 100%;
+
+  .time {
+    font-size: 14px;
+  }
+
+  .date {
+    font-size: 13px;
+  }
+}

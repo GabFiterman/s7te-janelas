@@ -1,0 +1,66 @@
+.input-and-icon-container {
+  align-items: center;
+  background: #ffff;
+  display: flex;
+  flex-direction: row;
+  outline: 1px solid #a0a0a0;
+  width: 100%;
+
+  .icon-container {
+    align-items: center;
+    display: flex;
+    height: -webkit-fill-available;
+    justify-content: center;
+
+    svg,
+    img {
+      &:hover {
+        cursor: pointer;
+        filter: brightness(1.25);
+      }
+    }
+  }
+
+  input {
+    border: none;
+    font-size: 16px;
+    outline: none;
+    padding: 0.5em;
+    width: 100%;
+
+    &::placeholder {
+      color: #aaa;
+      font-style: italic;
+    }
+  }
+
+  &.focused {
+    outline: 1px solid #666666;
+  }
+}
+
+.query-container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  &.url-container {
+    flex: 2;
+  }
+
+  &.search-container {
+    flex: 1;
+  }
+
+  .controller {
+    display: flex;
+    height: -webkit-fill-available;
+    button {
+      background: transparent;
+      border: none;
+      border-left: 1px solid #a0a0a0;
+      padding: 0 0.75em;
+    }
+  }
+}

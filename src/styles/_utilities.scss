@@ -1,0 +1,61 @@
+@for $i from 0 through 100 {
+  $UNIT: '%';
+  .w-#{$i} {
+    width: #{$i}#{$UNIT};
+  }
+
+  .h-#{$i} {
+    height: #{$i}#{$UNIT};
+  }
+}
+
+@for $i from 0 through 500 {
+  $UNIT: 'px';
+
+  .p-#{$i} {
+    padding: #{$i}#{$UNIT};
+  }
+
+  .px-#{$i} {
+    padding-left: #{$i}#{$UNIT};
+    padding-right: #{$i}#{$UNIT};
+  }
+
+  .py-#{$i} {
+    padding-top: #{$i}#{$UNIT};
+    padding-bottom: #{$i}#{$UNIT};
+  }
+
+  .pl-#{$i} {
+    padding-left: #{$i}#{$UNIT};
+  }
+
+  .pr-#{$i} {
+    padding-right: #{$i}#{$UNIT};
+  }
+
+  .pt-#{$i} {
+    padding-top: #{$i}#{$UNIT};
+  }
+
+  .pb-#{$i} {
+    padding-bottom: #{$i}#{$UNIT};
+  }
+}
+
+@for $i from 0 through 500 {
+  $UNIT: 'px';
+  .m-#{$i} {
+    margin: #{$i}#{$UNIT};
+  }
+
+  .mx-#{$i} {
+    margin-left: #{$i}#{$UNIT};
+    margin-right: #{$i}#{$UNIT};
+  }
+
+  .my-#{$i} {
+    margin-top: #{$i}#{$UNIT};
+    margin-bottom: #{$i}#{$UNIT};
+  }
+}

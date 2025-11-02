@@ -1,13 +1,9 @@
 import { create } from 'zustand';
-import { FILE_SYSTEM_MAP } from '@/constants';
+import { ITEMS_MAP_ALL, STRUCTURE_MAP_FILE_SYSTEM, type FileSystemItem } from '@/constants';
+import { normalizeStringForPath } from '@/utils';
 
-export interface FileSystemItem {
-  alias: string;
-  iconSrc: string;
-  name: string;
-  path: string;
-  type: 'folder' | 'file' | 'drive';
-}
+const INITIAL_URI = 'fiterman/';
+const ALIAS_TO_PATH_MAP = new Map<string, string>();
 
 interface FileExplorerState {
   currentDirectoryContents: FileSystemItem[];
@@ -19,7 +15,7 @@ interface FileExplorerState {
   getCurrentDirectoryContentsLength: () => number;
   getHistoryLength: () => number;
   getIsItemSelected: (item: FileSystemItem) => boolean;
-  getPathByAlias: (alias: string) => string | undefined;
+  getPathByAlias: (alias: string) => string;
   getSelectedItems: () => FileSystemItem[];
   getSelectedItemsLength: () => number;
 
@@ -41,25 +37,31 @@ interface FileExplorerState {
   ) => void;
 }
 
-const ALIAS_TO_PATH_MAP = new Map<string, string>();
-
 const initializeFileSystemMaps = () => {
-  for (const path in FILE_SYSTEM_MAP) {
-    FILE_SYSTEM_MAP[path].forEach((item) => {
-      if (item.alias) {
-        ALIAS_TO_PATH_MAP.set(item.alias.toUpperCase(), item.path);
-      }
-    });
+  for (const path in ITEMS_MAP_ALL) {
+    const item = ITEMS_MAP_ALL[normalizeStringForPath(path)];
+    if (item?.uri) {
+      ALIAS_TO_PATH_MAP.set(normalizeStringForPath(item.uri), normalizeStringForPath(item.path));
+    }
   }
 };
 initializeFileSystemMaps();
 
 const getContentsByPath = (path: string): FileSystemItem[] => {
-  const normalizedPath = path.toUpperCase();
-  return FILE_SYSTEM_MAP[normalizedPath] || [];
+  const normalizedPath = normalizeStringForPath(path);
+  return STRUCTURE_MAP_FILE_SYSTEM[normalizedPath] || [];
 };
 
-const INITIAL_PATH = 'C:';
+const getPathByAlias = (alias: string): string => {
+  const path = ALIAS_TO_PATH_MAP.get(normalizeStringForPath(alias));
+  if (path) {
+    return ITEMS_MAP_ALL[path].path;
+  } else {
+    return '';
+  }
+};
+
+const INITIAL_PATH = getPathByAlias(INITIAL_URI);
 
 export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
   currentDirectoryContents: getContentsByPath(INITIAL_PATH),
@@ -70,16 +72,14 @@ export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
 
   getCurrentDirectoryContentsLength: () => get().currentDirectoryContents.length,
   getHistoryLength: () => get().history.length - 1,
-  getIsItemSelected: (item) => get().selectedItemPaths.includes(item.path),
-  getPathByAlias: (alias: string): string | undefined => {
-    return ALIAS_TO_PATH_MAP.get(alias.toUpperCase());
-  },
-  getSelectedItems: () => {
-    const { selectedItemPaths, currentDirectoryContents } = get();
-    const contentsMap = new Map(currentDirectoryContents.map((item) => [item.path, item]));
+  getIsItemSelected: (item) => get().selectedItemPaths.includes(item?.path),
 
+  getPathByAlias: getPathByAlias,
+
+  getSelectedItems: () => {
+    const { selectedItemPaths } = get();
     return selectedItemPaths
-      .map((path) => contentsMap.get(path))
+      .map((path) => ITEMS_MAP_ALL[path.toUpperCase()])
       .filter((item): item is FileSystemItem => item !== undefined);
   },
   getSelectedItemsLength: () => get().selectedItemPaths.length,
@@ -141,7 +141,7 @@ export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
       }
 
       const { selectedItemPaths, currentDirectoryContents } = state;
-      const itemPath = item.path;
+      const itemPath = item?.path;
       let newPaths = [...selectedItemPaths];
 
       if (_event?.ctrlKey) {

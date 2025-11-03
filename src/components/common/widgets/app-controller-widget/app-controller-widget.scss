@@ -26,11 +26,11 @@
   }
 
   &.compact {
-    gap: .25em;
+    gap: 0.25em;
 
     button {
       border: 1px solid transparent;
-      gap: .15em;
+      gap: 0.15em;
 
       &:hover {
         border: 1px solid #213042;
@@ -85,17 +85,17 @@
     }
   }
 
-.controller-list {
+  .controller-list {
     .controller-list-item {
-        position: relative;
+      position: relative;
 
-        &.active {
-            background: #d2e0ed;
-        }
+      &.active {
+        background: #d2e0ed;
+      }
     }
-}
+  }
 
-.dropdown-menu {
+  .dropdown-menu {
     background: #ffffff;
     border: 1px solid #7c7c7c;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
@@ -107,35 +107,35 @@
     z-index: 2000;
 
     .dropdown-item {
-        cursor: pointer;
-        display: flex;
-        justify-content: space-between;
-        padding: 4px 10px;
-        white-space: nowrap;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 10px;
+      white-space: nowrap;
+
+      &:hover {
+        background: #3c7dff;
+        color: white;
+      }
+
+      &.disabled {
+        color: #b0b0b0;
+        cursor: not-allowed;
 
         &:hover {
-            background: #3c7dff;
-            color: white;
+          background: transparent;
         }
+      }
 
-        &.disabled {
-            color: #b0b0b0;
-            cursor: not-allowed;
-
-            &:hover {
-                background: transparent;
-            }
-        }
-
-        .dropdown-shortcut {
-            color: #777;
-            margin-left: 1em;
-        }
+      .dropdown-shortcut {
+        color: #777;
+        margin-left: 1em;
+      }
     }
 
     .dropdown-separator {
-        border-top: 1px solid #e0e0e0;
-        margin: 4px 0;
+      border-top: 1px solid #e0e0e0;
+      margin: 4px 0;
     }
-}
+  }
 }

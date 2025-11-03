@@ -9,6 +9,7 @@ interface DropdownMenuProps {
 function DropdownMenu({ controllerStyle, items, onDropdownItemClick }: DropdownMenuProps) {
   return (
     <div className={`dropdown-menu ${controllerStyle}`}>
+      <div className="vertical-line" />
       {items.map((item, index) => {
         if (item.value === 'separator') {
           return <div key={`sep-${index}`} className="dropdown-separator" />;
@@ -23,6 +24,9 @@ function DropdownMenu({ controllerStyle, items, onDropdownItemClick }: DropdownM
             aria-disabled={dropItem.disabled}
             onMouseDown={(event) => onDropdownItemClick && onDropdownItemClick(event, dropItem)}
           >
+            <div className="dropdown-icon-container">
+              {dropItem.iconSrc && <img className="dropdown-icon" src={dropItem.iconSrc} alt={dropItem.label} />}
+            </div>
             <span className="dropdown-label">{dropItem.label}</span>
             {dropItem.shortcut && <span className="dropdown-shortcut">{dropItem.shortcut}</span>}
           </div>

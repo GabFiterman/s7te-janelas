@@ -1,4 +1,13 @@
-import { flexBox1Icon, galleryIcon, questionIcon } from '@/assets/icons';
+import {
+  copyIcon,
+  cutIcon,
+  excludeIcon,
+  flexBox1Icon,
+  flexBox2Icon,
+  galleryIcon,
+  pasteIcon,
+  questionIcon,
+} from '@/assets/icons';
 
 import {
   type ActionItem,
@@ -20,18 +29,21 @@ export const controllerItems: ControllerItem[] = [
     dropDownItems: [
       {
         disabled: false,
+        iconSrc: cutIcon,
         label: 'Recortar',
         shortcut: null,
         value: 'cut',
       },
       {
         disabled: false,
+        iconSrc: copyIcon,
         label: 'Copiar',
         shortcut: null,
         value: 'copy',
       },
       {
         disabled: false,
+        iconSrc: pasteIcon,
         label: 'Colar',
         shortcut: null,
         value: 'paste',
@@ -58,6 +70,7 @@ export const controllerItems: ControllerItem[] = [
       separatorItem,
       {
         disabled: false,
+        iconSrc: flexBox2Icon,
         label: 'Layout >',
         shortcut: null,
         value: 'layout',
@@ -71,6 +84,7 @@ export const controllerItems: ControllerItem[] = [
       separatorItem,
       {
         disabled: false,
+        iconSrc: excludeIcon,
         label: 'Excluir',
         shortcut: null,
         value: 'delete',

@@ -23,6 +23,12 @@ $gap-md: 0.5em;
 $gap-lg: 1em;
 $gap-xl: 2em;
 
+$z-lowest: 0;
+$z-low: 100;
+$z: 200;
+$z-high: 300;
+$z-highest: 8000;
+
 // NOTE: Transitions
 $transition-default: all 0.3s ease-in-out;
 

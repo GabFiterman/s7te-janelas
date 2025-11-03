@@ -7,6 +7,7 @@ import './app-controller-widget.scss';
 
 export interface DropdownItem {
   disabled: boolean;
+  iconSrc?: string;
   label: string;
   shortcut?: string | null;
   value: string;

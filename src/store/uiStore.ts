@@ -1,11 +1,9 @@
 import { create } from 'zustand';
-import { fileExplorerIcon, folderIcon, pictureIcon } from '@/assets/icons';
+// import { fileExplorerIcon, folderIcon, pictureIcon } from '@/assets/icons';
 import { type AppName } from '@/components/apps/app-config';
+import { ITEMS_MAP_WORKSPACE, type FileSystemItem } from '@/constants';
 
-interface Icon {
-  id: string;
-  iconUrl: string;
-  label: string;
+export interface WorkspaceIcon extends FileSystemItem {
   x: number;
   y: number;
 }
@@ -27,61 +25,73 @@ export interface GroupedWindows {
   [appName: string]: WindowState[];
 }
 
+const INITIAL_USER_WINDOW = {
+  width: Number(window.innerWidth),
+  height: Number(window.innerHeight),
+  x: 0,
+  y: 0,
+};
+
 interface UIState {
-  FIXED_MENU_HEIGHT: number;
+  CONSTANTS: {
+    FIXED_MENU_HEIGHT: number;
+    WINDOW_DEFAULT_WIDTH: number;
+    WINDOW_DEFAULT_HEIGHT: number;
+    WINDOW_MAX_WIDTH?: number;
+    WINDOW_MAX_HEIGHT?: number;
+  };
 
   isStartMenuOpen: boolean;
   maxZIndex: number;
   windows: WindowState[];
-  workspaceIcons: Icon[];
+  workspaceIcons: WorkspaceIcon[];
 
   activeWindowsByApp: () => GroupedWindows;
 
   closeWindow: (id: string) => void;
   focusWindow: (id: string) => void;
   openWindow: (
-    window: Omit<WindowState, 'zIndex' | 'status' | 'x' | 'y'> &
-      Partial<Pick<WindowState, 'x' | 'y' | 'width' | 'height'>>
+    window: Omit<WindowState, 'zIndex' | 'x' | 'y' | 'status' | 'width' | 'height'> &
+      Partial<Pick<WindowState, 'x' | 'y' | 'width' | 'height' | 'status'>>
   ) => void;
   setIsStartMenuOpen: (isOpen: boolean) => void;
   toggleIsStartMenuOpen: () => void;
   updateWindowPosition: (id: string, newX: number, newY: number) => void;
   updateWindowStatus: (id: string, newStatus: WindowState['status']) => void;
-  updateWorkspaceIconPosition: (id: string, newX: number, newY: number) => void;
+  updateWorkspaceIconPosition: (path: string, newX: number, newY: number) => void;
 }
 
 const useUIStore = create<UIState>((set, get) => ({
-  FIXED_MENU_HEIGHT: 60,
+  CONSTANTS: {
+    FIXED_MENU_HEIGHT: 60,
+    WINDOW_DEFAULT_WIDTH: 1200,
+    WINDOW_DEFAULT_HEIGHT: 800,
+    WINDOW_MAX_HEIGHT: INITIAL_USER_WINDOW.height,
+    WINDOW_MAX_WIDTH: INITIAL_USER_WINDOW.width,
+  },
 
   isStartMenuOpen: false,
   maxZIndex: 1000,
   windows: [],
+
   workspaceIcons: [
     {
-      id: '1',
-      label: 'documentos importantes [0,0]',
-      iconUrl: folderIcon,
+      ...ITEMS_MAP_WORKSPACE[0],
       x: 0,
       y: 0,
     },
     {
-      id: '2',
-      label: 'arquivos [120,0]',
-      iconUrl: fileExplorerIcon,
+      ...ITEMS_MAP_WORKSPACE[1],
       x: 120,
       y: 0,
     },
     {
-      id: '3',
-      label: 'O terceiro [0,150]',
-      iconUrl: folderIcon,
+      ...ITEMS_MAP_WORKSPACE[2],
       x: 0,
       y: 150,
     },
     {
-      id: '4',
-      label: 'O quarto [120,150]',
-      iconUrl: pictureIcon,
+      ...ITEMS_MAP_WORKSPACE[3],
       x: 120,
       y: 150,
     },
@@ -116,14 +126,17 @@ const useUIStore = create<UIState>((set, get) => ({
   openWindow: (newWindow) =>
     set((state) => {
       const newZIndex = state.maxZIndex + 1;
+      const defaultWidth = get().CONSTANTS.WINDOW_DEFAULT_WIDTH;
+      const defaultHeight = get().CONSTANTS.WINDOW_DEFAULT_HEIGHT;
+
       return {
         windows: [
           ...state.windows,
           {
             ...newWindow,
-            height: newWindow.height ?? 600,
-            status: 'normal',
-            width: newWindow.width ?? 1000,
+            height: newWindow.height ?? defaultHeight,
+            status: newWindow.status ?? 'normal',
+            width: newWindow.width ?? defaultWidth,
             x: newWindow.x ?? 50,
             y: newWindow.y ?? 50,
             zIndex: newZIndex,
@@ -157,9 +170,9 @@ const useUIStore = create<UIState>((set, get) => ({
       }),
     }));
   },
-  updateWorkspaceIconPosition: (id, newX, newY) =>
+  updateWorkspaceIconPosition: (path, newX, newY) =>
     set((state) => ({
-      workspaceIcons: state.workspaceIcons.map((icon) => (icon.id === id ? { ...icon, x: newX, y: newY } : icon)),
+      workspaceIcons: state.workspaceIcons.map((icon) => (icon.path === path ? { ...icon, x: newX, y: newY } : icon)),
     })),
 }));
 

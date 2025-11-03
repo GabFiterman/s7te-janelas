@@ -17,7 +17,7 @@ function Window({ id }: WindowProps) {
   const closeWindow = useUIStore((state) => state.closeWindow);
   const focusWindow = useUIStore((state) => state.focusWindow);
   const updateWindowStatus = useUIStore((state) => state.updateWindowStatus);
-  const FIXED_MENU_HEIGHT = useUIStore((state) => state.FIXED_MENU_HEIGHT);
+  const FIXED_MENU_HEIGHT = useUIStore((state) => state.CONSTANTS.FIXED_MENU_HEIGHT);
 
   const viewportSize = useWindowSize();
   const { dragProps } = useDraggableElement(id, 'window');

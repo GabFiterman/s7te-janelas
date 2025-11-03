@@ -1,12 +1,13 @@
 import useUIStore from '@/store/uiStore';
-
+import { generateUUID } from '@/utils';
 import { type AppName } from '@/components/apps/app-config';
 
-import { internetExplorerIcon, pictureIcon, fileExplorerIcon } from '@/assets/icons';
+import { internetExplorerIcon, blocksIcon, fileExplorerIcon } from '@/assets/icons';
 import windowIcon from '@/assets/logo/windows-logo.png';
 
-// TODO: Utilizar UUID para gerar os ids do sistema
-const generateId = () => Date.now().toString() + Math.random().toString(36).substring(2, 9);
+const INTERNET_EXPLORER_WINDOW_ID = `internet-explorer-menu-window-${generateUUID()}}`;
+const FILE_EXPLORER_WINDOW_ID = `file-explorer-menu-window-${generateUUID()}}`;
+const BLOCKS_WINDOW_ID = `blocks-menu-window-${generateUUID()}}`;
 
 function useFixedMenuStates() {
   const { toggleIsStartMenuOpen, openWindow } = useUIStore();
@@ -20,40 +21,36 @@ function useFixedMenuStates() {
 
   const menuItems: (typeof mainItem & { appName?: AppName })[] = [
     {
-      id: generateId(),
+      id: INTERNET_EXPLORER_WINDOW_ID,
       label: 'Internet Explorer',
       appName: 'InternetExplorer',
       action: () =>
         openWindow({
-          id: generateId(),
+          id: INTERNET_EXPLORER_WINDOW_ID,
           title: 'Internet Explorer',
           appName: 'InternetExplorer',
-          width: 1200,
-          height: 800,
           iconSrc: internetExplorerIcon,
         }),
       icon: internetExplorerIcon,
     },
     {
-      id: generateId(),
+      id: FILE_EXPLORER_WINDOW_ID,
       label: 'File Explorer',
       appName: 'FileExplorer',
       action: () =>
         openWindow({
-          id: generateId(),
+          id: FILE_EXPLORER_WINDOW_ID,
           title: 'File Explorer',
           appName: 'FileExplorer',
-          width: 1200,
-          height: 800,
           iconSrc: fileExplorerIcon,
         }),
       icon: fileExplorerIcon,
     },
     {
-      id: generateId(),
-      label: 'Picture',
-      action: () => console.log('Picture'),
-      icon: pictureIcon,
+      id: BLOCKS_WINDOW_ID,
+      label: 'Blocks',
+      action: () => console.log('Blocks'),
+      icon: blocksIcon,
     },
   ];
 

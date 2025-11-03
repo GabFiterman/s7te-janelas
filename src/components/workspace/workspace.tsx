@@ -18,15 +18,9 @@ function Workspace() {
         ))}
 
         <div className="workspace-canvas-icons" ref={constraintsRef}>
-          {workspaceIcons.map((icon) => (
-            <IconLinkLabel
-              key={icon.id}
-              id={icon.id}
-              label={icon.label}
-              icon={icon.iconUrl}
-              constraintsRef={constraintsRef}
-            />
-          ))}
+          {workspaceIcons.map((workspaceIcon) => {
+            return <IconLinkLabel key={workspaceIcon.path} icon={workspaceIcon} constraintsRef={constraintsRef} />;
+          })}
         </div>
       </div>
       <div className="workspace-floating-menu-container">

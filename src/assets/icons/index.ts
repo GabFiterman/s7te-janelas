@@ -46,3 +46,13 @@ export { default as sheetMusicIcon } from './sheet_music.webp';
 export { default as usersIcon } from './users.webp';
 export { default as videosIcon } from './videos.webp';
 export { default as workspaceIcon } from './workspace.webp';
+
+export { default as mediaCenterCloseIcon } from './temp/close.webp';
+export { default as mediaCenterExpandIcon } from './temp/expand.webp';
+export { default as mediaCenterImageBtnIcon } from './temp/image_btn.webp';
+export { default as mediaCenterNextIcon } from './temp/next.webp';
+export { default as mediaCenterPreviousIcon } from './temp/previous.webp';
+export { default as mediaCenterRedoIcon } from './temp/redo.webp';
+export { default as mediaCenterUndoIcon } from './temp/undo.webp';
+export { default as mediaCenterZoomLess } from './temp/zoom_less.webp';
+export { default as mediaCenterZoomMore } from './temp/zoom_more.webp';

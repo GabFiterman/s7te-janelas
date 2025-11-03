@@ -13,6 +13,7 @@ export {
 
 export { default as blocksIcon } from './blocks.webp';
 export { default as cdPlayerIcon } from './cd_player.webp';
+export { default as closeIcon } from './close.webp';
 export { default as computerColorsIcon } from './computer_colors.webp';
 export { default as computerIcon } from './computer.webp';
 export { default as documentsIcon } from './documents.webp';
@@ -31,6 +32,7 @@ export { default as internetExplorerIcon } from './internet_explorer.webp';
 export { default as locationsIcon } from './locations.webp';
 export { default as musicsIcon } from './musics.webp';
 export { default as networkIcon } from './network.webp';
+export { default as notepadIcon } from './notepad.webp';
 export { default as personalUserIcon } from './personal_user.webp';
 export { default as pictureIcon } from './picture.webp';
 export { default as questionIcon } from './question.webp';

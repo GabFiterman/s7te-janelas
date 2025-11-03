@@ -1,4 +1,5 @@
 import React from 'react';
+import { closeIcon } from '@/assets/icons';
 
 interface WindowLayoutProps {
   children: React.ReactNode;
@@ -32,7 +33,7 @@ function WindowLayout({
           <button onClick={handleMinimize}>_</button>
           <button onClick={handleMaximize}>▢</button>
           <button className="close" onClick={handleClose}>
-            X
+            <img src={closeIcon} alt="x" />
           </button>
         </div>
       </div>

@@ -26,8 +26,6 @@ function FixedMenu() {
     }, {} as GroupedWindows);
   }, [windows]);
 
-  // const openAppNames = Object.keys(activeWindowsByApp);
-
   return (
     <>
       <div className="fixed-menu">

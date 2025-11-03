@@ -1,0 +1,29 @@
+.notepad-container {
+  background: none;
+  font-family: 'Courier New', Courier, monospace;
+  height: 99%;
+  margin: auto;
+  width: 99%;
+
+  .notepad-canvas-container {
+    align-items: center;
+    background: #fff;
+    display: flex;
+    height: 97%;
+    justify-content: center;
+    width: 100%;
+
+    textarea {
+      border: none;
+      height: 100%;
+      outline: none;
+      resize: none;
+      width: 100%;
+      font-size: 18px;
+
+      &:focus-visible {
+        outline: none;
+      }
+    }
+  }
+}

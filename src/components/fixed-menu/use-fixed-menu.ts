@@ -2,13 +2,13 @@ import useUIStore from '@/store/uiStore';
 import { generateUUID } from '@/utils';
 import { type AppName } from '@/components/apps/app-config';
 
-import { internetExplorerIcon, blocksIcon, fileExplorerIcon, notepadIcon } from '@/assets/icons';
+import { internetExplorerIcon, fileExplorerIcon, notepadIcon, mediaCenterImageIcon } from '@/assets/icons';
 import windowIcon from '@/assets/logo/windows-logo.png';
 
 const INTERNET_EXPLORER_WINDOW_ID = `internet-explorer-menu-window-${generateUUID()}`;
 const FILE_EXPLORER_WINDOW_ID = `file-explorer-menu-window-${generateUUID()}`;
-const BLOCKS_WINDOW_ID = `blocks-menu-window-${generateUUID()}`;
 const NOTEPAD_WINDOW_ID = `notepad-menu-window-${generateUUID()}`;
+const MEDIA_CENTER_IMAGE_WINDOW_ID = `media-center-image-menu-window-${generateUUID()}`;
 
 function useFixedMenuStates() {
   const { toggleIsStartMenuOpen, openWindow } = useUIStore();
@@ -61,10 +61,17 @@ function useFixedMenuStates() {
       icon: notepadIcon,
     },
     {
-      id: BLOCKS_WINDOW_ID,
-      label: 'Blocks',
-      action: () => console.log('Blocks'),
-      icon: blocksIcon,
+      id: MEDIA_CENTER_IMAGE_WINDOW_ID,
+      label: 'Visualizador de Fotos do Sete Janelas',
+      appName: 'MediaCenterImage',
+      action: () =>
+        openWindow({
+          id: MEDIA_CENTER_IMAGE_WINDOW_ID,
+          title: 'Visualizador de Fotos do Sete Janelas',
+          appName: 'MediaCenterImage',
+          iconSrc: mediaCenterImageIcon,
+        }),
+      icon: mediaCenterImageIcon,
     },
   ];
 

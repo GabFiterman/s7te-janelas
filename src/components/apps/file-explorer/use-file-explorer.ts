@@ -1,12 +1,17 @@
 import { create } from 'zustand';
 import { ITEMS_MAP_ALL, STRUCTURE_MAP_FILE_SYSTEM, type FileSystemItem } from '@/constants';
-import { generateUUID, normalizeStringForPath, isImageByExtension } from '@/utils';
+import { normalizeStringForPath, isImageByExtension, isTextByExtension, getPartialPath } from '@/utils';
 import useUIStore from '@/store/uiStore';
-import { mediaCenterImageIcon } from '@/assets/icons';
+import { mediaCenterImageIcon, notepadIcon } from '@/assets/icons';
 
 const INITIAL_URI = 'fiterman/';
 const ALIAS_TO_PATH_MAP = new Map<string, string>();
-const MEDIA_CENTER_IMAGE_WINDOW_ID = `media-center-image-file-explorer-window-${generateUUID()}`;
+const MEDIA_CENTER_IMAGE_WINDOW_ID = (path: string): string => {
+  return `media-center-image-file-explorer-window-${path}`;
+};
+const NOTEPAD_WINDOW_ID = (path: string): string => {
+  return `notepad-file-explorer-window-${path}`;
+};
 
 interface FileExplorerState {
   currentDirectoryContents: FileSystemItem[];
@@ -52,7 +57,6 @@ initializeFileSystemMaps();
 
 const getContentsByPath = (path: string): FileSystemItem[] => {
   const normalizedPath = normalizeStringForPath(path);
-  console.log(normalizedPath);
   return STRUCTURE_MAP_FILE_SYSTEM[normalizedPath] || [];
 };
 
@@ -127,7 +131,7 @@ export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
     }),
   navigateTo: (item) =>
     set((state) => {
-      const { openWindow } = useUIStore.getState();
+      const { openWindow, windows, focusWindow, updateWindowStatus, closeWindow } = useUIStore.getState();
 
       if (item.extension === '/') {
         const newPath = item.path;
@@ -143,19 +147,61 @@ export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
         };
       } else if (item.type === 'file') {
         if (isImageByExtension(item.extension)) {
+          const itemPartialPath = getPartialPath(item.path);
+
+          const appId = MEDIA_CENTER_IMAGE_WINDOW_ID(item.path);
           const playlist = get().currentDirectoryContents.filter(
             (i) => i.type === 'file' && isImageByExtension(i.extension)
           );
-          openWindow({
-            id: MEDIA_CENTER_IMAGE_WINDOW_ID,
-            title: item.label + item.extension,
-            appName: 'MediaCenterImage',
-            iconSrc: mediaCenterImageIcon,
-            appProps: {
-              initialItem: item,
-              playlist: playlist,
-            },
-          });
+          const windowAlreadyOpen = windows.find((w) => getPartialPath(w.id) === getPartialPath(appId));
+          const openMediaCenterImage = () => {
+            openWindow({
+              id: appId,
+              title: item.label + item.extension,
+              appName: 'MediaCenterImage',
+              iconSrc: mediaCenterImageIcon,
+              appProps: {
+                initialItem: item,
+                playlist: playlist,
+              },
+            });
+          };
+
+          if (windowAlreadyOpen) {
+            const openedItemPartialPath = getPartialPath(windowAlreadyOpen.id);
+            const isSamePath = openedItemPartialPath.includes(itemPartialPath);
+            if (isSamePath) {
+              if (windowAlreadyOpen.id === appId) {
+                focusWindow(windowAlreadyOpen.id);
+                updateWindowStatus(windowAlreadyOpen.id, 'normal');
+              } else {
+                closeWindow(windowAlreadyOpen.id);
+                openMediaCenterImage();
+              }
+            }
+          } else {
+            openMediaCenterImage();
+          }
+          return state;
+        }
+
+        if (isTextByExtension(item.extension)) {
+          const appId = NOTEPAD_WINDOW_ID(item.path);
+          const windowAlreadyOpen = windows.find((w) => w.id === appId);
+          if (windowAlreadyOpen) {
+            focusWindow(windowAlreadyOpen.id);
+            updateWindowStatus(windowAlreadyOpen.id, 'normal');
+          } else {
+            openWindow({
+              id: appId,
+              title: item.label + item.extension,
+              appName: 'Notepad',
+              iconSrc: notepadIcon,
+              appProps: {
+                initialItem: item,
+              },
+            });
+          }
           return state;
         }
       }

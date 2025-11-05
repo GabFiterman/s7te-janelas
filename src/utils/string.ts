@@ -18,10 +18,29 @@ export function normalizeStringForPath(str: string): string {
 }
 
 /**
+ * Retorna o caminho do diretório pai
+ * Ex.: 'C:/Fiterman/Documentos/Primeiro_Documento.txt' -> 'C:/Fiterman/Documentos'
+ * @param extension A string de entrada
+ * @returns string
+ */
+export const getPartialPath = (path: string): string => {
+  return path.split('/').slice(0, -1).join('/');
+};
+
+/**
  * @param extension A string de entrada
  * @returns bool
  */
 export const isImageByExtension = (extension: string) => {
   const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'];
   return imageExtensions.includes(extension.toLowerCase());
+};
+
+/**
+ * @param extension A string de entrada
+ * @returns bool
+ */
+export const isTextByExtension = (extension: string) => {
+  const textExtensions = ['.txt', '.md', '.doc', '.docx', '.pdf'];
+  return textExtensions.includes(extension.toLowerCase());
 };

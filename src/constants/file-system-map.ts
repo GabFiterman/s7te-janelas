@@ -161,22 +161,22 @@ const ITEMS_MAP_ALL: Record<string, FileSystemItem> = {
   },
 
   // ROOT LEVEL 3 [ DOCUMENTOS ]
-  'C:/USUARIOS/FITERMAN/DOCUMENTOS/PRIMEIRO_DOCUMENTO.PDF': {
-    extension: '.pdf',
+  'C:/USUARIOS/FITERMAN/DOCUMENTOS/PRIMEIRO_DOCUMENTO.TXT': {
+    extension: '.txt',
     iconSrc: sheetMusicIcon,
     label: 'Primeiro Documento',
-    path: 'C:/Usuários/Fiterman/Documentos/Primeiro_Documento.pdf',
+    path: 'C:/Usuários/Fiterman/Documentos/Primeiro_Documento.txt',
     type: 'file',
-    uri: 'documentos/primeiro_documento.pdf',
+    uri: 'documentos/primeiro_documento.txt',
   },
 
-  'C:/USUARIOS/FITERMAN/DOCUMENTOS/SEGUNDO_DOCUMENTO.PDF': {
+  'C:/USUARIOS/FITERMAN/DOCUMENTOS/SEGUNDO_DOCUMENTO.TXT': {
     extension: '.txt',
     iconSrc: networkIcon,
     label: 'Segundo Documento',
-    path: 'C:/Usuários/Fiterman/Documentos/Segundo_Documento.pdf',
+    path: 'C:/Usuários/Fiterman/Documentos/Segundo_Documento.txt',
     type: 'file',
-    uri: 'documentos/segundo_documento.pdf',
+    uri: 'documentos/segundo_documento.txt',
   },
 
   // ROOT LEVEL 3 [ IMAGES ]
@@ -246,8 +246,8 @@ const ITEMS_MAP_FAVORITES: FileSystemItem[] = [
 ];
 
 const ITEMS_MAP_WORKSPACE: FileSystemItem[] = [
-  ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/DOCUMENTOS/PRIMEIRO_DOCUMENTO.PDF'],
-  ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/DOCUMENTOS/SEGUNDO_DOCUMENTO.PDF'],
+  ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/DOCUMENTOS/PRIMEIRO_DOCUMENTO.TXT'],
+  ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/DOCUMENTOS/SEGUNDO_DOCUMENTO.TXT'],
   ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/DOCUMENTOS'],
   ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/DOWNLOADS'],
   ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/IMAGENS/ALFACE.WEBP'],
@@ -308,8 +308,8 @@ const STRUCTURE_MAP_FILE_SYSTEM: Record<string, FileSystemItem[]> = {
 
   // ROOT LEVEL 3 [ DOCUMENTOS ]
   'C:/USUARIOS/FITERMAN/DOCUMENTOS': [
-    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/DOCUMENTOS/PRIMEIRO_DOCUMENTO.PDF'],
-    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/DOCUMENTOS/SEGUNDO_DOCUMENTO.PDF'],
+    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/DOCUMENTOS/PRIMEIRO_DOCUMENTO.TXT'],
+    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/DOCUMENTOS/SEGUNDO_DOCUMENTO.TXT'],
   ],
 
   // ROOT LEVEL 3 [ DOWNLOADS ]

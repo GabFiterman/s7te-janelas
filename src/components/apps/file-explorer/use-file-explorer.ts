@@ -1,9 +1,12 @@
 import { create } from 'zustand';
 import { ITEMS_MAP_ALL, STRUCTURE_MAP_FILE_SYSTEM, type FileSystemItem } from '@/constants';
-import { normalizeStringForPath } from '@/utils';
+import { generateUUID, normalizeStringForPath, isImageByExtension } from '@/utils';
+import useUIStore from '@/store/uiStore';
+import { mediaCenterImageIcon } from '@/assets/icons';
 
 const INITIAL_URI = 'fiterman/';
 const ALIAS_TO_PATH_MAP = new Map<string, string>();
+const MEDIA_CENTER_IMAGE_WINDOW_ID = `media-center-image-file-explorer-window-${generateUUID()}`;
 
 interface FileExplorerState {
   currentDirectoryContents: FileSystemItem[];
@@ -23,7 +26,7 @@ interface FileExplorerState {
 
   goBack: () => void;
   goForward: () => void;
-  navigateTo: (newPath: string) => void;
+  navigateTo: (item: FileSystemItem) => void;
   toggleItemSelection: (
     event:
       | React.KeyboardEvent<HTMLButtonElement>
@@ -49,6 +52,7 @@ initializeFileSystemMaps();
 
 const getContentsByPath = (path: string): FileSystemItem[] => {
   const normalizedPath = normalizeStringForPath(path);
+  console.log(normalizedPath);
   return STRUCTURE_MAP_FILE_SYSTEM[normalizedPath] || [];
 };
 
@@ -121,18 +125,42 @@ export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
       }
       return state;
     }),
-  navigateTo: (newPath) =>
+  navigateTo: (item) =>
     set((state) => {
-      const newHistory = state.history.slice(0, state.historyIndex + 1);
-      newHistory.push(newPath);
+      const { openWindow } = useUIStore.getState();
 
-      return {
-        currentDirectoryContents: getContentsByPath(newPath),
-        currentPath: newPath,
-        history: newHistory,
-        historyIndex: newHistory.length - 1,
-        selectedItemPaths: [],
-      };
+      if (item.extension === '/') {
+        const newPath = item.path;
+        const newHistory = state.history.slice(0, state.historyIndex + 1);
+        newHistory.push(newPath);
+
+        return {
+          currentDirectoryContents: getContentsByPath(newPath),
+          currentPath: newPath,
+          history: newHistory,
+          historyIndex: newHistory.length - 1,
+          selectedItemPaths: [],
+        };
+      } else if (item.type === 'file') {
+        if (isImageByExtension(item.extension)) {
+          const playlist = get().currentDirectoryContents.filter(
+            (i) => i.type === 'file' && isImageByExtension(i.extension)
+          );
+          openWindow({
+            id: MEDIA_CENTER_IMAGE_WINDOW_ID,
+            title: item.label + item.extension,
+            appName: 'MediaCenterImage',
+            iconSrc: mediaCenterImageIcon,
+            appProps: {
+              initialItem: item,
+              playlist: playlist,
+            },
+          });
+          return state;
+        }
+      }
+
+      return state;
     }),
   toggleItemSelection: (_event, item) =>
     set((state) => {

@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 
-import useUiStore, { type WorkspaceIcon } from '@/store/uiStore';
+import { generateUUID, isImageByExtension } from '@/utils';
+import { ITEMS_MAP_WORKSPACE } from '@/constants';
 import { useDraggableElement } from '@/hooks';
-
+import useUiStore, { type WorkspaceIcon } from '@/store/uiStore';
 import { useFileExplorerStore } from '@/components/apps/file-explorer/use-file-explorer';
 
-import { fileExplorerIcon } from '@/assets/icons';
+import { fileExplorerIcon, mediaCenterImageIcon } from '@/assets/icons';
 import './icon-link-label.scss';
 
 interface IconLinkLabelProps {
@@ -42,23 +43,49 @@ function IconLinkLabel({ className, constraintsRef, icon, size = 64 }: IconLinkL
     event.stopPropagation();
     event.preventDefault();
 
-    const explorerWindow = windows.find((w) => w.id === FILE_EXPLORER_WINDOW_ID);
+    if (type === 'folder') {
+      const explorerWindow = windows.find((w) => w.id === FILE_EXPLORER_WINDOW_ID);
 
-    if (explorerWindow) {
+      if (explorerWindow) {
+        focusWindow(FILE_EXPLORER_WINDOW_ID);
+        updateWindowStatus(FILE_EXPLORER_WINDOW_ID, 'normal');
+        return;
+      }
+
+      openWindow({
+        id: FILE_EXPLORER_WINDOW_ID,
+        appName: 'FileExplorer',
+        iconSrc: fileExplorerIcon,
+        title: 'File Explorer',
+      });
+
+      setCurrentPath(path);
       focusWindow(FILE_EXPLORER_WINDOW_ID);
-      updateWindowStatus(FILE_EXPLORER_WINDOW_ID, 'normal');
-      return;
     }
 
-    openWindow({
-      id: FILE_EXPLORER_WINDOW_ID,
-      title: 'File Explorer',
-      appName: 'FileExplorer',
-      iconSrc: fileExplorerIcon,
-    });
+    if (type === 'file') {
+      if (isImageByExtension(extension)) {
+        const imagePlaylist = ITEMS_MAP_WORKSPACE.filter(
+          (item) => item.type === 'file' && isImageByExtension(item.extension)
+        ).map((item) => ({ ...item }));
 
-    setCurrentPath(path);
-    focusWindow(FILE_EXPLORER_WINDOW_ID);
+        const MEDIA_CENTER_IMAGE_WINDOW_ID = `media-center-image-workspace-window-${generateUUID}`;
+
+        openWindow({
+          id: MEDIA_CENTER_IMAGE_WINDOW_ID,
+          appName: 'MediaCenterImage',
+          iconSrc: mediaCenterImageIcon,
+          title: label + extension,
+          appProps: {
+            initialItem: icon,
+            playlist: imagePlaylist,
+          },
+        });
+
+        focusWindow(MEDIA_CENTER_IMAGE_WINDOW_ID);
+        updateWindowStatus(MEDIA_CENTER_IMAGE_WINDOW_ID, 'normal');
+      }
+    }
   }
 
   return icon ? (

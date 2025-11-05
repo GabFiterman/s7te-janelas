@@ -25,7 +25,7 @@ function FileExplorerCanvas() {
               event.stopPropagation();
               toggleItemSelection(event, item);
             }}
-            onDoubleClick={() => navigateTo(item.path)}
+            onDoubleClick={() => navigateTo(item)}
             orientation="vertical"
             selected={getIsItemSelected(item)}
             text={`${item?.label}${item.type === 'file' ? item.extension : ''}`}

@@ -1,16 +1,15 @@
 import { useFileExplorerStore } from '../../use-file-explorer';
 
 import { BtnIconTextLink } from '@/components';
-import { ITEMS_MAP_ALL, STRUCTURE_MAP_SIDE_MENU } from '@/constants';
+import { ITEMS_MAP_ALL, STRUCTURE_MAP_SIDE_MENU, type FileSystemItem } from '@/constants';
 import { normalizeStringForPath } from '@/utils';
 
 function FileExplorerSideMenu() {
   const { navigateTo } = useFileExplorerStore();
 
-  const handleItemClick = (path: string | null | undefined) => {
-    if (path) {
-      navigateTo(path);
-    }
+  const handleItemClick = (item: FileSystemItem | null | undefined) => {
+    if (!item) return;
+    navigateTo(item);
   };
 
   return (
@@ -25,7 +24,7 @@ function FileExplorerSideMenu() {
               <BtnIconTextLink
                 className="side-menu-item pl-15 py-1"
                 icon={mainItem.iconSrc}
-                onDoubleClick={() => handleItemClick(mainItem.path)}
+                onDoubleClick={() => handleItemClick(mainItem)}
                 text={mainItem.label}
               />
               {subItems?.length > 0 &&
@@ -36,7 +35,7 @@ function FileExplorerSideMenu() {
                         className="side-menu-subitem pl-28 py-1"
                         icon={subItem.iconSrc}
                         key={subItem.uri}
-                        onDoubleClick={() => handleItemClick(subItem.path)}
+                        onDoubleClick={() => handleItemClick(subItem)}
                         text={subItem.label}
                       />
                     )

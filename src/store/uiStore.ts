@@ -10,6 +10,7 @@ export interface WorkspaceIcon extends FileSystemItem {
 
 export interface WindowState {
   appName: AppName;
+  appProps?: Record<string, unknown>;
   height: number;
   iconSrc: string;
   id: string;
@@ -52,7 +53,7 @@ interface UIState {
   focusWindow: (id: string) => void;
   openWindow: (
     window: Omit<WindowState, 'zIndex' | 'x' | 'y' | 'status' | 'width' | 'height'> &
-      Partial<Pick<WindowState, 'x' | 'y' | 'width' | 'height' | 'status'>>
+      Partial<Pick<WindowState, 'x' | 'y' | 'width' | 'height' | 'status' | 'appProps'>>
   ) => void;
   setIsStartMenuOpen: (isOpen: boolean) => void;
   toggleIsStartMenuOpen: () => void;
@@ -94,6 +95,16 @@ const useUIStore = create<UIState>((set, get) => ({
       ...ITEMS_MAP_WORKSPACE[3],
       x: 120,
       y: 150,
+    },
+    {
+      ...ITEMS_MAP_WORKSPACE[4],
+      x: 0,
+      y: 300,
+    },
+    {
+      ...ITEMS_MAP_WORKSPACE[5],
+      x: 120,
+      y: 300,
     },
   ],
 
@@ -141,6 +152,7 @@ const useUIStore = create<UIState>((set, get) => ({
             y: newWindow.y ?? 50,
             zIndex: newZIndex,
             iconSrc: newWindow.iconSrc,
+            appProps: newWindow.appProps ?? {},
           },
         ],
         maxZIndex: newZIndex,

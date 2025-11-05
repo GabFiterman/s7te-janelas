@@ -16,3 +16,12 @@ export function normalizeStringForPath(str: string): string {
 
   return normalized;
 }
+
+/**
+ * @param extension A string de entrada
+ * @returns bool
+ */
+export const isImageByExtension = (extension: string) => {
+  const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'];
+  return imageExtensions.includes(extension.toLowerCase());
+};

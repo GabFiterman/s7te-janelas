@@ -1,6 +1,7 @@
+import { useState, useEffect } from 'react';
 import { AppControllerWidget } from '@/components';
 import { controllerItems } from './constants/media-center-image-constants';
-import DefaultImage from '@/assets/media-center/flower.jpg';
+import DefaultImage from '@/assets/media-center/Imagens/placeholder.jpg';
 import {
   excludeIcon,
   mediaCenterExpandIcon,
@@ -12,25 +13,65 @@ import {
   mediaCenterZoomMore,
 } from '@/assets/icons';
 import './media-center-image.scss';
+import { type FileSystemItem, ITEMS_MAP_ALL } from '@/constants';
+
+const defaultItem: FileSystemItem = ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/IMAGENS/FLOWER.JPG'];
+
+function getAssetPath(item: FileSystemItem | undefined): string {
+  if (!item) return DefaultImage;
+
+  const ssoBasePath = 'C:/USUÁRIOS/FITERMAN/';
+  const assetBasePath = '/media-center/';
+
+  if (item.path.toUpperCase().startsWith(ssoBasePath)) {
+    const relativePath = item.path.substring(ssoBasePath.length);
+    return assetBasePath + relativePath;
+  }
+  return DefaultImage;
+}
 
 interface MediaCenterImageProps {
   imageSource?: string;
+  initialItem: FileSystemItem;
+  playlist: FileSystemItem[];
+
   onClickImageBtn?: (event: React.MouseEvent<HTMLImageElement>) => void;
   onClickNext?: (event: React.MouseEvent<HTMLImageElement>) => void;
   onClickPrevious?: (event: React.MouseEvent<HTMLImageElement>) => void;
 }
 
 function MediaCenterImage({
-  imageSource = DefaultImage,
+  initialItem = defaultItem,
+  playlist = [initialItem],
+
   onClickImageBtn,
   onClickNext,
   onClickPrevious,
 }: MediaCenterImageProps) {
+  const [currentIndex, setCurrentIndex] = useState(() => playlist.findIndex((item) => item.path === initialItem.path));
+
+  const [imageSource, setImageSource] = useState(DefaultImage);
+
+  const handleNext = (event: React.MouseEvent<HTMLImageElement>) => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % playlist.length);
+    if (onClickNext) onClickNext(event);
+  };
+
+  const handlePrevious = (event: React.MouseEvent<HTMLImageElement>) => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + playlist.length) % playlist.length);
+    if (onClickPrevious) onClickPrevious(event);
+  };
+
+  useEffect(() => {
+    const currentItem = playlist[currentIndex];
+    setImageSource(getAssetPath(currentItem));
+  }, [currentIndex, playlist]);
+
   return (
     <div className="media-center-image-container">
       <AppControllerWidget controllerItems={controllerItems} />
       <div className="media-center-image-canvas">
-        <img className="media-center-image-main-image" src={imageSource} />
+        <img className="media-center-image-main-image" src={imageSource} alt={playlist[currentIndex]?.label} />
       </div>
       <div className="media-center-image-footer-container">
         <div className="media-center-image-footer">
@@ -40,7 +81,7 @@ function MediaCenterImage({
             <img
               className="media-center-image-footer-player-icon"
               src={mediaCenterPreviousIcon}
-              onClick={(event) => onClickPrevious && onClickPrevious(event)}
+              onClick={(event) => handlePrevious(event)}
             />
             <img
               className="media-center-image-footer-player-icon main"
@@ -50,7 +91,7 @@ function MediaCenterImage({
             <img
               className="media-center-image-footer-player-icon"
               src={mediaCenterNextIcon}
-              onClick={(event) => onClickNext && onClickNext(event)}
+              onClick={(event) => handleNext(event)}
             />
           </div>
           <img className="media-center-image-footer-icon" src={mediaCenterUndoIcon} />

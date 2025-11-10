@@ -8,7 +8,7 @@ import {
   normalizeStringForPath,
 } from '@/utils';
 import useUIStore from '@/store/uiStore';
-import { mediaCenterImageIcon, notepadIcon, videosIcon } from '@/assets/icons';
+import { mediaCenterImageIcon, notepadIcon, videosIcon, internetExplorerIcon } from '@/assets/icons';
 
 const INITIAL_URI = 'favoritos/';
 const ALIAS_TO_PATH_MAP = new Map<string, string>();
@@ -20,6 +20,9 @@ const MEDIA_CENTER_VIDEO_WINDOW_ID = (path: string): string => {
 };
 const NOTEPAD_WINDOW_ID = (path: string): string => {
   return `notepad-file-explorer-window-${path}`;
+};
+const INTERNET_EXPLORER_WINDOW_ID = (path: string): string => {
+  return `internet-explorer-file-explorer-window-${path}`;
 };
 
 interface FileExplorerState {
@@ -142,7 +145,7 @@ export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
     set((state) => {
       const { openWindow, windows, focusWindow, updateWindowStatus, closeWindow } = useUIStore.getState();
 
-      if (item.extension === '/') {
+      if (item.type === 'folder' || item.type === 'drive') {
         const newPath = item.path;
         const newHistory = state.history.slice(0, state.historyIndex + 1);
         newHistory.push(newPath);
@@ -247,6 +250,18 @@ export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
           }
           return state;
         }
+      } else if (item.type === 'externalLink') {
+        window.open(item.uri, '_blank');
+      } else if (item.type === 'link') {
+        openWindow({
+          id: INTERNET_EXPLORER_WINDOW_ID(item.path),
+          title: item.label,
+          appName: 'InternetExplorer',
+          iconSrc: internetExplorerIcon,
+          appProps: {
+            initialUrl: item.uri,
+          },
+        });
       }
 
       return state;

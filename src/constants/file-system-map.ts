@@ -10,6 +10,7 @@ import {
   sheetMusicIcon,
   videosIcon,
   workspaceIcon,
+  internetExplorerIcon,
 } from '@/assets/icons';
 
 interface FileSystemItem {
@@ -17,7 +18,7 @@ interface FileSystemItem {
   iconSrc: string;
   label: string;
   path: string;
-  type: 'folder' | 'file' | 'drive';
+  type: 'folder' | 'file' | 'drive' | 'link' | 'externalLink';
   uri: string;
 }
 
@@ -264,6 +265,15 @@ const ITEMS_MAP_ALL: Record<string, FileSystemItem> = {
     type: 'file',
     uri: 'projetos/ChallengeLett/ChallengeLett_System_Image.png',
   },
+
+  'C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT/CHALLENGELETT.html': {
+    extension: '.html',
+    iconSrc: internetExplorerIcon,
+    label: 'ChallengeLett',
+    path: 'C:/Usuários/Fiterman/Projetos/ChallengeLett/challengelett.html',
+    type: 'link',
+    uri: 'https://gabfiterman.github.io/ChallengeLett/',
+  },
 };
 
 const ITEMS_MAP_FAVORITES: FileSystemItem[] = [
@@ -371,6 +381,7 @@ const STRUCTURE_MAP_FILE_SYSTEM: Record<string, FileSystemItem[]> = {
   'C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT': [
     ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT/CHALLENGELETTSYSTEMIMAGE.PNG'],
     ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/IMAGENS/ALFACE.WEBP'],
+    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT/CHALLENGELETT.html'],
   ],
 };
 

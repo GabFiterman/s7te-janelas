@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-const INITIAL_URL = 'https://gabfiterman.github.io/ChallengeLett/';
+const INITIAL_URL = 'https://google.com';
 
 interface IEState {
   currentUrl: string;
@@ -10,7 +10,7 @@ interface IEState {
   setFocus: (isFocused: boolean) => void;
   setInputUrl: (url: string) => void;
 
-  navigateToUrl: () => void;
+  navigateToUrl: (newUrl: string) => void;
 }
 
 const useInternetExplorerStore = create<IEState>((set, get) => ({
@@ -21,8 +21,8 @@ const useInternetExplorerStore = create<IEState>((set, get) => ({
   setFocus: (isFocused) => set({ isUrlInputFocused: isFocused }),
   setInputUrl: (url) => set({ inputUrl: url }),
 
-  navigateToUrl: () => {
-    const urlToNavigate = get().inputUrl;
+  navigateToUrl: (newUrl) => {
+    const urlToNavigate = newUrl || get().inputUrl;
     let finalUrl = urlToNavigate;
 
     if (!urlToNavigate.startsWith('http')) {
@@ -30,6 +30,9 @@ const useInternetExplorerStore = create<IEState>((set, get) => ({
     }
 
     set({ currentUrl: finalUrl });
+    if (get().inputUrl !== urlToNavigate) {
+      set({ inputUrl: urlToNavigate });
+    }
   },
 }));
 

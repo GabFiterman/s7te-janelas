@@ -18,7 +18,7 @@
       border: 1px solid transparent;
 
       &:hover {
-        background: rgba(242, 246, 250, .5);
+        background: rgba(242, 246, 250, 0.5);
         border: 1px solid #9cb6ce;
       }
     }
@@ -108,19 +108,18 @@
     flex-direction: column;
     justify-content: center;
     left: 0;
-    min-width: 200px;
+    min-width: 14em;
     padding: 2px 0;
     position: absolute;
     top: 100%;
     z-index: $z-highest;
-
 
     .dropdown-item {
       border: 1px solid transparent;
       cursor: pointer;
       display: flex;
       justify-content: flex-start;
-      padding: .25em .5em .25em 0;
+      padding: 0.25em 0.5em 0.25em 0;
       white-space: nowrap;
       width: 100%;
 
@@ -152,7 +151,7 @@
         display: flex;
         flex: 1;
         justify-content: flex-end;
-        margin-right: .5em;
+        margin-right: 0.5em;
       }
     }
 

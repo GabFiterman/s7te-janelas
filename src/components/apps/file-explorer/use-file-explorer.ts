@@ -1,9 +1,26 @@
 import { create } from 'zustand';
 import { ITEMS_MAP_ALL, STRUCTURE_MAP_FILE_SYSTEM, type FileSystemItem } from '@/constants';
-import { normalizeStringForPath } from '@/utils';
+import {
+  getPartialPath,
+  isImageByExtension,
+  isTextByExtension,
+  isVideoByExtension,
+  normalizeStringForPath,
+} from '@/utils';
+import useUIStore from '@/store/uiStore';
+import { mediaCenterImageIcon, notepadIcon, videosIcon } from '@/assets/icons';
 
-const INITIAL_URI = 'fiterman/';
+const INITIAL_URI = 'favoritos/';
 const ALIAS_TO_PATH_MAP = new Map<string, string>();
+const MEDIA_CENTER_IMAGE_WINDOW_ID = (path: string): string => {
+  return `media-center-image-file-explorer-window-${path}`;
+};
+const MEDIA_CENTER_VIDEO_WINDOW_ID = (path: string): string => {
+  return `media-center-video-file-explorer-window-${path}`;
+};
+const NOTEPAD_WINDOW_ID = (path: string): string => {
+  return `notepad-file-explorer-window-${path}`;
+};
 
 interface FileExplorerState {
   currentDirectoryContents: FileSystemItem[];
@@ -23,7 +40,7 @@ interface FileExplorerState {
 
   goBack: () => void;
   goForward: () => void;
-  navigateTo: (newPath: string) => void;
+  navigateTo: (item: FileSystemItem) => void;
   toggleItemSelection: (
     event:
       | React.KeyboardEvent<HTMLButtonElement>
@@ -121,18 +138,118 @@ export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
       }
       return state;
     }),
-  navigateTo: (newPath) =>
+  navigateTo: (item) =>
     set((state) => {
-      const newHistory = state.history.slice(0, state.historyIndex + 1);
-      newHistory.push(newPath);
+      const { openWindow, windows, focusWindow, updateWindowStatus, closeWindow } = useUIStore.getState();
 
-      return {
-        currentDirectoryContents: getContentsByPath(newPath),
-        currentPath: newPath,
-        history: newHistory,
-        historyIndex: newHistory.length - 1,
-        selectedItemPaths: [],
-      };
+      if (item.extension === '/') {
+        const newPath = item.path;
+        const newHistory = state.history.slice(0, state.historyIndex + 1);
+        newHistory.push(newPath);
+
+        return {
+          currentDirectoryContents: getContentsByPath(newPath),
+          currentPath: newPath,
+          history: newHistory,
+          historyIndex: newHistory.length - 1,
+          selectedItemPaths: [],
+        };
+      } else if (item.type === 'file') {
+        if (isImageByExtension(item.extension)) {
+          const itemPartialPath = getPartialPath(item.path);
+
+          const appId = MEDIA_CENTER_IMAGE_WINDOW_ID(item.path);
+          const playlist = get().currentDirectoryContents.filter(
+            (i) => i.type === 'file' && isImageByExtension(i.extension)
+          );
+          const windowAlreadyOpen = windows.find((w) => getPartialPath(w.id) === getPartialPath(appId));
+          const openMediaCenterImage = () => {
+            openWindow({
+              id: appId,
+              title: item.label + item.extension,
+              appName: 'MediaCenterImage',
+              iconSrc: mediaCenterImageIcon,
+              appProps: {
+                initialItem: item,
+                playlist: playlist,
+              },
+            });
+          };
+
+          if (windowAlreadyOpen) {
+            const openedItemPartialPath = getPartialPath(windowAlreadyOpen.id);
+            const isSamePath = openedItemPartialPath.includes(itemPartialPath);
+            if (isSamePath) {
+              if (windowAlreadyOpen.id === appId) {
+                focusWindow(windowAlreadyOpen.id);
+                updateWindowStatus(windowAlreadyOpen.id, 'normal');
+              } else {
+                closeWindow(windowAlreadyOpen.id);
+                openMediaCenterImage();
+              }
+            }
+          } else {
+            openMediaCenterImage();
+          }
+          return state;
+        }
+
+        if (isVideoByExtension(item.extension)) {
+          const itemPartialPath = getPartialPath(item.path);
+          const appId = MEDIA_CENTER_VIDEO_WINDOW_ID(item.path);
+          const windowAlreadyOpen = windows.find((w) => getPartialPath(w.id) === getPartialPath(appId));
+          const openMediaCenterVideo = () => {
+            openWindow({
+              id: appId,
+              title: item.label + item.extension,
+              appName: 'MediaCenterVideo',
+              iconSrc: videosIcon,
+              appProps: {
+                initialItem: item,
+              },
+            });
+          };
+
+          if (windowAlreadyOpen) {
+            const openedItemPartialPath = getPartialPath(windowAlreadyOpen.id);
+            const isSamePath = openedItemPartialPath.includes(itemPartialPath);
+            if (isSamePath) {
+              if (windowAlreadyOpen.id === appId) {
+                focusWindow(windowAlreadyOpen.id);
+                updateWindowStatus(windowAlreadyOpen.id, 'normal');
+              } else {
+                closeWindow(windowAlreadyOpen.id);
+                openMediaCenterVideo();
+              }
+            }
+          } else {
+            openMediaCenterVideo();
+          }
+          return state;
+        }
+
+        if (isTextByExtension(item.extension)) {
+          const appId = NOTEPAD_WINDOW_ID(item.path);
+          const windowAlreadyOpen = windows.find((w) => w.id === appId);
+          if (windowAlreadyOpen) {
+            focusWindow(windowAlreadyOpen.id);
+            updateWindowStatus(windowAlreadyOpen.id, 'normal');
+          } else {
+            openWindow({
+              id: appId,
+              title: item.label + item.extension,
+              appName: 'Notepad',
+              iconSrc: notepadIcon,
+              appProps: {
+                initialItem: item,
+              },
+            });
+          }
+          return state;
+        }
+      }
+
+      return state;
     }),
   toggleItemSelection: (_event, item) =>
     set((state) => {

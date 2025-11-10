@@ -151,60 +151,118 @@ const ITEMS_MAP_ALL: Record<string, FileSystemItem> = {
     uri: 'musicas/',
   },
 
-  'C:/USUARIOS/FITERMAN/VÍDEOS': {
+  'C:/USUARIOS/FITERMAN/VIDEOS': {
     extension: '/',
     iconSrc: videosIcon,
     label: 'Vídeos',
-    path: 'C:/Usuários/Fiterman/Vídeos',
+    path: 'C:/Usuários/Fiterman/Videos',
     type: 'folder',
     uri: 'videos/',
   },
 
   // ROOT LEVEL 3 [ DOCUMENTOS ]
-  'C:/USUARIOS/FITERMAN/DOCUMENTOS/PRIMEIRO_DOCUMENTO.PDF': {
-    extension: '.pdf',
+  'C:/USUARIOS/FITERMAN/DOCUMENTOS/PRIMEIRO_DOCUMENTO.TXT': {
+    extension: '.txt',
     iconSrc: sheetMusicIcon,
     label: 'Primeiro Documento',
-    path: 'C:/Usuários/Fiterman/Documentos/Primeiro_Documento.pdf',
+    path: 'C:/Usuários/Fiterman/Documentos/Primeiro_Documento.txt',
     type: 'file',
-    uri: 'documentos/primeiro_documento.pdf',
+    uri: 'documentos/primeiro_documento.txt',
   },
 
-  'C:/USUARIOS/FITERMAN/DOCUMENTOS/SEGUNDO_DOCUMENTO.PDF': {
+  'C:/USUARIOS/FITERMAN/DOCUMENTOS/SEGUNDO_DOCUMENTO.TXT': {
     extension: '.txt',
     iconSrc: networkIcon,
     label: 'Segundo Documento',
-    path: 'C:/Usuários/Fiterman/Documentos/Segundo_Documento.pdf',
+    path: 'C:/Usuários/Fiterman/Documentos/Segundo_Documento.txt',
     type: 'file',
-    uri: 'documentos/segundo_documento.pdf',
+    uri: 'documentos/segundo_documento.txt',
   },
 
   // ROOT LEVEL 3 [ IMAGES ]
-  'C:/USUARIOS/FITERMAN/IMAGENS/MARACUJÁ.JPG': {
-    extension: '.jpg',
+  'C:/USUARIOS/FITERMAN/IMAGENS/MARACUJÁ.WEBP': {
+    extension: '.webp',
     iconSrc: pictureIcon,
     label: 'Maracujá',
-    path: 'C:/Usuários/Fiterman/Imagens/Maracujá.jpg',
+    path: 'C:/Usuários/Fiterman/Imagens/Maracujá.webp',
     type: 'file',
-    uri: 'imagens/maracuja.jpg',
+    uri: 'imagens/maracuja.webp',
   },
 
-  'C:/USUARIOS/FITERMAN/IMAGENS/ALFACE.PNG': {
-    extension: '.png',
+  'C:/USUARIOS/FITERMAN/IMAGENS/ALFACE.WEBP': {
+    extension: '.webp',
     iconSrc: pictureIcon,
     label: 'Alface',
-    path: 'C:/Usuários/Fiterman/Imagens/Alface.png',
+    path: 'C:/Usuários/Fiterman/Imagens/Alface.webp',
     type: 'file',
-    uri: 'imagens/alface.png',
+    uri: 'imagens/alface.webp',
   },
 
-  'C:/USUARIOS/FITERMAN/IMAGENS/PAO_DE_QUEIJO.PNG': {
-    extension: '.png',
+  'C:/USUARIOS/FITERMAN/IMAGENS/PAO_DE_QUEIJO.JPG': {
+    extension: '.jpg',
     iconSrc: pictureIcon,
     label: 'Pão de Queijo',
-    path: 'C:/Usuários/Fiterman/Imagens/Pao_de_Queijo.png',
+    path: 'C:/Usuários/Fiterman/Imagens/pao_de_queijo.jpg',
     type: 'file',
-    uri: 'imagens/pao_de_queijo.png',
+    uri: 'imagens/pao_de_queijo.jpg',
+  },
+
+  'C:/USUARIOS/FITERMAN/IMAGENS/FLOWER.JPG': {
+    extension: '.jpg',
+    iconSrc: pictureIcon,
+    label: 'Flowers',
+    path: 'C:/Usuários/Fiterman/Imagens/flower.jpg',
+    type: 'file',
+    uri: 'imagens/flower.jpg',
+  },
+
+  // ROOT LEVEL 3 [ VIDEOS ]
+
+  'C:/USUARIOS/FITERMAN/VIDEOS/JIMMY_HENDRIX.MP4': {
+    extension: '.mp4',
+    iconSrc: videosIcon,
+    label: 'Jimmy Hendrix',
+    path: 'C:/Usuários/Fiterman/Videos/Jimmy_Hendrix.mp4',
+    type: 'file',
+    uri: 'videos/jimmy_hendrix.mp4',
+  },
+
+  'C:/USUARIOS/FITERMAN/VIDEOS/AMOR_FATAL.MP4': {
+    extension: '.mp4',
+    iconSrc: videosIcon,
+    label: 'Amor Fatal',
+    path: 'C:/Usuários/Fiterman/Videos/Amor_Fatal.mp4',
+    type: 'file',
+    uri: 'videos/amor_fatal.mp4',
+  },
+
+  'C:/USUARIOS/FITERMAN/VIDEOS/TEASER_TOPGUN.MP4': {
+    extension: '.mp4',
+    iconSrc: videosIcon,
+    label: 'Teaser Topgun',
+    path: 'C:/Usuários/Fiterman/Videos/Teaser_Topgun.mp4',
+    type: 'file',
+    uri: 'videos/teaser_topgun.mp4',
+  },
+
+  // ROOT LEVEL 3 [ PROJETOS ]
+  'C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT': {
+    extension: '/',
+    iconSrc: folderIcon,
+    label: 'Challenge Lett',
+    path: 'C:/Usuários/Fiterman/Projetos/ChallengeLett',
+    type: 'folder',
+    uri: 'projetos/ChallengeLett/',
+  },
+
+  // ROOT LEVEL 3 [ PROJETOS/CHALLENGE_LETT ]
+  'C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT/CHALLENGELETTSYSTEMIMAGE.PNG': {
+    extension: '.png',
+    iconSrc: pictureIcon,
+    label: 'ChallengeLett System Image',
+    path: 'C:/Usuários/Fiterman/Projetos/ChallengeLett/ChallengeLett_System_Image.png',
+    type: 'file',
+    uri: 'projetos/ChallengeLett/ChallengeLett_System_Image.png',
   },
 };
 
@@ -217,17 +275,21 @@ const ITEMS_MAP_FAVORITES: FileSystemItem[] = [
 ];
 
 const ITEMS_MAP_WORKSPACE: FileSystemItem[] = [
-  ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/DOCUMENTOS/PRIMEIRO_DOCUMENTO.PDF'],
-  ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/DOCUMENTOS/SEGUNDO_DOCUMENTO.PDF'],
+  ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/DOCUMENTOS/PRIMEIRO_DOCUMENTO.TXT'],
+  ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/DOCUMENTOS/SEGUNDO_DOCUMENTO.TXT'],
   ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/DOCUMENTOS'],
   ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/DOWNLOADS'],
+  ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/IMAGENS/ALFACE.WEBP'],
+  ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/IMAGENS/PAO_DE_QUEIJO.JPG'],
+  ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/VIDEOS/AMOR_FATAL.MP4'],
+  ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/VIDEOS/TEASER_TOPGUN.MP4'],
 ];
 
 const ITEMS_MAP_LIBS: FileSystemItem[] = [
   ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/DOCUMENTOS'],
   ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/IMAGENS'],
   ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/MÚSICAS'],
-  ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/VÍDEOS'],
+  ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/VIDEOS'],
 ];
 
 const STRUCTURE_MAP_SIDE_MENU: Record<string, FileSystemItem[]> = {
@@ -260,35 +322,56 @@ const STRUCTURE_MAP_FILE_SYSTEM: Record<string, FileSystemItem[]> = {
     ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/IMAGENS'],
     ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/MÚSICAS'],
     ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/PROJETOS'],
-    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/VÍDEOS'],
+    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/VIDEOS'],
   ],
 
+  // ROOT LEVEL 3 [ FAVORITOS ]
   'C:/USUARIOS/FITERMAN/FAVORITOS': ITEMS_MAP_FAVORITES,
 
+  // ROOT LEVEL 3 [ AREA_DE_TRABALHO ]
   'C:/USUARIOS/FITERMAN/AREA_DE_TRABALHO': ITEMS_MAP_WORKSPACE,
 
+  // ROOT LEVEL 3 [ BIBLIOTECAS ]
   'C:/USUARIOS/FITERMAN/BIBLIOTECAS': ITEMS_MAP_LIBS,
 
+  // ROOT LEVEL 3 [ COMPUTADOR ]
   'C:/USUARIOS/FITERMAN/COMPUTADOR': [],
 
+  // ROOT LEVEL 3 [ DOCUMENTOS ]
   'C:/USUARIOS/FITERMAN/DOCUMENTOS': [
-    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/DOCUMENTOS/PRIMEIRO_DOCUMENTO.PDF'],
-    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/DOCUMENTOS/SEGUNDO_DOCUMENTO.PDF'],
+    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/DOCUMENTOS/PRIMEIRO_DOCUMENTO.TXT'],
+    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/DOCUMENTOS/SEGUNDO_DOCUMENTO.TXT'],
   ],
 
+  // ROOT LEVEL 3 [ DOWNLOADS ]
   'C:/USUARIOS/FITERMAN/DOWNLOADS': [],
 
+  // ROOT LEVEL 3 [ IMAGENS ]
   'C:/USUARIOS/FITERMAN/IMAGENS': [
-    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/IMAGENS/MARACUJÁ.JPG'],
-    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/IMAGENS/ALFACE.PNG'],
-    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/IMAGENS/PAO_DE_QUEIJO.PNG'],
+    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/IMAGENS/MARACUJÁ.WEBP'],
+    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/IMAGENS/ALFACE.WEBP'],
+    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/IMAGENS/PAO_DE_QUEIJO.JPG'],
+    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/IMAGENS/FLOWER.JPG'],
   ],
 
+  // ROOT LEVEL 3 [ MÚSICAS ]
   'C:/USUARIOS/FITERMAN/MÚSICAS': [],
 
-  'C:/USUARIOS/FITERMAN/PROJETOS': [],
+  // ROOT LEVEL 3 [ PROJETOS ]
+  'C:/USUARIOS/FITERMAN/PROJETOS': [ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT']],
 
-  'C:/USUARIOS/FITERMAN/VÍDEOS': [],
+  // ROOT LEVEL 3 [ VIDEOS ]
+  'C:/USUARIOS/FITERMAN/VIDEOS': [
+    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/VIDEOS/JIMMY_HENDRIX.MP4'],
+    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/VIDEOS/AMOR_FATAL.MP4'],
+    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/VIDEOS/TEASER_TOPGUN.MP4'],
+  ],
+
+  // ROOT LEVEL 4 [ PROJETOS/CHALLENGE_LETT ]
+  'C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT': [
+    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT/CHALLENGELETTSYSTEMIMAGE.PNG'],
+    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/IMAGENS/ALFACE.WEBP'],
+  ],
 };
 
 export type { FileSystemItem };

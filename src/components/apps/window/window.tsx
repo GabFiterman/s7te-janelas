@@ -25,7 +25,7 @@ function Window({ id }: WindowProps) {
 
   if (!windowData) return null;
 
-  const { appName, height, iconSrc, status, title, width, x, y, zIndex } = windowData;
+  const { appName, height, iconSrc, status, title, width, x, y, zIndex, appProps } = windowData;
   const AppComponent = getAppComponent(appName);
 
   if (status === 'minimized') return null;
@@ -86,7 +86,7 @@ function Window({ id }: WindowProps) {
         handleMaximize={handleMaximize}
         handleStartDrag={handleStartDrag}
       >
-        <AppComponent />
+        <AppComponent {...appProps} />
       </WindowLayout>
     </motion.div>
   );

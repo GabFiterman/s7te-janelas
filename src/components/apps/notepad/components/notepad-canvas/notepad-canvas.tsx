@@ -1,7 +1,11 @@
-function NotepadCanvas() {
+interface NotepadCanvasProps {
+  defaultValue?: string | undefined;
+}
+
+function NotepadCanvas({ defaultValue }: NotepadCanvasProps) {
   return (
     <div className="notepad-canvas-container">
-      <textarea />
+      <textarea defaultValue={defaultValue} />
     </div>
   );
 }

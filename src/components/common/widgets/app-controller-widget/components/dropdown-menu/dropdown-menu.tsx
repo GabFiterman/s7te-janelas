@@ -1,4 +1,5 @@
 import { type DropdownItem, type SeparatorItem, type AppControllerWidgetProps } from '../../app-controller-widget';
+import { generateUUID } from '@/utils';
 
 interface DropdownMenuProps {
   controllerStyle?: AppControllerWidgetProps['controllerStyle'];
@@ -19,7 +20,7 @@ function DropdownMenu({ controllerStyle, items, onDropdownItemClick }: DropdownM
 
         return (
           <div
-            key={dropItem.value}
+            key={dropItem.value + '-' + generateUUID()}
             className={`dropdown-item ${dropItem.disabled ? 'disabled' : ''}`}
             aria-disabled={dropItem.disabled}
             onMouseDown={(event) => onDropdownItemClick && onDropdownItemClick(event, dropItem)}

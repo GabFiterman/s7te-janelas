@@ -37,7 +37,7 @@
       .media-center-image-footer-player-container {
         align-items: center;
         display: flex;
-        gap: .15em;
+        gap: 0.15em;
         justify-content: center;
       }
 
@@ -54,17 +54,14 @@
 
       .media-center-image-footer-player-icon {
         &:not(.main) {
-          background: linear-gradient(180deg,
-            rgba(217, 229, 241, .5) 32%,
-            rgba(164, 180, 197, .5) 43%
-          );
+          background: linear-gradient(180deg, rgba(217, 229, 241, 0.5) 32%, rgba(164, 180, 197, 0.5) 43%);
           &:first-of-type {
             border-radius: 2em 0 0 2em;
           }
           &:last-of-type {
             border-radius: 0 2em 2em 0;
           }
-          padding: .25em 1.5em;
+          padding: 0.25em 1.5em;
         }
       }
 
@@ -73,6 +70,5 @@
         width: auto;
       }
     }
-    
   }
 }

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { AppControllerWidget } from '@/components';
 import { controllerItems } from './constants/media-center-image-constants';
-import DefaultImage from '@/assets/media-center/Imagens/placeholder.jpg';
+import DefaultImage from '@/../public/media-center/Imagens/placeholder.jpg';
 import {
   excludeIcon,
   mediaCenterExpandIcon,
@@ -31,9 +31,8 @@ function getAssetPath(item: FileSystemItem | undefined): string {
 }
 
 interface MediaCenterImageProps {
-  imageSource?: string;
-  initialItem: FileSystemItem;
-  playlist: FileSystemItem[];
+  initialItem?: FileSystemItem;
+  playlist?: FileSystemItem[];
 
   onClickImageBtn?: (event: React.MouseEvent<HTMLImageElement>) => void;
   onClickNext?: (event: React.MouseEvent<HTMLImageElement>) => void;

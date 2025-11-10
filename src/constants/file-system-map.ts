@@ -151,11 +151,11 @@ const ITEMS_MAP_ALL: Record<string, FileSystemItem> = {
     uri: 'musicas/',
   },
 
-  'C:/USUARIOS/FITERMAN/VÍDEOS': {
+  'C:/USUARIOS/FITERMAN/VIDEOS': {
     extension: '/',
     iconSrc: videosIcon,
     label: 'Vídeos',
-    path: 'C:/Usuários/Fiterman/Vídeos',
+    path: 'C:/Usuários/Fiterman/Videos',
     type: 'folder',
     uri: 'videos/',
   },
@@ -216,6 +216,35 @@ const ITEMS_MAP_ALL: Record<string, FileSystemItem> = {
     uri: 'imagens/flower.jpg',
   },
 
+  // ROOT LEVEL 3 [ VIDEOS ]
+
+  'C:/USUARIOS/FITERMAN/VIDEOS/JIMMY_HENDRIX.MP4': {
+    extension: '.mp4',
+    iconSrc: videosIcon,
+    label: 'Jimmy Hendrix',
+    path: 'C:/Usuários/Fiterman/Videos/Jimmy_Hendrix.mp4',
+    type: 'file',
+    uri: 'videos/jimmy_hendrix.mp4',
+  },
+
+  'C:/USUARIOS/FITERMAN/VIDEOS/AMOR_FATAL.MP4': {
+    extension: '.mp4',
+    iconSrc: videosIcon,
+    label: 'Amor Fatal',
+    path: 'C:/Usuários/Fiterman/Videos/Amor_Fatal.mp4',
+    type: 'file',
+    uri: 'videos/amor_fatal.mp4',
+  },
+
+  'C:/USUARIOS/FITERMAN/VIDEOS/TEASER_TOPGUN.MP4': {
+    extension: '.mp4',
+    iconSrc: videosIcon,
+    label: 'Teaser Topgun',
+    path: 'C:/Usuários/Fiterman/Videos/Teaser_Topgun.mp4',
+    type: 'file',
+    uri: 'videos/teaser_topgun.mp4',
+  },
+
   // ROOT LEVEL 3 [ PROJETOS ]
   'C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT': {
     extension: '/',
@@ -252,13 +281,15 @@ const ITEMS_MAP_WORKSPACE: FileSystemItem[] = [
   ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/DOWNLOADS'],
   ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/IMAGENS/ALFACE.WEBP'],
   ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/IMAGENS/PAO_DE_QUEIJO.JPG'],
+  ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/VIDEOS/AMOR_FATAL.MP4'],
+  ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/VIDEOS/TEASER_TOPGUN.MP4'],
 ];
 
 const ITEMS_MAP_LIBS: FileSystemItem[] = [
   ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/DOCUMENTOS'],
   ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/IMAGENS'],
   ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/MÚSICAS'],
-  ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/VÍDEOS'],
+  ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/VIDEOS'],
 ];
 
 const STRUCTURE_MAP_SIDE_MENU: Record<string, FileSystemItem[]> = {
@@ -291,7 +322,7 @@ const STRUCTURE_MAP_FILE_SYSTEM: Record<string, FileSystemItem[]> = {
     ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/IMAGENS'],
     ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/MÚSICAS'],
     ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/PROJETOS'],
-    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/VÍDEOS'],
+    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/VIDEOS'],
   ],
 
   // ROOT LEVEL 3 [ FAVORITOS ]
@@ -329,8 +360,12 @@ const STRUCTURE_MAP_FILE_SYSTEM: Record<string, FileSystemItem[]> = {
   // ROOT LEVEL 3 [ PROJETOS ]
   'C:/USUARIOS/FITERMAN/PROJETOS': [ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT']],
 
-  // ROOT LEVEL 3 [ VÍDEOS ]
-  'C:/USUARIOS/FITERMAN/VÍDEOS': [],
+  // ROOT LEVEL 3 [ VIDEOS ]
+  'C:/USUARIOS/FITERMAN/VIDEOS': [
+    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/VIDEOS/JIMMY_HENDRIX.MP4'],
+    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/VIDEOS/AMOR_FATAL.MP4'],
+    ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/VIDEOS/TEASER_TOPGUN.MP4'],
+  ],
 
   // ROOT LEVEL 4 [ PROJETOS/CHALLENGE_LETT ]
   'C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT': [

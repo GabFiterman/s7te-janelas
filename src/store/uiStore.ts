@@ -106,6 +106,16 @@ const useUIStore = create<UIState>((set, get) => ({
       x: 120,
       y: 300,
     },
+    {
+      ...ITEMS_MAP_WORKSPACE[6],
+      x: 0,
+      y: 450,
+    },
+    {
+      ...ITEMS_MAP_WORKSPACE[7],
+      x: 120,
+      y: 450,
+    },
   ],
 
   activeWindowsByApp: () => {

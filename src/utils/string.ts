@@ -40,6 +40,15 @@ export const isImageByExtension = (extension: string) => {
  * @param extension A string de entrada
  * @returns bool
  */
+export const isVideoByExtension = (extension: string) => {
+  const videoExtensions = ['.mp4', '.avi', '.mov', '.wmv', '.flv', '.mkv'];
+  return videoExtensions.includes(extension.toLowerCase());
+};
+
+/**
+ * @param extension A string de entrada
+ * @returns bool
+ */
 export const isTextByExtension = (extension: string) => {
   const textExtensions = ['.txt', '.md', '.doc', '.docx', '.pdf'];
   return textExtensions.includes(extension.toLowerCase());

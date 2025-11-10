@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 
-import { generateUUID, isImageByExtension, isTextByExtension, getPartialPath } from '@/utils';
+import { generateUUID, isImageByExtension, isVideoByExtension, isTextByExtension, getPartialPath } from '@/utils';
 import { ITEMS_MAP_WORKSPACE } from '@/constants';
 import { useDraggableElement } from '@/hooks';
 import useUiStore, { type WorkspaceIcon } from '@/store/uiStore';
 import { useFileExplorerStore } from '@/components/apps/file-explorer/use-file-explorer';
 
-import { fileExplorerIcon, mediaCenterImageIcon, notepadIcon } from '@/assets/icons';
+import { fileExplorerIcon, mediaCenterImageIcon, notepadIcon, videosIcon } from '@/assets/icons';
 import './icon-link-label.scss';
 
 interface IconLinkLabelProps {
@@ -110,6 +110,48 @@ function IconLinkLabel({ className, constraintsRef, icon, size = 64 }: IconLinkL
 
         focusWindow(MEDIA_CENTER_IMAGE_WINDOW_ID);
         updateWindowStatus(MEDIA_CENTER_IMAGE_WINDOW_ID, 'normal');
+      }
+
+      if (isVideoByExtension(extension)) {
+        const itemPartialPath = getPartialPath(path);
+        const MEDIA_CENTER_VIDEO_WINDOW_ID = `media-center-video-workspace-window-${path}`;
+        const videoFileWindow = windows.find(
+          (w) => getPartialPath(w.id) === getPartialPath(MEDIA_CENTER_VIDEO_WINDOW_ID)
+        );
+
+        const openMediaCenterVideo = () => {
+          openWindow({
+            id: MEDIA_CENTER_VIDEO_WINDOW_ID,
+            appName: 'MediaCenterVideo',
+            iconSrc: videosIcon,
+            title: label + extension,
+            appProps: {
+              initialItem: icon,
+            },
+          });
+        };
+
+        if (videoFileWindow) {
+          const openedItemPartialPath = getPartialPath(videoFileWindow.id);
+          const isSamePath = openedItemPartialPath.includes(itemPartialPath);
+
+          if (isSamePath) {
+            if (videoFileWindow.id === MEDIA_CENTER_VIDEO_WINDOW_ID) {
+              focusWindow(MEDIA_CENTER_VIDEO_WINDOW_ID);
+              updateWindowStatus(MEDIA_CENTER_VIDEO_WINDOW_ID, 'normal');
+              return;
+            } else {
+              closeWindow(videoFileWindow.id);
+              openMediaCenterVideo();
+              return;
+            }
+          }
+        }
+
+        openMediaCenterVideo();
+
+        focusWindow(MEDIA_CENTER_VIDEO_WINDOW_ID);
+        updateWindowStatus(MEDIA_CENTER_VIDEO_WINDOW_ID, 'normal');
       }
 
       if (isTextByExtension(extension)) {

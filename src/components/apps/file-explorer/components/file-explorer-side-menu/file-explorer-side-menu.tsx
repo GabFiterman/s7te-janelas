@@ -30,6 +30,7 @@ function FileExplorerSideMenu() {
               {subItems?.length > 0 &&
                 subItems.map(
                   (subItem) =>
+                    subItem?.type &&
                     subItem.type !== 'file' && (
                       <BtnIconTextLink
                         className="side-menu-subitem pl-28 py-1"

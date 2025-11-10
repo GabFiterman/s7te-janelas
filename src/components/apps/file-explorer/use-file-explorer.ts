@@ -1,13 +1,22 @@
 import { create } from 'zustand';
 import { ITEMS_MAP_ALL, STRUCTURE_MAP_FILE_SYSTEM, type FileSystemItem } from '@/constants';
-import { normalizeStringForPath, isImageByExtension, isTextByExtension, getPartialPath } from '@/utils';
+import {
+  getPartialPath,
+  isImageByExtension,
+  isTextByExtension,
+  isVideoByExtension,
+  normalizeStringForPath,
+} from '@/utils';
 import useUIStore from '@/store/uiStore';
-import { mediaCenterImageIcon, notepadIcon } from '@/assets/icons';
+import { mediaCenterImageIcon, notepadIcon, videosIcon } from '@/assets/icons';
 
-const INITIAL_URI = 'fiterman/';
+const INITIAL_URI = 'favoritos/';
 const ALIAS_TO_PATH_MAP = new Map<string, string>();
 const MEDIA_CENTER_IMAGE_WINDOW_ID = (path: string): string => {
   return `media-center-image-file-explorer-window-${path}`;
+};
+const MEDIA_CENTER_VIDEO_WINDOW_ID = (path: string): string => {
+  return `media-center-video-file-explorer-window-${path}`;
 };
 const NOTEPAD_WINDOW_ID = (path: string): string => {
   return `notepad-file-explorer-window-${path}`;
@@ -181,6 +190,40 @@ export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
             }
           } else {
             openMediaCenterImage();
+          }
+          return state;
+        }
+
+        if (isVideoByExtension(item.extension)) {
+          const itemPartialPath = getPartialPath(item.path);
+          const appId = MEDIA_CENTER_VIDEO_WINDOW_ID(item.path);
+          const windowAlreadyOpen = windows.find((w) => getPartialPath(w.id) === getPartialPath(appId));
+          const openMediaCenterVideo = () => {
+            openWindow({
+              id: appId,
+              title: item.label + item.extension,
+              appName: 'MediaCenterVideo',
+              iconSrc: videosIcon,
+              appProps: {
+                initialItem: item,
+              },
+            });
+          };
+
+          if (windowAlreadyOpen) {
+            const openedItemPartialPath = getPartialPath(windowAlreadyOpen.id);
+            const isSamePath = openedItemPartialPath.includes(itemPartialPath);
+            if (isSamePath) {
+              if (windowAlreadyOpen.id === appId) {
+                focusWindow(windowAlreadyOpen.id);
+                updateWindowStatus(windowAlreadyOpen.id, 'normal');
+              } else {
+                closeWindow(windowAlreadyOpen.id);
+                openMediaCenterVideo();
+              }
+            }
+          } else {
+            openMediaCenterVideo();
           }
           return state;
         }

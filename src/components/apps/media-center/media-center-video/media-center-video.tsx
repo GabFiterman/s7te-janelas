@@ -13,7 +13,6 @@ function getAssetPath(item: FileSystemItem | undefined): string {
 
   if (item.path.toUpperCase().startsWith(ssoBasePath)) {
     const relativePath = item.path.substring(ssoBasePath.length);
-    console.log({ path: item.path, assetBasePath, relativePath });
     return assetBasePath + relativePath;
   }
   return defaultVideo;

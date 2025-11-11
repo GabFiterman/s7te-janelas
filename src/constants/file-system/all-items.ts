@@ -5,6 +5,7 @@ import {
   fileExplorerIcon,
   folderIcon,
   internetExplorerIcon,
+  internetExplorerExternalLinkIcon,
   musicsIcon,
   networkIcon,
   notepadIcon,
@@ -274,16 +275,14 @@ export const ITEMS_MAP_PROJETOS: Record<string, FileSystemItem> = {
 
 // ROOT LEVEL 5 [ PROJETOS/CHALLENGE_LETT ]
 export const ITEMS_MAP_PROJETO_1_CHALLENGELETT: Record<string, FileSystemItem> = {
-  'C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT/CHALLENGELETTSYSTEMIMAGE.PNG': {
-    extension: '.png',
-    iconSrc: pictureIcon,
-    label: 'ChallengeLett System Image',
-    path: 'C:/Usuários/Fiterman/Projetos/ChallengeLett/ChallengeLett_System_Image.png',
+  'C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT/ANALISE.TXT': {
+    extension: '.txt',
+    iconSrc: notepadIcon,
+    label: 'Análise',
+    path: 'C:/Usuários/Fiterman/Projetos/ChallengeLett/analise.txt',
     type: 'file',
-    uri: 'projetos/ChallengeLett/ChallengeLett_System_Image.png',
+    uri: 'projetos/ChallengeLett/analise.txt',
   },
-
-  // 'C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT/FLOWER.JPG': ITEMS_MAP_IMAGES['C:/USUARIOS/FITERMAN/IMAGENS/FLOWER.JPG'],
 
   'C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT/CHALLENGELETT.html': {
     extension: '.html',
@@ -294,13 +293,31 @@ export const ITEMS_MAP_PROJETO_1_CHALLENGELETT: Record<string, FileSystemItem> =
     uri: 'https://gabfiterman.github.io/ChallengeLett/',
   },
 
-  'C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT/EXEMPLO.TXT': {
-    extension: '.txt',
-    iconSrc: notepadIcon,
-    label: 'Exemplo',
-    path: 'C:/Usuários/Fiterman/Projetos/ChallengeLett/exemplo.txt',
+  'C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT/REPOCHALLENGELETT.html': {
+    extension: '.html',
+    iconSrc: internetExplorerExternalLinkIcon,
+    label: 'Github Repo ChallengeLett',
+    path: 'C:/Usuários/Fiterman/Projetos/ChallengeLett/repochallengelett.html',
+    type: 'externalLink',
+    uri: 'https://github.com/GabFiterman/ChallengeLett/',
+  },
+
+  'C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT/HOMEQUERY.WEBP': {
+    extension: '.webp',
+    iconSrc: pictureIcon,
+    label: 'Home and Query',
+    path: 'C:/Usuários/Fiterman/Projetos/ChallengeLett/home_query.webp',
     type: 'file',
-    uri: 'projetos/ChallengeLett/exemplo.txt',
+    uri: 'projetos/ChallengeLett/home_query.webp',
+  },
+
+  'C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT/about_me_page.WEBP': {
+    extension: '.webp',
+    iconSrc: pictureIcon,
+    label: 'About Me',
+    path: 'C:/Usuários/Fiterman/Projetos/ChallengeLett/about_me_page.webp',
+    type: 'file',
+    uri: 'projetos/ChallengeLett/about_me_page.webp',
   },
 };
 

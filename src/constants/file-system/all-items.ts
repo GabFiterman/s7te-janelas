@@ -271,6 +271,22 @@ export const ITEMS_MAP_PROJETOS: Record<string, FileSystemItem> = {
     type: 'folder',
     uri: 'projetos/LocaWeb/',
   },
+  'C:/USUARIOS/FITERMAN/PROJETOS/LEAFLETZEN': {
+    extension: '/',
+    iconSrc: folderIcon,
+    label: 'Leaflet Zen',
+    path: 'C:/Usuários/Fiterman/Projetos/LeafletZen',
+    type: 'folder',
+    uri: 'projetos/LeafletZen/',
+  },
+  'C:/USUARIOS/FITERMAN/PROJETOS/SETEJANELAS': {
+    extension: '/',
+    iconSrc: folderIcon,
+    label: 'Sete Janelas',
+    path: 'C:/Usuários/Fiterman/Projetos/SeteJanelas',
+    type: 'folder',
+    uri: 'projetos/SeteJanelas/',
+  },
 };
 
 // ROOT LEVEL 5 [ PROJETOS/CHALLENGE_LETT ]
@@ -321,6 +337,127 @@ export const ITEMS_MAP_PROJETO_1_CHALLENGELETT: Record<string, FileSystemItem> =
   },
 };
 
+export const ITEMS_MAP_PROJETO_2_LOCAWEB: Record<string, FileSystemItem> = {
+  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/ANALISE.TXT': {
+    extension: '.txt',
+    iconSrc: notepadIcon,
+    label: 'Análise',
+    path: 'C:/Usuários/Fiterman/Projetos/LocaWeb/analise.txt',
+    type: 'file',
+    uri: 'projetos/LocaWeb/analise.txt',
+  },
+
+  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/LOGIN.TXT': {
+    extension: '.txt',
+    iconSrc: notepadIcon,
+    label: 'Login',
+    path: 'C:/Usuários/Fiterman/Projetos/LocaWeb/login.txt',
+    type: 'file',
+    uri: 'projetos/LocaWeb/login.txt',
+  },
+
+  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/LOCAWEB.html': {
+    extension: '.html',
+    iconSrc: internetExplorerIcon,
+    label: 'LocaWeb',
+    path: 'C:/Usuários/Fiterman/Projetos/LocaWeb/locaweb.html',
+    type: 'link',
+    uri: 'https://loca-web.vercel.app/',
+  },
+
+  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/REPOLOCAWEB.html': {
+    extension: '.html',
+    iconSrc: internetExplorerExternalLinkIcon,
+    label: 'Github Repo LocaWeb',
+    path: 'C:/Usuários/Fiterman/Projetos/LocaWeb/repolocaweb.html',
+    type: 'externalLink',
+    uri: 'https://github.com/GabFiterman/loca-web/',
+  },
+
+  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/BASICS.GIF': {
+    extension: '.gif',
+    iconSrc: pictureIcon,
+    label: 'Basics',
+    path: 'C:/Usuários/Fiterman/Projetos/LocaWeb/basics.gif',
+    type: 'file',
+    uri: 'https://github.com/GabFiterman/loca-web/assets/94033226/451e419a-9319-4a80-9403-75d91a134e95',
+  },
+
+  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/PLANS.WEBP': {
+    extension: '.webp',
+    iconSrc: pictureIcon,
+    label: 'Plans',
+    path: 'C:/Usuários/Fiterman/Projetos/LocaWeb/plans.webp',
+    type: 'file',
+    uri: 'projetos/LocaWeb/plans.webp',
+  },
+
+  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/AUTOMATEDTESTS.mp4': {
+    extension: '.mp4',
+    iconSrc: videosIcon,
+    label: 'Testes Automatizados',
+    path: 'C:/Usuários/Fiterman/Projetos/LocaWeb/automated_tests.mp4',
+    type: 'file',
+    uri: 'https://github.com/GabFiterman/loca-web/assets/94033226/e9e2da7b-a95a-4a8a-bf45-6bd2a3c730a6',
+  },
+
+  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/RESPONSIVITY.mp4': {
+    extension: '.mp4',
+    iconSrc: videosIcon,
+    label: 'Responsividade',
+    path: 'C:/Usuários/Fiterman/Projetos/LocaWeb/responsivity.mp4',
+    type: 'file',
+    uri: 'https://github.com/GabFiterman/loca-web/assets/94033226/d495f731-f815-42e3-b74a-7c8fc7f5868f',
+  },
+
+  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/validation.mp4': {
+    extension: '.mp4',
+    iconSrc: videosIcon,
+    label: 'Validação de Formulários',
+    path: 'C:/Usuários/Fiterman/Projetos/LocaWeb/validation.mp4',
+    type: 'file',
+    uri: 'https://github.com/GabFiterman/loca-web/assets/94033226/6e48c0ad-3bf8-4e65-b5f9-f73f7e95f87c',
+  },
+
+  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/AvatarGeneration.mp4': {
+    extension: '.mp4',
+    iconSrc: videosIcon,
+    label: 'Geração de Avatar',
+    path: 'C:/Usuários/Fiterman/Projetos/LocaWeb/AvatarGeneration.mp4',
+    type: 'file',
+    uri: 'https://github.com/GabFiterman/loca-web/assets/94033226/d495f731-f815-42e3-b74a-7c8fc7f5868f',
+  },
+};
+
+export const ITEMS_MAP_PROJETO_3_LEAFLETZEN: Record<string, FileSystemItem> = {
+  'C:/USUARIOS/FITERMAN/PROJETOS/LEAFLETZEN/ANALISE.TXT': {
+    extension: '.txt',
+    iconSrc: notepadIcon,
+    label: 'Análise',
+    path: 'C:/Usuários/Fiterman/Projetos/LeafletZen/analise.txt',
+    type: 'file',
+    uri: 'projetos/LeafletZen/analise.txt',
+  },
+
+  'C:/USUARIOS/FITERMAN/PROJETOS/LEAFLETZEN/DEMOGERAL.MP4': {
+    extension: '.mp4',
+    iconSrc: videosIcon,
+    label: 'Demonstração geral',
+    path: 'C:/Usuários/Fiterman/Projetos/LeafletZen/demo_geral.mp4',
+    type: 'file',
+    uri: 'https://github.com/GabFiterman/leaflet-zen/assets/94033226/ce30a530-2e78-44fe-b431-899b20ef6809',
+  },
+
+  'C:/USUARIOS/FITERMAN/PROJETOS/LEAFLETZEN/LEAFLETZEN.HTML': {
+    extension: '.html',
+    iconSrc: internetExplorerIcon,
+    label: 'Leaflet Zen',
+    path: 'C:/Usuários/Fiterman/Projetos/LeafletZen/LeafletZen.html',
+    type: 'link',
+    uri: 'https://leaflet-zen.vercel.app/',
+  },
+};
+
 export const ITEMS_MAP_ALL: Record<string, FileSystemItem> = {
   ...ITEMS_MAP_C_DRIVE,
   ...ITEMS_MAP_ROOT,
@@ -331,4 +468,6 @@ export const ITEMS_MAP_ALL: Record<string, FileSystemItem> = {
   ...ITEMS_MAP_VIDEOS,
   ...ITEMS_MAP_PROJETOS,
   ...ITEMS_MAP_PROJETO_1_CHALLENGELETT,
+  ...ITEMS_MAP_PROJETO_2_LOCAWEB,
+  ...ITEMS_MAP_PROJETO_3_LEAFLETZEN,
 };

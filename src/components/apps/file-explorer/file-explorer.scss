@@ -42,9 +42,12 @@
     height: 100%;
     width: 100%;
     overflow-y: auto;
-    gap: 0.5em;
 
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
 
     .canvas-icon {
       padding: 0.75em 0;
@@ -54,6 +57,7 @@
 
       span {
         max-width: 6em;
+        word-wrap: break-word;
       }
     }
   }

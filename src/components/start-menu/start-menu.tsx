@@ -1,14 +1,14 @@
 import useUIStore from '@/store/uiStore';
 import useStartMenuStates from './use-start-menu';
 
-// import { InputAndIcon } from '@/components';
+import { InputAndIcon } from '@/components';
 import { indicationArrowIcon, personalUserIcon } from '@/assets/icons';
 import './start-menu.scss';
 
 function StartMenu() {
   const { isStartMenuOpen } = useUIStore();
 
-  const { startMenuApps, startMenuShortcuts } = useStartMenuStates();
+  const { handleAppClick, startMenuApps, startMenuShortcuts } = useStartMenuStates();
 
   return (
     isStartMenuOpen && (
@@ -16,26 +16,31 @@ function StartMenu() {
         <div className="start-menu-left-container">
           <div className="start-menu-apps">
             {startMenuApps.map((item) => (
-              <div className="start-menu-app-item" key={item.id}>
-                <img src={item.icon} className="start-menu-icon" onClick={item.action} />
+              <div
+                className="start-menu-app-item"
+                key={item.id}
+                onMouseDown={(event) => handleAppClick(event, item.action)}
+              >
+                <img src={item.icon} className="start-menu-icon" />
                 <span>{item.label}</span>
               </div>
             ))}
           </div>
+
           <div className="start-menu-app-controller">
             <div className="start-menu-app-divider" />
+
             <div className="start-menu-app-all-apps">
               <img src={indicationArrowIcon} />
-
               <span>Todos os programas</span>
             </div>
+
             <div className="start-menu-app-search">
-              {/* TODO: Investigar por que clicar neste InputAndIcon fecha o menu. */}
-              {/* <InputAndIcon type="text" placeholder="Pesquisar programas e arquivos" /> */}
-              <input id="start-menu-app-search" type="text" placeholder="Pesquisar programas e arquivos" />
+              <InputAndIcon type="text" placeholder="Pesquisar programas e arquivos" />
             </div>
           </div>
         </div>
+
         <div className="start-menu-right-container">
           <div className="start-menu-right-top">
             <div className="start-menu-user-image">
@@ -44,13 +49,18 @@ function StartMenu() {
             <div className="start-menu-shortcuts-container">
               <div className="start-menu-shortcuts">
                 {startMenuShortcuts.map((item) => (
-                  <div key={item.id} className="start-menu-shortcut-item" onClick={item.action}>
+                  <div
+                    key={item.id}
+                    className="start-menu-shortcut-item"
+                    onMouseDown={(event) => handleAppClick(event, item.action)}
+                  >
                     <span>{item.label}</span>
                   </div>
                 ))}
               </div>
             </div>
           </div>
+
           <div className="start-menu-right-bottom">
             <div className="start-menu-buttons-container">
               <button className="start-menu-button button-turn-off" onClick={() => console.log('DESLIGAR')}>

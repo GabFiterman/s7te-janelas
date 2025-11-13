@@ -165,6 +165,7 @@ export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
           const playlist = get().currentDirectoryContents.filter(
             (i) => i.type === 'file' && isImageByExtension(i.extension)
           );
+          // TODO: Remover verificações de Janelas já abertas, openWindow deve cuidar disso
           const windowAlreadyOpen = windows.find((w) => getPartialPath(w.id) === getPartialPath(appId));
           const openMediaCenterImage = () => {
             openWindow({
@@ -200,6 +201,7 @@ export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
         if (isVideoByExtension(item.extension)) {
           const itemPartialPath = getPartialPath(item.path);
           const appId = MEDIA_CENTER_VIDEO_WINDOW_ID(item.path);
+          // TODO: Remover verificações de Janelas já abertas, openWindow deve cuidar disso
           const windowAlreadyOpen = windows.find((w) => getPartialPath(w.id) === getPartialPath(appId));
           const openMediaCenterVideo = () => {
             openWindow({
@@ -233,6 +235,7 @@ export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
 
         if (isTextByExtension(item.extension)) {
           const appId = NOTEPAD_WINDOW_ID(item.path);
+          // TODO: Remover verificações de Janelas já abertas, openWindow deve cuidar disso
           const windowAlreadyOpen = windows.find((w) => w.id === appId);
           if (windowAlreadyOpen) {
             focusWindow(windowAlreadyOpen.id);

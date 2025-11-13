@@ -19,7 +19,7 @@ interface IconLinkLabelProps {
 
 function IconLinkLabel({ className, constraintsRef, icon, size = 64 }: IconLinkLabelProps) {
   const { extension, iconSrc, label, path, type, uri, x, y } = icon;
-  const FILE_EXPLORER_WINDOW_ID = `file-explorer-workspace-window-${uri}`;
+  const FILE_EXPLORER_WINDOW_ID = `file-explorer-window`;
 
   const { dragProps } = useDraggableElement(path, 'icon');
 
@@ -44,6 +44,7 @@ function IconLinkLabel({ className, constraintsRef, icon, size = 64 }: IconLinkL
     event.preventDefault();
 
     if (type === 'folder') {
+      // TODO: Remover verificações de Janelas já abertas, openWindow deve cuidar disso
       const explorerWindow = windows.find((w) => w.id === FILE_EXPLORER_WINDOW_ID);
 
       if (explorerWindow) {
@@ -90,6 +91,7 @@ function IconLinkLabel({ className, constraintsRef, icon, size = 64 }: IconLinkL
         };
 
         if (notepadFileWindow) {
+          // TODO: Remover verificações de Janelas já abertas, openWindow deve cuidar disso
           const openedItemPartialPath = getPartialPath(notepadFileWindow.id);
           const isSamePath = openedItemPartialPath.includes(itemPartialPath);
 
@@ -132,6 +134,7 @@ function IconLinkLabel({ className, constraintsRef, icon, size = 64 }: IconLinkL
         };
 
         if (videoFileWindow) {
+          // TODO: Remover verificações de Janelas já abertas, openWindow deve cuidar disso
           const openedItemPartialPath = getPartialPath(videoFileWindow.id);
           const isSamePath = openedItemPartialPath.includes(itemPartialPath);
 
@@ -156,6 +159,7 @@ function IconLinkLabel({ className, constraintsRef, icon, size = 64 }: IconLinkL
 
       if (isTextByExtension(extension)) {
         const NOTEPAD_WINDOW_ID = `notepad-workspace-window-${uri}-${generateUUID}`;
+        // TODO: Remover verificações de Janelas já abertas, openWindow deve cuidar disso
         const notepadFileWindow = windows.find((w) => w.id === NOTEPAD_WINDOW_ID);
         if (notepadFileWindow) {
           focusWindow(NOTEPAD_WINDOW_ID);

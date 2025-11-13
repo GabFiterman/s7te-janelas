@@ -136,6 +136,7 @@ const useUIStore = create<UIState>((set, get) => ({
       windows: state.windows.filter((window) => window.id !== id),
     }));
   },
+
   focusWindow: (id) =>
     set((state) => {
       const newZIndex = state.maxZIndex + 1;
@@ -144,8 +145,31 @@ const useUIStore = create<UIState>((set, get) => ({
         maxZIndex: newZIndex,
       };
     }),
+
   openWindow: (newWindow) =>
     set((state) => {
+      const { windows } = state;
+
+      const existingWindow = windows.find((window) => window.id === newWindow.id);
+
+      if (existingWindow) {
+        const newZIndex = state.maxZIndex + 1;
+
+        return {
+          windows: windows.map((window) => {
+            if (window.id === newWindow.id) {
+              return {
+                ...window,
+                zIndex: newZIndex,
+                status: 'normal',
+              };
+            }
+            return window;
+          }),
+          maxZIndex: newZIndex,
+        };
+      }
+
       const newZIndex = state.maxZIndex + 1;
       const defaultWidth = get().CONSTANTS.WINDOW_DEFAULT_WIDTH;
       const defaultHeight = get().CONSTANTS.WINDOW_DEFAULT_HEIGHT;
@@ -168,12 +192,16 @@ const useUIStore = create<UIState>((set, get) => ({
         maxZIndex: newZIndex,
       };
     }),
+
   setIsStartMenuOpen: (isOpen) => set({ isStartMenuOpen: isOpen }),
+
   toggleIsStartMenuOpen: () => set((state) => ({ isStartMenuOpen: !state.isStartMenuOpen })),
+
   updateWindowPosition: (id, newX, newY) =>
     set((state) => ({
       windows: state.windows.map((window) => (window.id === id ? { ...window, x: newX, y: newY } : window)),
     })),
+
   updateWindowStatus: (id, newStatus) => {
     set((state) => ({
       windows: state.windows.map((window) => {
@@ -192,6 +220,7 @@ const useUIStore = create<UIState>((set, get) => ({
       }),
     }));
   },
+
   updateWorkspaceIconPosition: (path, newX, newY) =>
     set((state) => ({
       workspaceIcons: state.workspaceIcons.map((icon) => (icon.path === path ? { ...icon, x: newX, y: newY } : icon)),

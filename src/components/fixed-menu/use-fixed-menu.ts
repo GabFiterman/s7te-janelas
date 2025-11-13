@@ -6,7 +6,7 @@ import { internetExplorerIcon, fileExplorerIcon, notepadIcon, mediaCenterImageIc
 import windowIcon from '@/assets/logo/windows-logo.png';
 
 const INTERNET_EXPLORER_WINDOW_ID = `internet-explorer-menu-window-${generateUUID()}`;
-const FILE_EXPLORER_WINDOW_ID = `file-explorer-menu-window-${generateUUID()}`;
+const FILE_EXPLORER_WINDOW_ID = `file-explorer-window`;
 const NOTEPAD_WINDOW_ID = `notepad-menu-window-${generateUUID()}`;
 const MEDIA_CENTER_IMAGE_WINDOW_ID = `media-center-image-menu-window-${generateUUID()}`;
 const MEDIA_CENTER_VIDE_WINDOW_ID = `media-center-video-menu-window-${generateUUID()}`;

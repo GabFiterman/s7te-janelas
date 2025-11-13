@@ -12,7 +12,7 @@ function StartMenu() {
 
   return (
     isStartMenuOpen && (
-      <div className="start-menu">
+      <div className="start-menu" onMouseDown={(event) => event.stopPropagation()}>
         <div className="start-menu-left-container">
           <div className="start-menu-apps">
             {startMenuApps.map((item) => (

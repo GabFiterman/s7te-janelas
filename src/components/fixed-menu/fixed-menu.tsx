@@ -12,7 +12,7 @@ interface GroupedWindows {
 }
 
 function FixedMenu() {
-  const { menuItems, mainItem } = useFixedMenuStates();
+  const { menuItems, mainItem, handleClickMainItem } = useFixedMenuStates();
   const windows = useUIStore((state) => state.windows);
 
   const activeWindowsByApp = useMemo(() => {
@@ -30,7 +30,12 @@ function FixedMenu() {
     <>
       <div className="fixed-menu">
         <div className="main-icon-container">
-          <img src={mainItem.icon} alt={mainItem.label} className="main-icon" onClick={mainItem.action} />
+          <img
+            src={mainItem.icon}
+            alt={mainItem.label}
+            className="main-icon"
+            onMouseDown={(event) => handleClickMainItem(event)}
+          />
         </div>
         <div className="menu-items-container">
           {menuItems.map((item) => {

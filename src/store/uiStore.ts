@@ -56,7 +56,7 @@ interface UIState {
       Partial<Pick<WindowState, 'x' | 'y' | 'width' | 'height' | 'status' | 'appProps'>>
   ) => void;
   setIsStartMenuOpen: (isOpen: boolean) => void;
-  toggleIsStartMenuOpen: () => void;
+  toggleIsStartMenuOpen: (event?: React.MouseEvent<HTMLImageElement, MouseEvent>) => void;
   updateWindowPosition: (id: string, newX: number, newY: number) => void;
   updateWindowStatus: (id: string, newStatus: WindowState['status']) => void;
   updateWorkspaceIconPosition: (path: string, newX: number, newY: number) => void;

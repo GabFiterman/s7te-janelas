@@ -17,16 +17,20 @@ function useFixedMenuStates() {
   const mainItem = {
     id: '1',
     label: 'FloatMenu',
-    action: toggleIsStartMenuOpen,
     icon: windowIcon,
   };
 
-  const menuItems: (typeof mainItem & { appName?: AppName })[] = [
+  function handleClickMainItem(event: React.MouseEvent<HTMLImageElement, MouseEvent>) {
+    event.stopPropagation();
+    toggleIsStartMenuOpen(event);
+  }
+
+  const menuItems = [
     // INTERNET EXPLORER
     {
       id: INTERNET_EXPLORER_WINDOW_ID,
       label: 'Internet Explorer',
-      appName: 'InternetExplorer',
+      appName: 'InternetExplorer' as AppName,
       action: () =>
         openWindow({
           id: INTERNET_EXPLORER_WINDOW_ID,
@@ -40,7 +44,7 @@ function useFixedMenuStates() {
     {
       id: FILE_EXPLORER_WINDOW_ID,
       label: 'File Explorer',
-      appName: 'FileExplorer',
+      appName: 'FileExplorer' as AppName,
       action: () =>
         openWindow({
           id: FILE_EXPLORER_WINDOW_ID,
@@ -54,7 +58,7 @@ function useFixedMenuStates() {
     {
       id: NOTEPAD_WINDOW_ID,
       label: 'Bloco de Notas',
-      appName: 'Notepad',
+      appName: 'Notepad' as AppName,
       action: () =>
         openWindow({
           id: NOTEPAD_WINDOW_ID,
@@ -68,7 +72,7 @@ function useFixedMenuStates() {
     {
       id: MEDIA_CENTER_IMAGE_WINDOW_ID,
       label: 'Visualizador de Fotos do Sete Janelas',
-      appName: 'MediaCenterImage',
+      appName: 'MediaCenterImage' as AppName,
       action: () =>
         openWindow({
           id: MEDIA_CENTER_IMAGE_WINDOW_ID,
@@ -82,7 +86,7 @@ function useFixedMenuStates() {
     {
       id: MEDIA_CENTER_VIDE_WINDOW_ID,
       label: 'Visualizador de Vídeos do Sete Janelas',
-      appName: 'MediaCenterVideo',
+      appName: 'MediaCenterVideo' as AppName,
       action: () =>
         openWindow({
           id: MEDIA_CENTER_VIDE_WINDOW_ID,
@@ -97,6 +101,7 @@ function useFixedMenuStates() {
   return {
     menuItems,
     mainItem,
+    handleClickMainItem,
   };
 }
 

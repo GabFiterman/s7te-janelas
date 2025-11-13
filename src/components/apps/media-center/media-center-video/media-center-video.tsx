@@ -7,6 +7,7 @@ const defaultItem: FileSystemItem = ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/VIDEOS/J
 
 function getAssetPath(item: FileSystemItem | undefined): string {
   if (!item) return defaultVideo;
+  if (item.uri.startsWith('http')) return item.uri;
 
   const ssoBasePath = 'C:/USUÁRIOS/FITERMAN/';
   const assetBasePath = '/media-center/';

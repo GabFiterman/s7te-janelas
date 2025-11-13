@@ -32,6 +32,7 @@ export { default as galleryIcon } from './gallery.webp';
 export { default as gameHubIcon } from './game_hub.webp';
 export { default as imagesIcon } from './images.webp';
 export { default as indicationArrowIcon } from './indication_arrow.svg';
+export { default as internetExplorerExternalLinkIcon } from './internet_explorer_external_link.webp';
 export { default as internetExplorerIcon } from './internet_explorer.webp';
 export { default as locationsIcon } from './locations.webp';
 export { default as musicsIcon } from './musics.webp';

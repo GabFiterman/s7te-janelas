@@ -19,6 +19,7 @@ const defaultItem: FileSystemItem = ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/IMAGENS/
 
 function getAssetPath(item: FileSystemItem | undefined): string {
   if (!item) return DefaultImage;
+  if (item.uri.startsWith('http')) return item.uri;
 
   const ssoBasePath = 'C:/USUÁRIOS/FITERMAN/';
   const assetBasePath = '/media-center/';

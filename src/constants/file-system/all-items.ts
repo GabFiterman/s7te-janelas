@@ -456,6 +456,26 @@ export const ITEMS_MAP_PROJETO_3_LEAFLETZEN: Record<string, FileSystemItem> = {
     type: 'link',
     uri: 'https://leaflet-zen.vercel.app/',
   },
+
+  'C:/USUARIOS/FITERMAN/PROJETOS/LEAFLETZEN/REPOLEAFLETZEN.HTML': {
+    extension: '.html',
+    iconSrc: internetExplorerExternalLinkIcon,
+    label: 'Github Repo Leaflet Zen',
+    path: 'C:/Usuários/Fiterman/Projetos/LeafletZen/repoleafletzen.html',
+    type: 'externalLink',
+    uri: 'https://github.com/GabFiterman/leaflet-zen/',
+  },
+};
+
+export const ITEMS_MAP_PROJETO_4_SETEJANELAS: Record<string, FileSystemItem> = {
+  'C:/USUARIOS/FITERMAN/PROJETOS/SETEJANELAS/REPOSETEJANELAS.HTML': {
+    extension: '.html',
+    iconSrc: internetExplorerExternalLinkIcon,
+    label: 'Github Repo Sete Janelas',
+    path: 'C:/Usuários/Fiterman/Projetos/LeafletZen/reposetejanelas.html',
+    type: 'externalLink',
+    uri: 'https://github.com/GabFiterman/s7te-janelas/',
+  },
 };
 
 export const ITEMS_MAP_ALL: Record<string, FileSystemItem> = {
@@ -470,4 +490,5 @@ export const ITEMS_MAP_ALL: Record<string, FileSystemItem> = {
   ...ITEMS_MAP_PROJETO_1_CHALLENGELETT,
   ...ITEMS_MAP_PROJETO_2_LOCAWEB,
   ...ITEMS_MAP_PROJETO_3_LEAFLETZEN,
+  ...ITEMS_MAP_PROJETO_4_SETEJANELAS,
 };

@@ -24,7 +24,7 @@ function IconLinkLabel({ className, constraintsRef, icon, size = 64 }: IconLinkL
   const { dragProps } = useDraggableElement(path, 'icon');
 
   const { openWindow, windows, focusWindow, updateWindowStatus, closeWindow } = useUiStore();
-  const { setCurrentPath } = useFileExplorerStore();
+  const { getIsItemSelected, setCurrentPath, toggleItemSelection } = useFileExplorerStore();
 
   const iconRef = useRef<HTMLDivElement>(null);
   const [iconDimensions, setIconDimensions] = useState({
@@ -184,7 +184,9 @@ function IconLinkLabel({ className, constraintsRef, icon, size = 64 }: IconLinkL
 
   return icon ? (
     <motion.div
-      className={`icon-link-label`}
+      className={`icon-link-label ${getIsItemSelected(icon) ? 'selected' : ''}`}
+      onDoubleClick={(event) => handleDoubleClick(event)}
+      onClick={(event) => toggleItemSelection(event, icon)}
       dragConstraints={constraintsRef}
       drag={true}
       style={{
@@ -196,7 +198,7 @@ function IconLinkLabel({ className, constraintsRef, icon, size = 64 }: IconLinkL
       ref={iconRef}
       {...dragProps}
     >
-      <div className="icon-container" onDoubleClick={(event) => handleDoubleClick(event)}>
+      <div className="icon-container">
         <div className="icon-image">
           <img
             src={iconSrc}

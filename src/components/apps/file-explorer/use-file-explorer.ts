@@ -8,7 +8,7 @@ import {
   normalizeStringForPath,
 } from '@/utils';
 import useUIStore from '@/store/uiStore';
-import { mediaCenterImageIcon, notepadIcon, videosIcon, internetExplorerIcon } from '@/assets/icons';
+import { fileExplorerIcon, internetExplorerIcon, mediaCenterImageIcon, notepadIcon, videosIcon } from '@/assets/icons';
 
 const INITIAL_URI = 'favoritos/';
 const ALIAS_TO_PATH_MAP = new Map<string, string>();
@@ -144,11 +144,21 @@ export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
   navigateTo: (item) =>
     set((state) => {
       const { openWindow, windows, focusWindow, updateWindowStatus, closeWindow } = useUIStore.getState();
+      const { setCurrentPath } = useFileExplorerStore.getState();
 
       if (item.type === 'folder' || item.type === 'drive') {
         const newPath = item.path;
         const newHistory = state.history.slice(0, state.historyIndex + 1);
         newHistory.push(newPath);
+
+        openWindow({
+          id: 'file-explorer-window',
+          title: item.label,
+          appName: 'FileExplorer',
+          iconSrc: fileExplorerIcon,
+        });
+
+        setCurrentPath(newPath);
 
         return {
           currentDirectoryContents: getContentsByPath(newPath),
@@ -271,6 +281,8 @@ export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
     }),
   toggleItemSelection: (_event, item) =>
     set((state) => {
+      const { navigateTo } = useFileExplorerStore.getState();
+
       if (item === null) {
         return { selectedItemPaths: [] };
       }
@@ -303,6 +315,7 @@ export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
         newPaths = currentDirectoryContents.slice(startIndex, endIndex + 1).map((i) => i.path);
       } else {
         if (selectedItemPaths.length === 1 && selectedItemPaths.includes(itemPath)) {
+          navigateTo(item);
           newPaths = [];
         } else {
           newPaths = [itemPath];

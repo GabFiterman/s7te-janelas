@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-const INITIAL_URL = 'https://google.com';
+const INITIAL_URL = 'https://gabfiterman.github.io/ChallengeLett';
 
 interface IEState {
   currentUrl: string;

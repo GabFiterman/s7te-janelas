@@ -11,9 +11,7 @@ const MEDIA_CENTER_VIDEO_WINDOW_ID = 'media-center-video-window';
 const NOTEPAD_WINDOW_ID = (path: string): string => {
   return `notepad-file-explorer-window-${path}`;
 };
-const INTERNET_EXPLORER_WINDOW_ID = (path: string): string => {
-  return `internet-explorer-file-explorer-window-${path}`;
-};
+const INTERNET_EXPLORER_WINDOW_ID = 'internet-explorer-window';
 
 interface FileExplorerState {
   currentDirectoryContents: FileSystemItem[];
@@ -34,17 +32,7 @@ interface FileExplorerState {
   goBack: () => void;
   goForward: () => void;
   navigateTo: (item: FileSystemItem) => void;
-  toggleItemSelection: (
-    event:
-      | React.KeyboardEvent<HTMLButtonElement>
-      | React.KeyboardEvent<HTMLDivElement>
-      | React.KeyboardEvent<HTMLElement>
-      | React.MouseEvent<HTMLButtonElement>
-      | React.MouseEvent<HTMLDivElement>
-      | React.MouseEvent<HTMLElement>
-      | null,
-    item: FileSystemItem | null
-  ) => void;
+  toggleItemSelection: (event: React.KeyboardEvent | React.MouseEvent | null, item: FileSystemItem | null) => void;
 }
 
 const initializeFileSystemMaps = () => {
@@ -206,7 +194,7 @@ export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
         window.open(item.uri, '_blank');
       } else if (item.type === 'link') {
         openWindow({
-          id: INTERNET_EXPLORER_WINDOW_ID(item.path),
+          id: INTERNET_EXPLORER_WINDOW_ID,
           title: item.label,
           appName: 'InternetExplorer',
           iconSrc: internetExplorerIcon,

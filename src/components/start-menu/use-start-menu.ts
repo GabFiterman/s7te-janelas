@@ -6,7 +6,7 @@ import useUIStore from '@/store/uiStore';
 import { useFileExplorerStore } from '@/components/apps/file-explorer/use-file-explorer';
 import { ITEMS_MAP_ALL } from '@/constants';
 
-const INTERNET_EXPLORER_WINDOW_ID = 'internet-explorer-start-menu-window';
+const INTERNET_EXPLORER_WINDOW_ID = 'internet-explorer-window';
 const FILE_EXPLORER_WINDOW_ID = `file-explorer-window`;
 
 const FILE_EXPLORER_INITIAL_PATH = ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/PROJETOS'].path;

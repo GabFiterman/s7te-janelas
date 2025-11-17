@@ -160,6 +160,11 @@ const useUIStore = create<UIState>((set, get) => ({
             if (window.id === newWindow.id) {
               return {
                 ...window,
+                x: newWindow.x ?? window.x,
+                y: newWindow.y ?? window.y,
+                width: newWindow.width ?? window.width,
+                height: newWindow.height ?? window.height,
+                appProps: newWindow.appProps ?? window.appProps,
                 zIndex: newZIndex,
                 status: 'normal',
               };

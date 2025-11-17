@@ -7,7 +7,7 @@ import { useDraggableElement } from '@/hooks';
 import useUiStore, { type WorkspaceIcon } from '@/store/uiStore';
 import { useFileExplorerStore } from '@/components/apps/file-explorer/use-file-explorer';
 
-import { fileExplorerIcon, mediaCenterImageIcon, notepadIcon, videosIcon } from '@/assets/icons';
+import { fileExplorerIcon, mediaCenterImageIcon, notepadIcon, videosIcon } from '@/assets';
 import './icon-link-label.scss';
 
 interface IconLinkLabelProps {

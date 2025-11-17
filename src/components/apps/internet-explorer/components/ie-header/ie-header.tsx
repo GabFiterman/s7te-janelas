@@ -2,7 +2,7 @@ import { useCallback, type ChangeEvent, type KeyboardEvent } from 'react';
 
 import { useInternetExplorer } from '../../use-internet-explorer';
 import { BtnForwardBackward, InputAndIcon } from '@/components';
-import { ArrowDropdown, Close, internetExplorerIcon, Reload, Search } from '@/assets/icons';
+import { ArrowDropdown, Close, internetExplorerIcon, Reload, Search } from '@/assets';
 
 function IeIcon() {
   return <img src={internetExplorerIcon} alt="Internet Explorer" style={{ width: '1.5em', height: '1.5em' }} />;

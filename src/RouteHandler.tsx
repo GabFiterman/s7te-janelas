@@ -5,7 +5,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import useUIStore from '@/store/uiStore';
 
 import { useFileExplorerStore } from '@/components/apps/file-explorer/use-file-explorer';
-import { fileExplorerIcon } from '@/assets/icons';
+import { fileExplorerIcon } from '@/assets';
 
 const FILE_EXPLORER_WINDOW_ID = `file-explorer-window`;
 

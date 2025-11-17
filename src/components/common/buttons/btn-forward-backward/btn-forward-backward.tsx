@@ -1,4 +1,4 @@
-import { ArrowDropdown, ArrowLeft, ArrowRight } from '@/assets/icons';
+import { ArrowDropdown, ArrowLeft, ArrowRight } from '@/assets';
 import './btn-forward-backward.scss';
 
 interface BtnForwardBackwardProps {

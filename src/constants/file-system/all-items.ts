@@ -13,7 +13,7 @@ import {
   sheetMusicIcon,
   videosIcon,
   workspaceIcon,
-} from '@/assets/icons';
+} from '@/assets';
 import { type FileSystemItem } from '../file-system-map';
 
 // ROOT LEVEL 0 [ DRIVE ROOT C: ]

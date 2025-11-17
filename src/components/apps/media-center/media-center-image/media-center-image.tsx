@@ -10,7 +10,7 @@ import {
   mediaCenterRedoIcon,
   mediaCenterUndoIcon,
   mediaCenterZoomMore,
-} from '@/assets/icons';
+} from '@/assets';
 import './media-center-image.scss';
 import { type FileSystemItem } from '@/constants';
 

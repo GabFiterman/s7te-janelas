@@ -7,7 +7,7 @@ import {
   galleryIcon,
   pasteIcon,
   questionIcon,
-} from '@/assets/icons';
+} from '@/assets';
 
 import {
   type ActionItem,

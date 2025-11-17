@@ -1,6 +1,6 @@
 import { useFileExplorerStore } from '../../use-file-explorer';
 import { BtnForwardBackward, InputAndIcon } from '@/components';
-import { folderUserIcon, Reload, Search, ArrowDropdown } from '@/assets/icons';
+import { folderUserIcon, Reload, Search, ArrowDropdown } from '@/assets';
 
 function FileExplorerHeader() {
   const { currentPath, /* setCurrentPath ,*/ getHistoryLength, goBack, goForward, historyIndex } =

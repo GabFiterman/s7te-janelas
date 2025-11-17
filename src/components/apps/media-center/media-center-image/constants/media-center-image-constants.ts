@@ -3,7 +3,7 @@ import {
   type SeparatorItem,
 } from '@/components/common/widgets/app-controller-widget/app-controller-widget';
 
-import { blocksIcon, copyIcon, excludeIcon, printerIcon } from '@/assets/icons';
+import { blocksIcon, copyIcon, excludeIcon, printerIcon } from '@/assets';
 
 export const separatorItem: SeparatorItem = {
   value: 'separator',

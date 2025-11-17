@@ -1,4 +1,4 @@
-import { fileExplorerIcon, internetExplorerIcon } from '@/assets/icons';
+import { fileExplorerIcon, internetExplorerIcon } from '@/assets';
 
 import { type AppName } from '@/components/apps/app-config';
 

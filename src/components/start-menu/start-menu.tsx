@@ -2,7 +2,7 @@ import useUIStore from '@/store/uiStore';
 import useStartMenuStates from './use-start-menu';
 
 import { InputAndIcon } from '@/components';
-import { indicationArrowIcon, personalUserIcon } from '@/assets/icons';
+import { indicationArrowIcon, personalUserIcon } from '@/assets';
 import './start-menu.scss';
 
 function StartMenu() {

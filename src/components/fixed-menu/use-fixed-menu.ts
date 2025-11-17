@@ -2,8 +2,8 @@ import useUIStore from '@/store/uiStore';
 import { generateUUID } from '@/utils';
 import { type AppName } from '@/components/apps/app-config';
 
-import { internetExplorerIcon, fileExplorerIcon, notepadIcon, mediaCenterImageIcon, videosIcon } from '@/assets/icons';
-import windowIcon from '@/assets/logo/windows-logo.png';
+import { internetExplorerIcon, fileExplorerIcon, notepadIcon, mediaCenterImageIcon, videosIcon } from '@/assets';
+import { WindowsLogo } from '@/assets';
 
 const INTERNET_EXPLORER_WINDOW_ID = 'internet-explorer-window';
 const FILE_EXPLORER_WINDOW_ID = `file-explorer-window`;
@@ -17,7 +17,7 @@ function useFixedMenuStates() {
   const mainItem = {
     id: '1',
     label: 'FloatMenu',
-    icon: windowIcon,
+    icon: WindowsLogo,
   };
 
   function handleClickMainItem(event: React.MouseEvent<HTMLImageElement, MouseEvent>) {

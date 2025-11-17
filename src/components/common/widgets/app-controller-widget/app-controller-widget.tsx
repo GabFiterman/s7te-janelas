@@ -1,6 +1,6 @@
 import { DropdownMenu } from './components';
 
-import { ArrowDropdown } from '@/assets/icons';
+import { ArrowDropdown } from '@/assets';
 
 import useAppControllerWidget from './use-app-controller-widget';
 import './app-controller-widget.scss';

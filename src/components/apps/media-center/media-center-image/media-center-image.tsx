@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
-import { AppControllerWidget } from '@/components';
+import { useState, useEffect, useRef } from 'react';
+import { AppControllerWidget, LoaderCircle } from '@/components';
 import { controllerItems } from './constants/media-center-image-constants';
-import DefaultImage from '@/../public/media-center/Imagens/placeholder.jpg';
 import {
   excludeIcon,
   mediaCenterExpandIcon,
@@ -13,12 +12,10 @@ import {
   mediaCenterZoomMore,
 } from '@/assets/icons';
 import './media-center-image.scss';
-import { type FileSystemItem, ITEMS_MAP_ALL } from '@/constants';
+import { type FileSystemItem } from '@/constants';
 
-const defaultItem: FileSystemItem = ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/IMAGENS/FLOWER.JPG'];
-
-function getAssetPath(item: FileSystemItem | undefined): string {
-  if (!item) return DefaultImage;
+function getAssetPath(item: FileSystemItem | undefined): string | null {
+  if (!item) return null;
   if (item.uri.startsWith('http')) return item.uri;
 
   const ssoBasePath = 'C:/USUÁRIOS/FITERMAN/';
@@ -28,7 +25,7 @@ function getAssetPath(item: FileSystemItem | undefined): string {
     const relativePath = item.path.substring(ssoBasePath.length);
     return assetBasePath + relativePath;
   }
-  return DefaultImage;
+  return null;
 }
 
 interface MediaCenterImageProps {
@@ -41,16 +38,18 @@ interface MediaCenterImageProps {
 }
 
 function MediaCenterImage({
-  initialItem = defaultItem,
-  playlist = [initialItem],
+  initialItem,
+  playlist = initialItem ? [initialItem] : [],
 
   onClickImageBtn,
   onClickNext,
   onClickPrevious,
 }: MediaCenterImageProps) {
-  const [currentIndex, setCurrentIndex] = useState(() => playlist.findIndex((item) => item.path === initialItem.path));
+  const [currentIndex, setCurrentIndex] = useState(() => playlist.findIndex((item) => item.path === initialItem?.path));
+  const [imageSource, setImageSource] = useState(() => initialItem && getAssetPath(initialItem));
+  const [isLoading, setIsLoading] = useState(true);
 
-  const [imageSource, setImageSource] = useState(DefaultImage);
+  const isMounted = useRef(true);
 
   const handleNext = (event: React.MouseEvent<HTMLImageElement>) => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % playlist.length);
@@ -62,37 +61,96 @@ function MediaCenterImage({
     if (onClickPrevious) onClickPrevious(event);
   };
 
+  const handleImageLoad = () => {
+    if (isMounted.current) {
+      setIsLoading(false);
+    }
+  };
+
+  const handleImageError = () => {
+    if (isMounted.current) {
+      setIsLoading(false);
+    }
+  };
+  useEffect(() => {
+    isMounted.current = true;
+
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
+
   useEffect(() => {
     const currentItem = playlist[currentIndex];
-    setImageSource(getAssetPath(currentItem));
+    const newSource = getAssetPath(currentItem);
+
+    if (newSource) {
+      if (isMounted.current) {
+        setIsLoading(true);
+        setImageSource(newSource);
+      }
+    } else {
+      if (isMounted.current) {
+        setImageSource(null);
+        setIsLoading(false);
+      }
+    }
   }, [currentIndex, playlist]);
+
+  const showLoader = isLoading && !!imageSource;
+  const showError = !imageSource && !isLoading;
+  const showPlayerControls = playlist.length > 1;
 
   return (
     <div className="media-center-image-container">
       <AppControllerWidget controllerItems={controllerItems} />
       <div className="media-center-image-canvas">
-        <img className="media-center-image-main-image" src={imageSource} alt={playlist[currentIndex]?.label} />
+        {showLoader && (
+          <div className="media-center-image-loader-overlay">
+            <LoaderCircle />
+          </div>
+        )}
+
+        {imageSource && (
+          <img
+            className="media-center-image-main-image"
+            src={imageSource}
+            alt={playlist[currentIndex]?.label || 'Media Item'}
+            onLoad={handleImageLoad}
+            onError={handleImageError}
+            style={{
+              opacity: isLoading ? 0 : 1,
+              transition: 'opacity 0.3s ease-in-out',
+            }}
+          />
+        )}
+
+        {showError && (
+          <div className="media-center-image-error-message">
+            <p>Falha ao carregar mídia ou o arquivo não é suportado.</p>
+          </div>
+        )}
       </div>
       <div className="media-center-image-footer-container">
         <div className="media-center-image-footer">
           <img className="media-center-image-footer-icon" src={mediaCenterZoomMore} />
           <img className="media-center-image-footer-icon" src={mediaCenterExpandIcon} />
           <div className="media-center-image-footer-player-container">
-            <img
-              className="media-center-image-footer-player-icon"
-              src={mediaCenterPreviousIcon}
-              onClick={(event) => handlePrevious(event)}
-            />
-            <img
-              className="media-center-image-footer-player-icon main"
-              src={mediaCenterImageBtnIcon}
-              onClick={(event) => onClickImageBtn && onClickImageBtn(event)}
-            />
-            <img
-              className="media-center-image-footer-player-icon"
-              src={mediaCenterNextIcon}
-              onClick={(event) => handleNext(event)}
-            />
+            {showPlayerControls && (
+              <>
+                <img
+                  className="media-center-image-footer-player-icon"
+                  src={mediaCenterPreviousIcon}
+                  onClick={handlePrevious}
+                />
+                <img
+                  className="media-center-image-footer-player-icon main"
+                  src={mediaCenterImageBtnIcon}
+                  onClick={(event) => onClickImageBtn && onClickImageBtn(event)}
+                />
+                <img className="media-center-image-footer-player-icon" src={mediaCenterNextIcon} onClick={handleNext} />
+              </>
+            )}
           </div>
           <img className="media-center-image-footer-icon" src={mediaCenterUndoIcon} />
           <img className="media-center-image-footer-icon" src={mediaCenterRedoIcon} />

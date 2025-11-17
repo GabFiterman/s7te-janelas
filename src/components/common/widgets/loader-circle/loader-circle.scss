@@ -1,0 +1,15 @@
+.loader-circle {
+  border: .33em solid rgba(0, 22, 93, .1);
+  border-bottom-color: rgba(0, 22, 93, 1);
+  border-radius: 50%;
+  width: 3em;
+  height: 3em;
+  animation: spin .75s cubic-bezier(0,.63,.85,.33) infinite;
+  margin: auto;
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}

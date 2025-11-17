@@ -14,11 +14,11 @@ function IeHeader() {
   const handleKeyDown = useCallback(
     (e: KeyboardEvent<HTMLInputElement>) => {
       if (e.key === 'Enter') {
-        navigateToUrl();
+        navigateToUrl(inputUrl);
         e.currentTarget.blur();
       }
     },
-    [navigateToUrl]
+    [navigateToUrl, inputUrl]
   );
 
   const handleInputChange = useCallback(
@@ -52,7 +52,7 @@ function IeHeader() {
           childAfter={
             <>
               <div className="controller">
-                <button onMouseDown={navigateToUrl}>
+                <button onMouseDown={() => navigateToUrl(inputUrl)}>
                   <Reload color="#3791CB" size={18} />
                 </button>
                 <button>

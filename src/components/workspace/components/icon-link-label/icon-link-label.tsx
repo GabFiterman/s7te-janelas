@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 
-import { generateUUID, isImageByExtension, isVideoByExtension, isTextByExtension, getPartialPath } from '@/utils';
+import { generateUUID, isImageByExtension, isVideoByExtension, isTextByExtension } from '@/utils';
 import { ITEMS_MAP_WORKSPACE } from '@/constants';
 import { useDraggableElement } from '@/hooks';
 import useUiStore, { type WorkspaceIcon } from '@/store/uiStore';
@@ -23,7 +23,7 @@ function IconLinkLabel({ className, constraintsRef, icon, size = 64 }: IconLinkL
 
   const { dragProps } = useDraggableElement(path, 'icon');
 
-  const { openWindow, windows, focusWindow, updateWindowStatus, closeWindow } = useUiStore();
+  const { openWindow } = useUiStore();
   const { getIsItemSelected, setCurrentPath, toggleItemSelection } = useFileExplorerStore();
 
   const iconRef = useRef<HTMLDivElement>(null);
@@ -44,24 +44,12 @@ function IconLinkLabel({ className, constraintsRef, icon, size = 64 }: IconLinkL
     event.preventDefault();
 
     if (type === 'folder') {
-      // TODO: Remover verificações de Janelas já abertas, openWindow deve cuidar disso
-      const explorerWindow = windows.find((w) => w.id === FILE_EXPLORER_WINDOW_ID);
-
-      if (explorerWindow) {
-        focusWindow(FILE_EXPLORER_WINDOW_ID);
-        updateWindowStatus(FILE_EXPLORER_WINDOW_ID, 'normal');
-        return;
-      }
-
       openWindow({
         id: FILE_EXPLORER_WINDOW_ID,
         appName: 'FileExplorer',
         iconSrc: fileExplorerIcon,
         title: 'File Explorer',
       });
-
-      setCurrentPath(path);
-      focusWindow(FILE_EXPLORER_WINDOW_ID);
     }
 
     if (type === 'file') {
@@ -70,103 +58,34 @@ function IconLinkLabel({ className, constraintsRef, icon, size = 64 }: IconLinkL
           (item) => item.type === 'file' && isImageByExtension(item.extension)
         ).map((item) => ({ ...item }));
 
-        const itemPartialPath = getPartialPath(path);
-
-        const MEDIA_CENTER_IMAGE_WINDOW_ID = `media-center-image-workspace-window-${path}`;
-        const notepadFileWindow = windows.find(
-          (w) => getPartialPath(w.id) === getPartialPath(MEDIA_CENTER_IMAGE_WINDOW_ID)
-        );
-
-        const openMediaCenterImage = () => {
-          openWindow({
-            id: MEDIA_CENTER_IMAGE_WINDOW_ID,
-            appName: 'MediaCenterImage',
-            iconSrc: mediaCenterImageIcon,
-            title: label + extension,
-            appProps: {
-              initialItem: icon,
-              playlist: imagePlaylist,
-            },
-          });
-        };
-
-        if (notepadFileWindow) {
-          // TODO: Remover verificações de Janelas já abertas, openWindow deve cuidar disso
-          const openedItemPartialPath = getPartialPath(notepadFileWindow.id);
-          const isSamePath = openedItemPartialPath.includes(itemPartialPath);
-
-          if (isSamePath) {
-            if (notepadFileWindow.id === MEDIA_CENTER_IMAGE_WINDOW_ID) {
-              focusWindow(MEDIA_CENTER_IMAGE_WINDOW_ID);
-              updateWindowStatus(MEDIA_CENTER_IMAGE_WINDOW_ID, 'normal');
-              return;
-            } else {
-              closeWindow(notepadFileWindow.id);
-              openMediaCenterImage();
-              return;
-            }
-          }
-        }
-
-        openMediaCenterImage();
-
-        focusWindow(MEDIA_CENTER_IMAGE_WINDOW_ID);
-        updateWindowStatus(MEDIA_CENTER_IMAGE_WINDOW_ID, 'normal');
+        const MEDIA_CENTER_IMAGE_WINDOW_ID = 'media-center-image-window';
+        openWindow({
+          id: MEDIA_CENTER_IMAGE_WINDOW_ID,
+          appName: 'MediaCenterImage',
+          iconSrc: mediaCenterImageIcon,
+          title: label + extension,
+          appProps: {
+            initialItem: icon,
+            playlist: imagePlaylist,
+          },
+        });
       }
 
       if (isVideoByExtension(extension)) {
-        const itemPartialPath = getPartialPath(path);
-        const MEDIA_CENTER_VIDEO_WINDOW_ID = `media-center-video-workspace-window-${path}`;
-        const videoFileWindow = windows.find(
-          (w) => getPartialPath(w.id) === getPartialPath(MEDIA_CENTER_VIDEO_WINDOW_ID)
-        );
-
-        const openMediaCenterVideo = () => {
-          openWindow({
-            id: MEDIA_CENTER_VIDEO_WINDOW_ID,
-            appName: 'MediaCenterVideo',
-            iconSrc: videosIcon,
-            title: label + extension,
-            appProps: {
-              initialItem: icon,
-            },
-          });
-        };
-
-        if (videoFileWindow) {
-          // TODO: Remover verificações de Janelas já abertas, openWindow deve cuidar disso
-          const openedItemPartialPath = getPartialPath(videoFileWindow.id);
-          const isSamePath = openedItemPartialPath.includes(itemPartialPath);
-
-          if (isSamePath) {
-            if (videoFileWindow.id === MEDIA_CENTER_VIDEO_WINDOW_ID) {
-              focusWindow(MEDIA_CENTER_VIDEO_WINDOW_ID);
-              updateWindowStatus(MEDIA_CENTER_VIDEO_WINDOW_ID, 'normal');
-              return;
-            } else {
-              closeWindow(videoFileWindow.id);
-              openMediaCenterVideo();
-              return;
-            }
-          }
-        }
-
-        openMediaCenterVideo();
-
-        focusWindow(MEDIA_CENTER_VIDEO_WINDOW_ID);
-        updateWindowStatus(MEDIA_CENTER_VIDEO_WINDOW_ID, 'normal');
+        const MEDIA_CENTER_VIDEO_WINDOW_ID = 'media-center-video-window';
+        openWindow({
+          id: MEDIA_CENTER_VIDEO_WINDOW_ID,
+          appName: 'MediaCenterVideo',
+          iconSrc: videosIcon,
+          title: label + extension,
+          appProps: {
+            initialItem: icon,
+          },
+        });
       }
 
       if (isTextByExtension(extension)) {
-        const NOTEPAD_WINDOW_ID = `notepad-workspace-window-${uri}-${generateUUID}`;
-        // TODO: Remover verificações de Janelas já abertas, openWindow deve cuidar disso
-        const notepadFileWindow = windows.find((w) => w.id === NOTEPAD_WINDOW_ID);
-        if (notepadFileWindow) {
-          focusWindow(NOTEPAD_WINDOW_ID);
-          updateWindowStatus(NOTEPAD_WINDOW_ID, 'normal');
-          return;
-        }
-
+        const NOTEPAD_WINDOW_ID = `notepad-window-${uri}-${generateUUID}`;
         openWindow({
           id: NOTEPAD_WINDOW_ID,
           title: label + extension,
@@ -176,17 +95,20 @@ function IconLinkLabel({ className, constraintsRef, icon, size = 64 }: IconLinkL
             initialItem: icon,
           },
         });
-        focusWindow(NOTEPAD_WINDOW_ID);
-        updateWindowStatus(NOTEPAD_WINDOW_ID, 'normal');
       }
     }
+  }
+
+  function handleSingleClick(event: React.MouseEvent<HTMLDivElement>) {
+    setCurrentPath(path);
+    toggleItemSelection(event, icon);
   }
 
   return icon ? (
     <motion.div
       className={`icon-link-label ${getIsItemSelected(icon) ? 'selected' : ''}`}
       onDoubleClick={(event) => handleDoubleClick(event)}
-      onClick={(event) => toggleItemSelection(event, icon)}
+      onMouseDown={(event) => handleSingleClick(event)}
       dragConstraints={constraintsRef}
       drag={true}
       style={{

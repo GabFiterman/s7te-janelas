@@ -1,23 +1,13 @@
 import { create } from 'zustand';
 import { ITEMS_MAP_ALL, STRUCTURE_MAP_FILE_SYSTEM, type FileSystemItem } from '@/constants';
-import {
-  getPartialPath,
-  isImageByExtension,
-  isTextByExtension,
-  isVideoByExtension,
-  normalizeStringForPath,
-} from '@/utils';
+import { isImageByExtension, isTextByExtension, isVideoByExtension, normalizeStringForPath } from '@/utils';
 import useUIStore from '@/store/uiStore';
 import { fileExplorerIcon, internetExplorerIcon, mediaCenterImageIcon, notepadIcon, videosIcon } from '@/assets/icons';
 
 const INITIAL_URI = 'favoritos/';
 const ALIAS_TO_PATH_MAP = new Map<string, string>();
-const MEDIA_CENTER_IMAGE_WINDOW_ID = (path: string): string => {
-  return `media-center-image-file-explorer-window-${path}`;
-};
-const MEDIA_CENTER_VIDEO_WINDOW_ID = (path: string): string => {
-  return `media-center-video-file-explorer-window-${path}`;
-};
+const MEDIA_CENTER_IMAGE_WINDOW_ID = 'media-center-image-window';
+const MEDIA_CENTER_VIDEO_WINDOW_ID = 'media-center-video-window';
 const NOTEPAD_WINDOW_ID = (path: string): string => {
   return `notepad-file-explorer-window-${path}`;
 };
@@ -143,7 +133,7 @@ export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
     }),
   navigateTo: (item) =>
     set((state) => {
-      const { openWindow, windows, focusWindow, updateWindowStatus, closeWindow } = useUIStore.getState();
+      const { openWindow } = useUIStore.getState();
       const { setCurrentPath } = useFileExplorerStore.getState();
 
       if (item.type === 'folder' || item.type === 'drive') {
@@ -169,98 +159,47 @@ export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
         };
       } else if (item.type === 'file') {
         if (isImageByExtension(item.extension)) {
-          const itemPartialPath = getPartialPath(item.path);
-
-          const appId = MEDIA_CENTER_IMAGE_WINDOW_ID(item.path);
           const playlist = get().currentDirectoryContents.filter(
             (i) => i.type === 'file' && isImageByExtension(i.extension)
           );
-          // TODO: Remover verificações de Janelas já abertas, openWindow deve cuidar disso
-          const windowAlreadyOpen = windows.find((w) => getPartialPath(w.id) === getPartialPath(appId));
-          const openMediaCenterImage = () => {
-            openWindow({
-              id: appId,
-              title: item.label + item.extension,
-              appName: 'MediaCenterImage',
-              iconSrc: mediaCenterImageIcon,
-              appProps: {
-                initialItem: item,
-                playlist: playlist,
-              },
-            });
-          };
-
-          if (windowAlreadyOpen) {
-            const openedItemPartialPath = getPartialPath(windowAlreadyOpen.id);
-            const isSamePath = openedItemPartialPath.includes(itemPartialPath);
-            if (isSamePath) {
-              if (windowAlreadyOpen.id === appId) {
-                focusWindow(windowAlreadyOpen.id);
-                updateWindowStatus(windowAlreadyOpen.id, 'normal');
-              } else {
-                closeWindow(windowAlreadyOpen.id);
-                openMediaCenterImage();
-              }
-            }
-          } else {
-            openMediaCenterImage();
-          }
+          openWindow({
+            id: MEDIA_CENTER_IMAGE_WINDOW_ID,
+            title: item.label + item.extension,
+            appName: 'MediaCenterImage',
+            iconSrc: mediaCenterImageIcon,
+            appProps: {
+              initialItem: item,
+              playlist: playlist,
+            },
+          });
           return state;
         }
 
         if (isVideoByExtension(item.extension)) {
-          const itemPartialPath = getPartialPath(item.path);
-          const appId = MEDIA_CENTER_VIDEO_WINDOW_ID(item.path);
-          // TODO: Remover verificações de Janelas já abertas, openWindow deve cuidar disso
-          const windowAlreadyOpen = windows.find((w) => getPartialPath(w.id) === getPartialPath(appId));
-          const openMediaCenterVideo = () => {
-            openWindow({
-              id: appId,
-              title: item.label + item.extension,
-              appName: 'MediaCenterVideo',
-              iconSrc: videosIcon,
-              appProps: {
-                initialItem: item,
-              },
-            });
-          };
-
-          if (windowAlreadyOpen) {
-            const openedItemPartialPath = getPartialPath(windowAlreadyOpen.id);
-            const isSamePath = openedItemPartialPath.includes(itemPartialPath);
-            if (isSamePath) {
-              if (windowAlreadyOpen.id === appId) {
-                focusWindow(windowAlreadyOpen.id);
-                updateWindowStatus(windowAlreadyOpen.id, 'normal');
-              } else {
-                closeWindow(windowAlreadyOpen.id);
-                openMediaCenterVideo();
-              }
-            }
-          } else {
-            openMediaCenterVideo();
-          }
+          openWindow({
+            id: MEDIA_CENTER_VIDEO_WINDOW_ID,
+            title: item.label + item.extension,
+            appName: 'MediaCenterVideo',
+            iconSrc: videosIcon,
+            appProps: {
+              initialItem: item,
+            },
+          });
           return state;
         }
 
         if (isTextByExtension(item.extension)) {
           const appId = NOTEPAD_WINDOW_ID(item.path);
           // TODO: Remover verificações de Janelas já abertas, openWindow deve cuidar disso
-          const windowAlreadyOpen = windows.find((w) => w.id === appId);
-          if (windowAlreadyOpen) {
-            focusWindow(windowAlreadyOpen.id);
-            updateWindowStatus(windowAlreadyOpen.id, 'normal');
-          } else {
-            openWindow({
-              id: appId,
-              title: item.label + item.extension,
-              appName: 'Notepad',
-              iconSrc: notepadIcon,
-              appProps: {
-                initialItem: item,
-              },
-            });
-          }
+          openWindow({
+            id: appId,
+            title: item.label + item.extension,
+            appName: 'Notepad',
+            iconSrc: notepadIcon,
+            appProps: {
+              initialItem: item,
+            },
+          });
           return state;
         }
       } else if (item.type === 'externalLink') {

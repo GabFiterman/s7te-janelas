@@ -5,7 +5,6 @@ import {
   fileExplorerIcon,
   folderIcon,
   internetExplorerIcon,
-  internetExplorerExternalLinkIcon,
   musicsIcon,
   networkIcon,
   notepadIcon,
@@ -13,6 +12,7 @@ import {
   sheetMusicIcon,
   videosIcon,
   workspaceIcon,
+  GithubExternalLogo,
 } from '@/assets';
 import { type FileSystemItem } from '../file-system-map';
 
@@ -311,7 +311,7 @@ export const ITEMS_MAP_PROJETO_1_CHALLENGELETT: Record<string, FileSystemItem> =
 
   'C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT/REPOCHALLENGELETT.html': {
     extension: '.html',
-    iconSrc: internetExplorerExternalLinkIcon,
+    iconSrc: GithubExternalLogo,
     label: 'Github Repo ChallengeLett',
     path: 'C:/Usuários/Fiterman/Projetos/ChallengeLett/repochallengelett.html',
     type: 'externalLink',
@@ -367,7 +367,7 @@ export const ITEMS_MAP_PROJETO_2_LOCAWEB: Record<string, FileSystemItem> = {
 
   'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/REPOLOCAWEB.html': {
     extension: '.html',
-    iconSrc: internetExplorerExternalLinkIcon,
+    iconSrc: GithubExternalLogo,
     label: 'Github Repo LocaWeb',
     path: 'C:/Usuários/Fiterman/Projetos/LocaWeb/repolocaweb.html',
     type: 'externalLink',
@@ -459,7 +459,7 @@ export const ITEMS_MAP_PROJETO_3_LEAFLETZEN: Record<string, FileSystemItem> = {
 
   'C:/USUARIOS/FITERMAN/PROJETOS/LEAFLETZEN/REPOLEAFLETZEN.HTML': {
     extension: '.html',
-    iconSrc: internetExplorerExternalLinkIcon,
+    iconSrc: GithubExternalLogo,
     label: 'Github Repo Leaflet Zen',
     path: 'C:/Usuários/Fiterman/Projetos/LeafletZen/repoleafletzen.html',
     type: 'externalLink',
@@ -470,7 +470,7 @@ export const ITEMS_MAP_PROJETO_3_LEAFLETZEN: Record<string, FileSystemItem> = {
 export const ITEMS_MAP_PROJETO_4_SETEJANELAS: Record<string, FileSystemItem> = {
   'C:/USUARIOS/FITERMAN/PROJETOS/SETEJANELAS/REPOSETEJANELAS.HTML': {
     extension: '.html',
-    iconSrc: internetExplorerExternalLinkIcon,
+    iconSrc: GithubExternalLogo,
     label: 'Github Repo Sete Janelas',
     path: 'C:/Usuários/Fiterman/Projetos/LeafletZen/reposetejanelas.html',
     type: 'externalLink',

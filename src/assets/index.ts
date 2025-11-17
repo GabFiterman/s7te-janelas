@@ -65,4 +65,5 @@ export { default as mediaCenterImageIcon } from './icons/temp/media_center_image
 
 // NOTE: Logos
 export { default as GithubLogo } from './logo/github_logo.webp';
+export { default as GithubExternalLogo } from './logo/github_external_logo.webp';
 export { default as WindowsLogo } from './logo/windows-logo.png';

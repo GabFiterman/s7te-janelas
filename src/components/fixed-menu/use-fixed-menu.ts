@@ -37,6 +37,9 @@ function useFixedMenuStates() {
           title: 'Internet Explorer',
           appName: 'InternetExplorer',
           iconSrc: internetExplorerIcon,
+          appProps: {
+            initialUrl: '/home',
+          },
         }),
       icon: internetExplorerIcon,
     },

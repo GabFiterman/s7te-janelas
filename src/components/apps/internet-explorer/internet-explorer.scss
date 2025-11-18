@@ -22,4 +22,46 @@
     width: 100%;
     border: none;
   }
+
+  .ie-home-page {
+      display: flex;
+      flex-direction: row;
+      gap: 1em;
+      width: inherit;
+      height: inherit;
+      align-items: center;
+      justify-content: center;
+
+    .project-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+      align-items: center;
+      justify-content: space-around;
+      background: white;
+      padding: 1em;
+      min-height: 9em;
+      min-width: 9em;
+      border-radius: .5em;
+      border: 1px solid transparent;
+      cursor: pointer;
+
+      &:hover {
+        background: linear-gradient(180deg, rgba(248, 251, 255, 1) 35%, rgba(223, 235, 248, 1) 65%);
+        border: 1px solid #9cb6ce;
+      }
+    }
+      img {
+        width: 4em;
+        height: 4em;
+      }
+
+    span {
+      font-size: 1.25em;
+      font-weight: bold;
+      max-width: 6em;
+      word-wrap: break-word;
+      text-align: center;
+    }
+  }
 }

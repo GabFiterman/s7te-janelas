@@ -300,16 +300,17 @@ export const ITEMS_MAP_PROJETO_1_CHALLENGELETT: Record<string, FileSystemItem> =
     uri: 'projetos/ChallengeLett/analise.txt',
   },
 
-  'C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT/CHALLENGELETT.html': {
+  'C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT/CHALLENGELETT.HTML': {
     extension: '.html',
     iconSrc: internetExplorerIcon,
-    label: 'ChallengeLett',
+    label: 'Challenge Lett',
     path: 'C:/Usuários/Fiterman/Projetos/ChallengeLett/challengelett.html',
     type: 'link',
     uri: 'https://gabfiterman.github.io/ChallengeLett/',
+    miniature: GithubExternalLogo,
   },
 
-  'C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT/REPOCHALLENGELETT.html': {
+  'C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT/REPOCHALLENGELETT.HTML': {
     extension: '.html',
     iconSrc: GithubExternalLogo,
     label: 'Github Repo ChallengeLett',
@@ -356,16 +357,17 @@ export const ITEMS_MAP_PROJETO_2_LOCAWEB: Record<string, FileSystemItem> = {
     uri: 'projetos/LocaWeb/login.txt',
   },
 
-  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/LOCAWEB.html': {
+  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/LOCAWEB.HTML': {
     extension: '.html',
     iconSrc: internetExplorerIcon,
-    label: 'LocaWeb',
+    label: 'Loca Web',
     path: 'C:/Usuários/Fiterman/Projetos/LocaWeb/locaweb.html',
     type: 'link',
     uri: 'https://loca-web.vercel.app/',
+    miniature: GithubExternalLogo,
   },
 
-  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/REPOLOCAWEB.html': {
+  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/REPOLOCAWEB.HTML': {
     extension: '.html',
     iconSrc: GithubExternalLogo,
     label: 'Github Repo LocaWeb',
@@ -392,7 +394,7 @@ export const ITEMS_MAP_PROJETO_2_LOCAWEB: Record<string, FileSystemItem> = {
     uri: 'projetos/LocaWeb/plans.webp',
   },
 
-  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/AUTOMATEDTESTS.mp4': {
+  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/AUTOMATEDTESTS.MP4': {
     extension: '.mp4',
     iconSrc: videosIcon,
     label: 'Testes Automatizados',
@@ -401,7 +403,7 @@ export const ITEMS_MAP_PROJETO_2_LOCAWEB: Record<string, FileSystemItem> = {
     uri: 'https://github.com/GabFiterman/loca-web/assets/94033226/e9e2da7b-a95a-4a8a-bf45-6bd2a3c730a6',
   },
 
-  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/RESPONSIVITY.mp4': {
+  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/RESPONSIVITY.MP4': {
     extension: '.mp4',
     iconSrc: videosIcon,
     label: 'Responsividade',
@@ -410,7 +412,7 @@ export const ITEMS_MAP_PROJETO_2_LOCAWEB: Record<string, FileSystemItem> = {
     uri: 'https://github.com/GabFiterman/loca-web/assets/94033226/d495f731-f815-42e3-b74a-7c8fc7f5868f',
   },
 
-  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/validation.mp4': {
+  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/validation.MP4': {
     extension: '.mp4',
     iconSrc: videosIcon,
     label: 'Validação de Formulários',
@@ -419,7 +421,7 @@ export const ITEMS_MAP_PROJETO_2_LOCAWEB: Record<string, FileSystemItem> = {
     uri: 'https://github.com/GabFiterman/loca-web/assets/94033226/6e48c0ad-3bf8-4e65-b5f9-f73f7e95f87c',
   },
 
-  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/AvatarGeneration.mp4': {
+  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/AvatarGeneration.MP4': {
     extension: '.mp4',
     iconSrc: videosIcon,
     label: 'Geração de Avatar',
@@ -455,6 +457,7 @@ export const ITEMS_MAP_PROJETO_3_LEAFLETZEN: Record<string, FileSystemItem> = {
     path: 'C:/Usuários/Fiterman/Projetos/LeafletZen/LeafletZen.html',
     type: 'link',
     uri: 'https://leaflet-zen.vercel.app/',
+    miniature: GithubExternalLogo,
   },
 
   'C:/USUARIOS/FITERMAN/PROJETOS/LEAFLETZEN/REPOLEAFLETZEN.HTML': {

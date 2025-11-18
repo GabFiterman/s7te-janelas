@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-const INITIAL_URL = 'https://gabfiterman.github.io/ChallengeLett';
+export const INITIAL_URL = '/home';
 
 interface IEState {
   currentUrl: string;
@@ -22,10 +22,11 @@ const useInternetExplorerStore = create<IEState>((set, get) => ({
   setInputUrl: (url) => set({ inputUrl: url }),
 
   navigateToUrl: (newUrl) => {
+    if (newUrl === INITIAL_URL) return set({ currentUrl: INITIAL_URL, inputUrl: INITIAL_URL });
     const urlToNavigate = newUrl || get().inputUrl;
     let finalUrl = urlToNavigate;
 
-    if (!urlToNavigate.startsWith('http')) {
+    if (!urlToNavigate.startsWith('http') && urlToNavigate !== INITIAL_URL) {
       finalUrl = `https://${urlToNavigate}`;
     }
 

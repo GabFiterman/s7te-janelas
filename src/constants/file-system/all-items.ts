@@ -182,6 +182,15 @@ export const ITEMS_MAP_DOCUMENTS: Record<string, FileSystemItem> = {
     type: 'file',
     uri: 'documentos/segundo_documento.txt',
   },
+
+  'C:/USUARIOS/FITERMAN/DOCUMENTOS/SOBRE_MIM': {
+    extension: '/',
+    iconSrc: folderIcon,
+    label: 'Sobre Mim',
+    path: 'C:/Usuários/Fiterman/Documentos/Sobre_Mim',
+    type: 'folder',
+    uri: 'documentos/sobre_mim/',
+  },
 };
 
 // ROOT LEVEL 4 [ IMAGENS ]
@@ -338,6 +347,7 @@ export const ITEMS_MAP_PROJETO_1_CHALLENGELETT: Record<string, FileSystemItem> =
   },
 };
 
+// ROOT LEVEL 5 [ PROJETOS/LOCAWEB ]
 export const ITEMS_MAP_PROJETO_2_LOCAWEB: Record<string, FileSystemItem> = {
   'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/ANALISE.TXT': {
     extension: '.txt',
@@ -431,6 +441,7 @@ export const ITEMS_MAP_PROJETO_2_LOCAWEB: Record<string, FileSystemItem> = {
   },
 };
 
+// ROOT LEVEL 5 [ PROJETOS/LEAFLETZEN ]
 export const ITEMS_MAP_PROJETO_3_LEAFLETZEN: Record<string, FileSystemItem> = {
   'C:/USUARIOS/FITERMAN/PROJETOS/LEAFLETZEN/ANALISE.TXT': {
     extension: '.txt',
@@ -470,6 +481,7 @@ export const ITEMS_MAP_PROJETO_3_LEAFLETZEN: Record<string, FileSystemItem> = {
   },
 };
 
+// ROOT LEVEL 5 [ PROJETOS/SETEJANELAS ]
 export const ITEMS_MAP_PROJETO_4_SETEJANELAS: Record<string, FileSystemItem> = {
   'C:/USUARIOS/FITERMAN/PROJETOS/SETEJANELAS/REPOSETEJANELAS.HTML': {
     extension: '.html',
@@ -481,6 +493,19 @@ export const ITEMS_MAP_PROJETO_4_SETEJANELAS: Record<string, FileSystemItem> = {
   },
 };
 
+// ROOT LEVEL 5 [ DOCUMENTOS/ABOUT_ME ]
+export const ITEMS_MAP_ABOUT_ME: Record<string, FileSystemItem> = {
+  'C:/USUARIOS/FITERMAN/DOCUMENTOS/SOBRE_MIM/README.MD': {
+    extension: '.md',
+    iconSrc: notepadIcon,
+    label: 'Sobre Mim',
+    path: 'C:/Usuários/Fiterman/Documentos/Sobre_Mim/README.md',
+    type: 'file',
+    uri: 'documentos/sobre_mim/README.md',
+  },
+};
+
+// EXPORT ALL AS: ITEMS_MAP_ALL
 export const ITEMS_MAP_ALL: Record<string, FileSystemItem> = {
   ...ITEMS_MAP_C_DRIVE,
   ...ITEMS_MAP_ROOT,
@@ -494,4 +519,5 @@ export const ITEMS_MAP_ALL: Record<string, FileSystemItem> = {
   ...ITEMS_MAP_PROJETO_2_LOCAWEB,
   ...ITEMS_MAP_PROJETO_3_LEAFLETZEN,
   ...ITEMS_MAP_PROJETO_4_SETEJANELAS,
+  ...ITEMS_MAP_ABOUT_ME,
 };

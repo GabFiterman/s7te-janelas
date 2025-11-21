@@ -74,49 +74,11 @@ const useUIStore = create<UIState>((set, get) => ({
   isStartMenuOpen: false,
   maxZIndex: 1000,
   windows: [],
-
-  workspaceIcons: [
-    {
-      ...ITEMS_MAP_WORKSPACE[0],
-      x: 0,
-      y: 0,
-    },
-    {
-      ...ITEMS_MAP_WORKSPACE[1],
-      x: 120,
-      y: 0,
-    },
-    {
-      ...ITEMS_MAP_WORKSPACE[2],
-      x: 0,
-      y: 150,
-    },
-    {
-      ...ITEMS_MAP_WORKSPACE[3],
-      x: 120,
-      y: 150,
-    },
-    {
-      ...ITEMS_MAP_WORKSPACE[4],
-      x: 0,
-      y: 300,
-    },
-    {
-      ...ITEMS_MAP_WORKSPACE[5],
-      x: 120,
-      y: 300,
-    },
-    {
-      ...ITEMS_MAP_WORKSPACE[6],
-      x: 0,
-      y: 450,
-    },
-    {
-      ...ITEMS_MAP_WORKSPACE[7],
-      x: 120,
-      y: 450,
-    },
-  ],
+  workspaceIcons: ITEMS_MAP_WORKSPACE.map((item, index) => ({
+    ...item,
+    x: (index % 2) * 150,
+    y: Math.floor(index / 2) * 150,
+  })),
 
   activeWindowsByApp: () => {
     const windows = get().windows;

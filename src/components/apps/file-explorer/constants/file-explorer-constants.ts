@@ -7,7 +7,7 @@ import {
   galleryIcon,
   pasteIcon,
   questionIcon,
-} from '@/assets/icons';
+} from '@/assets';
 
 import {
   type ActionItem,
@@ -21,95 +21,95 @@ export const separatorItem: SeparatorItem = {
 
 export const controllerItems: ControllerItem[] = [
   {
-    disabled: false,
+    disabled: true,
     dropdown: true,
     label: 'Organizar',
     shortcut: null,
     value: 'organize',
     dropDownItems: [
       {
-        disabled: false,
+        disabled: true,
         iconSrc: cutIcon,
         label: 'Recortar',
         shortcut: null,
         value: 'cut',
       },
       {
-        disabled: false,
+        disabled: true,
         iconSrc: copyIcon,
         label: 'Copiar',
         shortcut: null,
         value: 'copy',
       },
       {
-        disabled: false,
+        disabled: true,
         iconSrc: pasteIcon,
         label: 'Colar',
         shortcut: null,
         value: 'paste',
       },
       {
-        disabled: false,
+        disabled: true,
         label: 'Desfazer',
         shortcut: null,
         value: 'undo',
       },
       {
-        disabled: false,
+        disabled: true,
         label: 'Refazer',
         shortcut: null,
         value: 'redo',
       },
       separatorItem,
       {
-        disabled: false,
+        disabled: true,
         label: 'Selecionar tudo',
         shortcut: null,
         value: 'select-all',
       },
       separatorItem,
       {
-        disabled: false,
+        disabled: true,
         iconSrc: flexBox2Icon,
         label: 'Layout >',
         shortcut: null,
         value: 'layout',
       },
       {
-        disabled: false,
+        disabled: true,
         label: 'Opções de pasta e pesquisa',
         shortcut: null,
         value: 'paste-search-options',
       },
       separatorItem,
       {
-        disabled: false,
+        disabled: true,
         iconSrc: excludeIcon,
         label: 'Excluir',
         shortcut: null,
         value: 'delete',
       },
       {
-        disabled: false,
+        disabled: true,
         label: 'Renomear',
         shortcut: null,
         value: 'rename',
       },
       {
-        disabled: false,
+        disabled: true,
         label: 'Remover Propriedades',
         shortcut: null,
         value: 'remove-props',
       },
       {
-        disabled: false,
+        disabled: true,
         label: 'Propriedades',
         shortcut: null,
         value: 'props',
       },
       separatorItem,
       {
-        disabled: false,
+        disabled: true,
         label: 'Fechar',
         shortcut: null,
         value: 'close',
@@ -127,7 +127,7 @@ export const controllerItems: ControllerItem[] = [
   //   dropdown: true,
   // },
   {
-    disabled: false,
+    disabled: true,
     dropdown: false,
     label: 'Nova pasta',
     shortcut: null,
@@ -137,21 +137,21 @@ export const controllerItems: ControllerItem[] = [
 
 export const actionItems: ActionItem[] = [
   {
-    disabled: false,
+    disabled: true,
     dropdown: true,
     iconSrc: galleryIcon,
     label: 'view icon',
     value: 'view',
   },
   {
-    disabled: false,
+    disabled: true,
     dropdown: false,
     iconSrc: flexBox1Icon,
     label: 'layout icon',
     value: 'layout',
   },
   {
-    disabled: false,
+    disabled: true,
     dropdown: false,
     iconSrc: questionIcon,
     label: 'help icon',

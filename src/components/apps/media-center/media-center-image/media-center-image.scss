@@ -10,10 +10,32 @@
     height: 85%;
     width: 100%;
 
+    .media-center-image-loader-overlay {
+      position: absolute;
+      height: 90%;
+    }
+
+    .media-center-image-error-message {
+      height: 100%;
+    }
+
+    .media-center-image-loader-overlay,
+    .media-center-image-error-message {
+      align-items: center;
+      display: flex;
+      font-size: 1.5em;
+      justify-content: center;
+      width: 100%;
+    }
+
     img.media-center-image-main-image {
       flex: 1;
       max-height: 100%;
       object-fit: contain;
+
+      &.hidden {
+        display: none;
+      }
     }
   }
 

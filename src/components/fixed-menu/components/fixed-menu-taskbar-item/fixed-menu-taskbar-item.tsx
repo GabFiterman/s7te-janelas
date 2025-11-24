@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import useUIStore, { type WindowState } from '@/store/uiStore';
-import { Close } from '@/assets/icons';
+import { Close } from '@/assets';
 
 interface FixedMenuTaskbarItemProps {
   appName: string;

@@ -14,6 +14,7 @@ interface FileSystemItem {
   path: string;
   type: 'folder' | 'file' | 'drive' | 'link' | 'externalLink';
   uri: string;
+  miniature?: string;
 }
 
 export type { FileSystemItem };

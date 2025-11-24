@@ -56,7 +56,7 @@ interface UIState {
       Partial<Pick<WindowState, 'x' | 'y' | 'width' | 'height' | 'status' | 'appProps'>>
   ) => void;
   setIsStartMenuOpen: (isOpen: boolean) => void;
-  toggleIsStartMenuOpen: () => void;
+  toggleIsStartMenuOpen: (event?: React.MouseEvent<HTMLImageElement, MouseEvent>) => void;
   updateWindowPosition: (id: string, newX: number, newY: number) => void;
   updateWindowStatus: (id: string, newStatus: WindowState['status']) => void;
   updateWorkspaceIconPosition: (path: string, newX: number, newY: number) => void;
@@ -74,49 +74,11 @@ const useUIStore = create<UIState>((set, get) => ({
   isStartMenuOpen: false,
   maxZIndex: 1000,
   windows: [],
-
-  workspaceIcons: [
-    {
-      ...ITEMS_MAP_WORKSPACE[0],
-      x: 0,
-      y: 0,
-    },
-    {
-      ...ITEMS_MAP_WORKSPACE[1],
-      x: 120,
-      y: 0,
-    },
-    {
-      ...ITEMS_MAP_WORKSPACE[2],
-      x: 0,
-      y: 150,
-    },
-    {
-      ...ITEMS_MAP_WORKSPACE[3],
-      x: 120,
-      y: 150,
-    },
-    {
-      ...ITEMS_MAP_WORKSPACE[4],
-      x: 0,
-      y: 300,
-    },
-    {
-      ...ITEMS_MAP_WORKSPACE[5],
-      x: 120,
-      y: 300,
-    },
-    {
-      ...ITEMS_MAP_WORKSPACE[6],
-      x: 0,
-      y: 450,
-    },
-    {
-      ...ITEMS_MAP_WORKSPACE[7],
-      x: 120,
-      y: 450,
-    },
-  ],
+  workspaceIcons: ITEMS_MAP_WORKSPACE.map((item, index) => ({
+    ...item,
+    x: (index % 2) * 150,
+    y: Math.floor(index / 2) * 150,
+  })),
 
   activeWindowsByApp: () => {
     const windows = get().windows;
@@ -136,6 +98,7 @@ const useUIStore = create<UIState>((set, get) => ({
       windows: state.windows.filter((window) => window.id !== id),
     }));
   },
+
   focusWindow: (id) =>
     set((state) => {
       const newZIndex = state.maxZIndex + 1;
@@ -144,8 +107,36 @@ const useUIStore = create<UIState>((set, get) => ({
         maxZIndex: newZIndex,
       };
     }),
+
   openWindow: (newWindow) =>
     set((state) => {
+      const { windows } = state;
+
+      const existingWindow = windows.find((window) => window.id === newWindow.id);
+
+      if (existingWindow) {
+        const newZIndex = state.maxZIndex + 1;
+
+        return {
+          windows: windows.map((window) => {
+            if (window.id === newWindow.id) {
+              return {
+                ...window,
+                x: newWindow.x ?? window.x,
+                y: newWindow.y ?? window.y,
+                width: newWindow.width ?? window.width,
+                height: newWindow.height ?? window.height,
+                appProps: newWindow.appProps ?? window.appProps,
+                zIndex: newZIndex,
+                status: 'normal',
+              };
+            }
+            return window;
+          }),
+          maxZIndex: newZIndex,
+        };
+      }
+
       const newZIndex = state.maxZIndex + 1;
       const defaultWidth = get().CONSTANTS.WINDOW_DEFAULT_WIDTH;
       const defaultHeight = get().CONSTANTS.WINDOW_DEFAULT_HEIGHT;
@@ -168,12 +159,16 @@ const useUIStore = create<UIState>((set, get) => ({
         maxZIndex: newZIndex,
       };
     }),
+
   setIsStartMenuOpen: (isOpen) => set({ isStartMenuOpen: isOpen }),
+
   toggleIsStartMenuOpen: () => set((state) => ({ isStartMenuOpen: !state.isStartMenuOpen })),
+
   updateWindowPosition: (id, newX, newY) =>
     set((state) => ({
       windows: state.windows.map((window) => (window.id === id ? { ...window, x: newX, y: newY } : window)),
     })),
+
   updateWindowStatus: (id, newStatus) => {
     set((state) => ({
       windows: state.windows.map((window) => {
@@ -192,6 +187,7 @@ const useUIStore = create<UIState>((set, get) => ({
       }),
     }));
   },
+
   updateWorkspaceIconPosition: (path, newX, newY) =>
     set((state) => ({
       workspaceIcons: state.workspaceIcons.map((icon) => (icon.path === path ? { ...icon, x: newX, y: newY } : icon)),

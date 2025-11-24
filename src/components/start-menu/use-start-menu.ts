@@ -1,70 +1,52 @@
-import {
-  blocksIcon,
-  cdPlayerIcon,
-  computerColorsIcon,
-  fileExplorerIcon,
-  gameHubIcon,
-  internetExplorerIcon,
-  pictureIcon,
-  sheetMusicIcon,
-  usersIcon,
-} from '@/assets/icons';
+import { fileExplorerIcon, internetExplorerIcon } from '@/assets';
+
+import { type AppName } from '@/components/apps/app-config';
+
+import useUIStore from '@/store/uiStore';
+import { useFileExplorerStore } from '@/components/apps/file-explorer/use-file-explorer';
+import { ITEMS_MAP_ALL } from '@/constants';
+
+const INTERNET_EXPLORER_WINDOW_ID = 'internet-explorer-window';
+const FILE_EXPLORER_WINDOW_ID = `file-explorer-window`;
+
+const FILE_EXPLORER_INITIAL_PATH = ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/PROJETOS'].path;
+const FILE_EXPLORER_DOCUMENTS_PATH = ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/DOCUMENTOS'].path;
+const FILE_EXPLORER_IMAGES_PATH = ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/IMAGENS'].path;
 
 function useStartMenuStates() {
+  const { openWindow, toggleIsStartMenuOpen, activeWindowsByApp } = useUIStore();
+  const { setCurrentPath } = useFileExplorerStore();
+
   const startMenuApps = [
     {
       id: 1,
       label: 'Internet Explorer',
-      action: () => console.log('Internet Explorer Start Menu'),
+      action: () => {
+        openWindow({
+          id: INTERNET_EXPLORER_WINDOW_ID,
+          title: 'Internet Explorer',
+          appName: 'InternetExplorer' as AppName,
+          iconSrc: internetExplorerIcon,
+        });
+      },
       icon: internetExplorerIcon,
     },
     {
       id: 2,
       label: 'File Explorer',
-      action: () => console.log('File Explorer Start Menu'),
+      action: () => {
+        const activeWindows = activeWindowsByApp();
+        if (!activeWindows['FileExplorer'] || activeWindows['FileExplorer']?.length === 0) {
+          setCurrentPath(FILE_EXPLORER_INITIAL_PATH);
+        }
+        openWindow({
+          id: FILE_EXPLORER_WINDOW_ID,
+          title: 'File Explorer',
+          appName: 'FileExplorer' as AppName,
+          iconSrc: fileExplorerIcon,
+        });
+      },
       icon: fileExplorerIcon,
-    },
-    {
-      id: 3,
-      label: 'Picture',
-      action: () => console.log('Picture Start Menu'),
-      icon: pictureIcon,
-    },
-    {
-      id: 4,
-      label: 'Blocks',
-      action: () => console.log('Blocks Start Menu'),
-      icon: blocksIcon,
-    },
-    {
-      id: 5,
-      label: 'CD Player',
-      action: () => console.log('CD Player Start Menu'),
-      icon: cdPlayerIcon,
-    },
-    {
-      id: 6,
-      label: 'Computer Colors',
-      action: () => console.log('Computer Colors Start Menu'),
-      icon: computerColorsIcon,
-    },
-    {
-      id: 7,
-      label: 'Game Hub',
-      action: () => console.log('GameHub Start Menu'),
-      icon: gameHubIcon,
-    },
-    {
-      id: 8,
-      label: 'Sheet Music',
-      action: () => console.log('Sheet Music Start Menu'),
-      icon: sheetMusicIcon,
-    },
-    {
-      id: 9,
-      label: 'Users',
-      action: () => console.log('Users Start Menu'),
-      icon: usersIcon,
     },
   ];
 
@@ -77,20 +59,38 @@ function useStartMenuStates() {
     {
       id: 2,
       label: 'Documentos',
-      action: () => console.log('Documents Shortcut'),
+      action: () => {
+        setCurrentPath(FILE_EXPLORER_DOCUMENTS_PATH);
+        openWindow({
+          id: FILE_EXPLORER_WINDOW_ID,
+          title: 'File Explorer',
+          appName: 'FileExplorer' as AppName,
+          iconSrc: fileExplorerIcon,
+        });
+      },
     },
     {
       id: 3,
       label: 'Imagens',
-      action: () => console.log('Pictures Shortcut'),
-    },
-    {
-      id: 4,
-      label: 'Músicas',
-      action: () => console.log('Blocks Shortcut'),
+      action: () => {
+        setCurrentPath(FILE_EXPLORER_IMAGES_PATH);
+        openWindow({
+          id: FILE_EXPLORER_WINDOW_ID,
+          title: 'File Explorer',
+          appName: 'FileExplorer' as AppName,
+          iconSrc: fileExplorerIcon,
+        });
+      },
     },
   ];
-  return { startMenuApps, startMenuShortcuts };
+
+  function handleAppClick(event: React.MouseEvent<HTMLDivElement>, action: () => void) {
+    event.stopPropagation();
+    action();
+    toggleIsStartMenuOpen();
+  }
+
+  return { startMenuApps, startMenuShortcuts, handleAppClick };
 }
 
 export default useStartMenuStates;

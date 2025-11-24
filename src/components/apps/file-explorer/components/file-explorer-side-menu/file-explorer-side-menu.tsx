@@ -5,7 +5,7 @@ import { ITEMS_MAP_ALL, STRUCTURE_MAP_SIDE_MENU, type FileSystemItem } from '@/c
 import { normalizeStringForPath } from '@/utils';
 
 function FileExplorerSideMenu() {
-  const { navigateTo } = useFileExplorerStore();
+  const { getIsItemSelected, navigateTo, toggleItemSelection } = useFileExplorerStore();
 
   const handleItemClick = (item: FileSystemItem | null | undefined) => {
     if (!item) return;
@@ -24,8 +24,10 @@ function FileExplorerSideMenu() {
               <BtnIconTextLink
                 className="side-menu-item pl-15 py-1"
                 icon={mainItem.iconSrc}
+                onClick={(event) => toggleItemSelection(event, mainItem)}
                 onDoubleClick={() => handleItemClick(mainItem)}
                 text={mainItem.label}
+                selected={getIsItemSelected(mainItem)}
               />
               {subItems?.length > 0 &&
                 subItems.map(
@@ -36,8 +38,10 @@ function FileExplorerSideMenu() {
                         className="side-menu-subitem pl-28 py-1"
                         icon={subItem.iconSrc}
                         key={subItem.uri}
+                        onClick={(event) => toggleItemSelection(event, subItem)}
                         onDoubleClick={() => handleItemClick(subItem)}
                         text={subItem.label}
+                        selected={getIsItemSelected(subItem)}
                       />
                     )
                 )}

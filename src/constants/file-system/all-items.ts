@@ -5,7 +5,6 @@ import {
   fileExplorerIcon,
   folderIcon,
   internetExplorerIcon,
-  internetExplorerExternalLinkIcon,
   musicsIcon,
   networkIcon,
   notepadIcon,
@@ -13,7 +12,8 @@ import {
   sheetMusicIcon,
   videosIcon,
   workspaceIcon,
-} from '@/assets/icons';
+  GithubExternalLogo,
+} from '@/assets';
 import { type FileSystemItem } from '../file-system-map';
 
 // ROOT LEVEL 0 [ DRIVE ROOT C: ]
@@ -182,6 +182,15 @@ export const ITEMS_MAP_DOCUMENTS: Record<string, FileSystemItem> = {
     type: 'file',
     uri: 'documentos/segundo_documento.txt',
   },
+
+  'C:/USUARIOS/FITERMAN/DOCUMENTOS/SOBRE_MIM': {
+    extension: '/',
+    iconSrc: folderIcon,
+    label: 'Sobre Mim',
+    path: 'C:/Usuários/Fiterman/Documentos/Sobre_Mim',
+    type: 'folder',
+    uri: 'documentos/sobre_mim/',
+  },
 };
 
 // ROOT LEVEL 4 [ IMAGENS ]
@@ -300,18 +309,19 @@ export const ITEMS_MAP_PROJETO_1_CHALLENGELETT: Record<string, FileSystemItem> =
     uri: 'projetos/ChallengeLett/analise.txt',
   },
 
-  'C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT/CHALLENGELETT.html': {
+  'C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT/CHALLENGELETT.HTML': {
     extension: '.html',
     iconSrc: internetExplorerIcon,
-    label: 'ChallengeLett',
+    label: 'Challenge Lett',
     path: 'C:/Usuários/Fiterman/Projetos/ChallengeLett/challengelett.html',
     type: 'link',
     uri: 'https://gabfiterman.github.io/ChallengeLett/',
+    miniature: GithubExternalLogo,
   },
 
-  'C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT/REPOCHALLENGELETT.html': {
+  'C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT/REPOCHALLENGELETT.HTML': {
     extension: '.html',
-    iconSrc: internetExplorerExternalLinkIcon,
+    iconSrc: GithubExternalLogo,
     label: 'Github Repo ChallengeLett',
     path: 'C:/Usuários/Fiterman/Projetos/ChallengeLett/repochallengelett.html',
     type: 'externalLink',
@@ -337,6 +347,7 @@ export const ITEMS_MAP_PROJETO_1_CHALLENGELETT: Record<string, FileSystemItem> =
   },
 };
 
+// ROOT LEVEL 5 [ PROJETOS/LOCAWEB ]
 export const ITEMS_MAP_PROJETO_2_LOCAWEB: Record<string, FileSystemItem> = {
   'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/ANALISE.TXT': {
     extension: '.txt',
@@ -356,18 +367,19 @@ export const ITEMS_MAP_PROJETO_2_LOCAWEB: Record<string, FileSystemItem> = {
     uri: 'projetos/LocaWeb/login.txt',
   },
 
-  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/LOCAWEB.html': {
+  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/LOCAWEB.HTML': {
     extension: '.html',
     iconSrc: internetExplorerIcon,
-    label: 'LocaWeb',
+    label: 'Loca Web',
     path: 'C:/Usuários/Fiterman/Projetos/LocaWeb/locaweb.html',
     type: 'link',
     uri: 'https://loca-web.vercel.app/',
+    miniature: GithubExternalLogo,
   },
 
-  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/REPOLOCAWEB.html': {
+  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/REPOLOCAWEB.HTML': {
     extension: '.html',
-    iconSrc: internetExplorerExternalLinkIcon,
+    iconSrc: GithubExternalLogo,
     label: 'Github Repo LocaWeb',
     path: 'C:/Usuários/Fiterman/Projetos/LocaWeb/repolocaweb.html',
     type: 'externalLink',
@@ -392,7 +404,7 @@ export const ITEMS_MAP_PROJETO_2_LOCAWEB: Record<string, FileSystemItem> = {
     uri: 'projetos/LocaWeb/plans.webp',
   },
 
-  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/AUTOMATEDTESTS.mp4': {
+  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/AUTOMATEDTESTS.MP4': {
     extension: '.mp4',
     iconSrc: videosIcon,
     label: 'Testes Automatizados',
@@ -401,7 +413,7 @@ export const ITEMS_MAP_PROJETO_2_LOCAWEB: Record<string, FileSystemItem> = {
     uri: 'https://github.com/GabFiterman/loca-web/assets/94033226/e9e2da7b-a95a-4a8a-bf45-6bd2a3c730a6',
   },
 
-  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/RESPONSIVITY.mp4': {
+  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/RESPONSIVITY.MP4': {
     extension: '.mp4',
     iconSrc: videosIcon,
     label: 'Responsividade',
@@ -410,7 +422,7 @@ export const ITEMS_MAP_PROJETO_2_LOCAWEB: Record<string, FileSystemItem> = {
     uri: 'https://github.com/GabFiterman/loca-web/assets/94033226/d495f731-f815-42e3-b74a-7c8fc7f5868f',
   },
 
-  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/validation.mp4': {
+  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/validation.MP4': {
     extension: '.mp4',
     iconSrc: videosIcon,
     label: 'Validação de Formulários',
@@ -419,7 +431,7 @@ export const ITEMS_MAP_PROJETO_2_LOCAWEB: Record<string, FileSystemItem> = {
     uri: 'https://github.com/GabFiterman/loca-web/assets/94033226/6e48c0ad-3bf8-4e65-b5f9-f73f7e95f87c',
   },
 
-  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/AvatarGeneration.mp4': {
+  'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/AvatarGeneration.MP4': {
     extension: '.mp4',
     iconSrc: videosIcon,
     label: 'Geração de Avatar',
@@ -429,6 +441,7 @@ export const ITEMS_MAP_PROJETO_2_LOCAWEB: Record<string, FileSystemItem> = {
   },
 };
 
+// ROOT LEVEL 5 [ PROJETOS/LEAFLETZEN ]
 export const ITEMS_MAP_PROJETO_3_LEAFLETZEN: Record<string, FileSystemItem> = {
   'C:/USUARIOS/FITERMAN/PROJETOS/LEAFLETZEN/ANALISE.TXT': {
     extension: '.txt',
@@ -455,11 +468,12 @@ export const ITEMS_MAP_PROJETO_3_LEAFLETZEN: Record<string, FileSystemItem> = {
     path: 'C:/Usuários/Fiterman/Projetos/LeafletZen/LeafletZen.html',
     type: 'link',
     uri: 'https://leaflet-zen.vercel.app/',
+    miniature: GithubExternalLogo,
   },
 
   'C:/USUARIOS/FITERMAN/PROJETOS/LEAFLETZEN/REPOLEAFLETZEN.HTML': {
     extension: '.html',
-    iconSrc: internetExplorerExternalLinkIcon,
+    iconSrc: GithubExternalLogo,
     label: 'Github Repo Leaflet Zen',
     path: 'C:/Usuários/Fiterman/Projetos/LeafletZen/repoleafletzen.html',
     type: 'externalLink',
@@ -467,10 +481,11 @@ export const ITEMS_MAP_PROJETO_3_LEAFLETZEN: Record<string, FileSystemItem> = {
   },
 };
 
+// ROOT LEVEL 5 [ PROJETOS/SETEJANELAS ]
 export const ITEMS_MAP_PROJETO_4_SETEJANELAS: Record<string, FileSystemItem> = {
   'C:/USUARIOS/FITERMAN/PROJETOS/SETEJANELAS/REPOSETEJANELAS.HTML': {
     extension: '.html',
-    iconSrc: internetExplorerExternalLinkIcon,
+    iconSrc: GithubExternalLogo,
     label: 'Github Repo Sete Janelas',
     path: 'C:/Usuários/Fiterman/Projetos/LeafletZen/reposetejanelas.html',
     type: 'externalLink',
@@ -478,6 +493,19 @@ export const ITEMS_MAP_PROJETO_4_SETEJANELAS: Record<string, FileSystemItem> = {
   },
 };
 
+// ROOT LEVEL 5 [ DOCUMENTOS/ABOUT_ME ]
+export const ITEMS_MAP_ABOUT_ME: Record<string, FileSystemItem> = {
+  'C:/USUARIOS/FITERMAN/DOCUMENTOS/SOBRE_MIM/README.MD': {
+    extension: '.md',
+    iconSrc: notepadIcon,
+    label: 'Sobre Mim',
+    path: 'C:/Usuários/Fiterman/Documentos/Sobre_Mim/README.md',
+    type: 'file',
+    uri: 'documentos/sobre_mim/README.md',
+  },
+};
+
+// EXPORT ALL AS: ITEMS_MAP_ALL
 export const ITEMS_MAP_ALL: Record<string, FileSystemItem> = {
   ...ITEMS_MAP_C_DRIVE,
   ...ITEMS_MAP_ROOT,
@@ -491,4 +519,5 @@ export const ITEMS_MAP_ALL: Record<string, FileSystemItem> = {
   ...ITEMS_MAP_PROJETO_2_LOCAWEB,
   ...ITEMS_MAP_PROJETO_3_LEAFLETZEN,
   ...ITEMS_MAP_PROJETO_4_SETEJANELAS,
+  ...ITEMS_MAP_ABOUT_ME,
 };

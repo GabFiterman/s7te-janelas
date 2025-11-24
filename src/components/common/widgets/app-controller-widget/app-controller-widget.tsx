@@ -1,6 +1,6 @@
 import { DropdownMenu } from './components';
 
-import { ArrowDropdown } from '@/assets/icons';
+import { ArrowDropdown } from '@/assets';
 
 import useAppControllerWidget from './use-app-controller-widget';
 import './app-controller-widget.scss';
@@ -65,7 +65,8 @@ function AppControllerWidget({
             return (
               <button
                 key={item.value}
-                className={`controller-list-item ${isOpen ? 'active' : ''}`}
+                type="button"
+                className={`controller-list-item ${isOpen ? 'active' : ''} ${item.disabled ? 'disabled' : ''}`}
                 onMouseDown={(event) => handleItemClick(event, item)}
                 onMouseEnter={() => handleItemMouseEnter(item)}
               >
@@ -89,7 +90,7 @@ function AppControllerWidget({
       <div className="controller-actions">
         {actionItems &&
           actionItems.map((item) => (
-            <div key={item.value} className="controller-action-item">
+            <div key={item.value} className={`controller-action-item ${item.disabled ? 'disabled' : ''}`}>
               <img src={item.iconSrc} alt={item.label} />
               <span>{item.dropdown && <ArrowDropdown size={18} />}</span>
             </div>

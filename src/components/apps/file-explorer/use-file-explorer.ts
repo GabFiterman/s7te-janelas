@@ -1,29 +1,17 @@
 import { create } from 'zustand';
 import { ITEMS_MAP_ALL, STRUCTURE_MAP_FILE_SYSTEM, type FileSystemItem } from '@/constants';
-import {
-  getPartialPath,
-  isImageByExtension,
-  isTextByExtension,
-  isVideoByExtension,
-  normalizeStringForPath,
-} from '@/utils';
+import { isImageByExtension, isTextByExtension, isVideoByExtension, normalizeStringForPath } from '@/utils';
 import useUIStore from '@/store/uiStore';
-import { mediaCenterImageIcon, notepadIcon, videosIcon, internetExplorerIcon } from '@/assets/icons';
+import { fileExplorerIcon, internetExplorerIcon, mediaCenterImageIcon, notepadIcon, videosIcon } from '@/assets';
 
 const INITIAL_URI = 'favoritos/';
 const ALIAS_TO_PATH_MAP = new Map<string, string>();
-const MEDIA_CENTER_IMAGE_WINDOW_ID = (path: string): string => {
-  return `media-center-image-file-explorer-window-${path}`;
-};
-const MEDIA_CENTER_VIDEO_WINDOW_ID = (path: string): string => {
-  return `media-center-video-file-explorer-window-${path}`;
-};
+const MEDIA_CENTER_IMAGE_WINDOW_ID = 'media-center-image-window';
+const MEDIA_CENTER_VIDEO_WINDOW_ID = 'media-center-video-window';
 const NOTEPAD_WINDOW_ID = (path: string): string => {
   return `notepad-file-explorer-window-${path}`;
 };
-const INTERNET_EXPLORER_WINDOW_ID = (path: string): string => {
-  return `internet-explorer-file-explorer-window-${path}`;
-};
+const INTERNET_EXPLORER_WINDOW_ID = 'internet-explorer-window';
 
 interface FileExplorerState {
   currentDirectoryContents: FileSystemItem[];
@@ -44,17 +32,7 @@ interface FileExplorerState {
   goBack: () => void;
   goForward: () => void;
   navigateTo: (item: FileSystemItem) => void;
-  toggleItemSelection: (
-    event:
-      | React.KeyboardEvent<HTMLButtonElement>
-      | React.KeyboardEvent<HTMLDivElement>
-      | React.KeyboardEvent<HTMLElement>
-      | React.MouseEvent<HTMLButtonElement>
-      | React.MouseEvent<HTMLDivElement>
-      | React.MouseEvent<HTMLElement>
-      | null,
-    item: FileSystemItem | null
-  ) => void;
+  toggleItemSelection: (event: React.KeyboardEvent | React.MouseEvent | null, item: FileSystemItem | null) => void;
 }
 
 const initializeFileSystemMaps = () => {
@@ -143,12 +121,22 @@ export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
     }),
   navigateTo: (item) =>
     set((state) => {
-      const { openWindow, windows, focusWindow, updateWindowStatus, closeWindow } = useUIStore.getState();
+      const { openWindow } = useUIStore.getState();
+      const { setCurrentPath } = useFileExplorerStore.getState();
 
       if (item.type === 'folder' || item.type === 'drive') {
         const newPath = item.path;
         const newHistory = state.history.slice(0, state.historyIndex + 1);
         newHistory.push(newPath);
+
+        openWindow({
+          id: 'file-explorer-window',
+          title: item.label,
+          appName: 'FileExplorer',
+          iconSrc: fileExplorerIcon,
+        });
+
+        setCurrentPath(newPath);
 
         return {
           currentDirectoryContents: getContentsByPath(newPath),
@@ -159,102 +147,54 @@ export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
         };
       } else if (item.type === 'file') {
         if (isImageByExtension(item.extension)) {
-          const itemPartialPath = getPartialPath(item.path);
-
-          const appId = MEDIA_CENTER_IMAGE_WINDOW_ID(item.path);
           const playlist = get().currentDirectoryContents.filter(
             (i) => i.type === 'file' && isImageByExtension(i.extension)
           );
-          const windowAlreadyOpen = windows.find((w) => getPartialPath(w.id) === getPartialPath(appId));
-          const openMediaCenterImage = () => {
-            openWindow({
-              id: appId,
-              title: item.label + item.extension,
-              appName: 'MediaCenterImage',
-              iconSrc: mediaCenterImageIcon,
-              appProps: {
-                initialItem: item,
-                playlist: playlist,
-              },
-            });
-          };
-
-          if (windowAlreadyOpen) {
-            const openedItemPartialPath = getPartialPath(windowAlreadyOpen.id);
-            const isSamePath = openedItemPartialPath.includes(itemPartialPath);
-            if (isSamePath) {
-              if (windowAlreadyOpen.id === appId) {
-                focusWindow(windowAlreadyOpen.id);
-                updateWindowStatus(windowAlreadyOpen.id, 'normal');
-              } else {
-                closeWindow(windowAlreadyOpen.id);
-                openMediaCenterImage();
-              }
-            }
-          } else {
-            openMediaCenterImage();
-          }
+          openWindow({
+            id: MEDIA_CENTER_IMAGE_WINDOW_ID,
+            title: item.label + item.extension,
+            appName: 'MediaCenterImage',
+            iconSrc: mediaCenterImageIcon,
+            appProps: {
+              initialItem: item,
+              playlist: playlist,
+            },
+          });
           return state;
         }
 
         if (isVideoByExtension(item.extension)) {
-          const itemPartialPath = getPartialPath(item.path);
-          const appId = MEDIA_CENTER_VIDEO_WINDOW_ID(item.path);
-          const windowAlreadyOpen = windows.find((w) => getPartialPath(w.id) === getPartialPath(appId));
-          const openMediaCenterVideo = () => {
-            openWindow({
-              id: appId,
-              title: item.label + item.extension,
-              appName: 'MediaCenterVideo',
-              iconSrc: videosIcon,
-              appProps: {
-                initialItem: item,
-              },
-            });
-          };
-
-          if (windowAlreadyOpen) {
-            const openedItemPartialPath = getPartialPath(windowAlreadyOpen.id);
-            const isSamePath = openedItemPartialPath.includes(itemPartialPath);
-            if (isSamePath) {
-              if (windowAlreadyOpen.id === appId) {
-                focusWindow(windowAlreadyOpen.id);
-                updateWindowStatus(windowAlreadyOpen.id, 'normal');
-              } else {
-                closeWindow(windowAlreadyOpen.id);
-                openMediaCenterVideo();
-              }
-            }
-          } else {
-            openMediaCenterVideo();
-          }
+          openWindow({
+            id: MEDIA_CENTER_VIDEO_WINDOW_ID,
+            title: item.label + item.extension,
+            appName: 'MediaCenterVideo',
+            iconSrc: videosIcon,
+            appProps: {
+              initialItem: item,
+            },
+          });
           return state;
         }
 
         if (isTextByExtension(item.extension)) {
           const appId = NOTEPAD_WINDOW_ID(item.path);
-          const windowAlreadyOpen = windows.find((w) => w.id === appId);
-          if (windowAlreadyOpen) {
-            focusWindow(windowAlreadyOpen.id);
-            updateWindowStatus(windowAlreadyOpen.id, 'normal');
-          } else {
-            openWindow({
-              id: appId,
-              title: item.label + item.extension,
-              appName: 'Notepad',
-              iconSrc: notepadIcon,
-              appProps: {
-                initialItem: item,
-              },
-            });
-          }
+          // TODO: Remover verificações de Janelas já abertas, openWindow deve cuidar disso
+          openWindow({
+            id: appId,
+            title: item.label + item.extension,
+            appName: 'Notepad',
+            iconSrc: notepadIcon,
+            appProps: {
+              initialItem: item,
+            },
+          });
           return state;
         }
       } else if (item.type === 'externalLink') {
         window.open(item.uri, '_blank');
       } else if (item.type === 'link') {
         openWindow({
-          id: INTERNET_EXPLORER_WINDOW_ID(item.path),
+          id: INTERNET_EXPLORER_WINDOW_ID,
           title: item.label,
           appName: 'InternetExplorer',
           iconSrc: internetExplorerIcon,
@@ -268,6 +208,8 @@ export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
     }),
   toggleItemSelection: (_event, item) =>
     set((state) => {
+      const { navigateTo } = useFileExplorerStore.getState();
+
       if (item === null) {
         return { selectedItemPaths: [] };
       }
@@ -300,6 +242,7 @@ export const useFileExplorerStore = create<FileExplorerState>((set, get) => ({
         newPaths = currentDirectoryContents.slice(startIndex, endIndex + 1).map((i) => i.path);
       } else {
         if (selectedItemPaths.length === 1 && selectedItemPaths.includes(itemPath)) {
+          navigateTo(item);
           newPaths = [];
         } else {
           newPaths = [itemPath];

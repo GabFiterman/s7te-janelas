@@ -1,6 +1,6 @@
 import { useFileExplorerStore } from '../../use-file-explorer';
 
-import { folderUserIcon } from '@/assets/icons';
+import { folderUserIcon } from '@/assets';
 
 function FileExplorerFooter() {
   const { getCurrentDirectoryContentsLength, getSelectedItemsLength } = useFileExplorerStore();

@@ -15,6 +15,7 @@ function FileExplorerHeader() {
           handleDownClick={() => console.log('downward')}
           disableLeftClick={getHistoryLength() === 0 || historyIndex === 0}
           disableRightClick={getHistoryLength() === historyIndex}
+          disableDropdownClick={true}
         />
       </div>
 

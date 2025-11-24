@@ -4,6 +4,7 @@ import './btn-forward-backward.scss';
 interface BtnForwardBackwardProps {
   disableLeftClick?: boolean;
   disableRightClick?: boolean;
+  disableDropdownClick?: boolean;
   showDownClick?: boolean;
 
   handleDownClick?: () => void;
@@ -14,6 +15,7 @@ interface BtnForwardBackwardProps {
 function BtnForwardBackward({
   disableLeftClick = false,
   disableRightClick = false,
+  disableDropdownClick = false,
   showDownClick = true,
 
   handleDownClick,
@@ -29,7 +31,11 @@ function BtnForwardBackward({
         <ArrowRight />
       </button>
       {showDownClick && (
-        <button onMouseDown={handleDownClick} className="btn-forward-backward button-dropdown">
+        <button
+          onMouseDown={handleDownClick}
+          className="btn-forward-backward button-dropdown"
+          disabled={disableDropdownClick}
+        >
           <ArrowDropdown color="#3791CB" size={22} />
         </button>
       )}

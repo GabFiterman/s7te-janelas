@@ -8,7 +8,7 @@ export interface InternetExplorerProps {
 }
 
 function InternetExplorer({ initialUrl }: InternetExplorerProps) {
-  const { navigateToUrl, currentUrl } = useInternetExplorer();
+  const { navigateToUrl, currentUrl, reload } = useInternetExplorer();
 
   useEffect(() => {
     if (!initialUrl) return;
@@ -18,7 +18,7 @@ function InternetExplorer({ initialUrl }: InternetExplorerProps) {
   return (
     <div className="internet-explorer-container">
       <IeHeader />
-      {currentUrl === INITIAL_URL ? <IeHomePage /> : <Webview />}
+      {currentUrl === INITIAL_URL ? <IeHomePage /> : <Webview key={reload} />}
     </div>
   );
 }

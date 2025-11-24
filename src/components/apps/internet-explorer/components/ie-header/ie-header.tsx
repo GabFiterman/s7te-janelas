@@ -9,7 +9,8 @@ function IeIcon() {
 }
 
 function IeHeader() {
-  const { inputUrl, navigateToUrl, setFocus, setInputUrl } = useInternetExplorer();
+  const { goBack, goForward, handleReload, history, historyIndex, inputUrl, navigateToUrl, setFocus, setInputUrl } =
+    useInternetExplorer();
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent<HTMLInputElement>) => {
@@ -31,9 +32,11 @@ function IeHeader() {
   return (
     <div className="ie-header">
       <BtnForwardBackward
-        handleLeftClick={() => console.log('backward')}
-        handleRightClick={() => console.log('forward')}
-        handleDownClick={() => console.log('downward')}
+        handleLeftClick={() => goBack()}
+        handleRightClick={() => goForward()}
+        disableLeftClick={history.length === 0 || historyIndex === 0}
+        disableRightClick={history.length - 1 === historyIndex}
+        disableDropdownClick={true}
       />
       <div className="query-container url-container">
         <InputAndIcon
@@ -52,10 +55,10 @@ function IeHeader() {
           childAfter={
             <>
               <div className="controller">
-                <button onMouseDown={() => navigateToUrl(inputUrl)}>
+                <button onClick={() => handleReload()}>
                   <Reload color="#3791CB" size={18} />
                 </button>
-                <button>
+                <button disabled>
                   <Close color="#cb3737ff" size={22} />
                 </button>
               </div>
@@ -75,8 +78,8 @@ function IeHeader() {
           }
           childAfter={
             <>
-              <Search color="#3791CB" size={20} />
-              <ArrowDropdown size={22} />
+              <Search color="#3791CB" size={20} className="disabled" />
+              <ArrowDropdown size={22} className="disabled" />
             </>
           }
         />

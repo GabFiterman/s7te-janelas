@@ -96,6 +96,11 @@
       &.active {
         background: #d2e0ed;
       }
+
+      &.disabled {
+        color: #b0b0b0;
+        cursor: not-allowed;
+      }
     }
   }
 

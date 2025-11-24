@@ -11,28 +11,28 @@ export const separatorItem: SeparatorItem = {
 
 export const controllerItems: ControllerItem[] = [
   {
-    disabled: false,
+    disabled: true,
     dropdown: true,
     label: 'Arquivo',
     shortcut: null,
     value: 'file',
     dropDownItems: [
       {
-        disabled: false,
+        disabled: true,
         iconSrc: excludeIcon,
         label: 'Excluir',
         shortcut: 'Del',
         value: 'delete',
       },
       {
-        disabled: false,
+        disabled: true,
         label: 'Criar Cópia...',
         shortcut: null,
         value: 'create_copy',
       },
       separatorItem,
       {
-        disabled: false,
+        disabled: true,
         iconSrc: copyIcon,
         label: 'Copiar',
         shortcut: null,
@@ -40,14 +40,14 @@ export const controllerItems: ControllerItem[] = [
       },
       separatorItem,
       {
-        disabled: false,
+        disabled: true,
         label: 'Propriedades',
         shortcut: 'Alt+Enter',
         value: 'close',
       },
       separatorItem,
       {
-        disabled: false,
+        disabled: true,
         label: 'Sair',
         shortcut: null,
         value: 'close',
@@ -55,21 +55,21 @@ export const controllerItems: ControllerItem[] = [
     ],
   },
   {
-    disabled: false,
+    disabled: true,
     dropdown: true,
     label: 'Imprimir',
     shortcut: null,
     value: 'print',
     dropDownItems: [
       {
-        disabled: false,
+        disabled: true,
         iconSrc: printerIcon,
         label: 'Imprimir',
         shortcut: 'Ctrl+]',
         value: 'print',
       },
       {
-        disabled: false,
+        disabled: true,
         // TODO: Atualizar icon
         iconSrc: blocksIcon,
         label: 'Encomendar Cópias',
@@ -78,27 +78,27 @@ export const controllerItems: ControllerItem[] = [
     ],
   },
   {
-    disabled: false,
+    disabled: true,
     dropdown: false,
     label: 'Email',
     shortcut: null,
     value: 'email',
   },
   {
-    disabled: false,
+    disabled: true,
     dropdown: true,
     label: 'Gravar',
     shortcut: null,
     value: 'record',
     dropDownItems: [
       {
-        disabled: false,
+        disabled: true,
         label: 'Disco de Dados...',
         shortcut: null,
         value: 'data-disk',
       },
       {
-        disabled: false,
+        disabled: true,
         label: 'DVD de Vídeo...',
         shortcut: null,
         value: 'dvd-video',
@@ -106,14 +106,14 @@ export const controllerItems: ControllerItem[] = [
     ],
   },
   {
-    disabled: false,
+    disabled: true,
     dropdown: true,
     label: 'Abrir',
     shortcut: null,
     value: 'open',
     dropDownItems: [
       {
-        disabled: false,
+        disabled: true,
         // TODO: Atualizar icon
         iconSrc: blocksIcon,
         label: 'Paint',
@@ -121,7 +121,7 @@ export const controllerItems: ControllerItem[] = [
         value: 'open-paint',
       },
       {
-        disabled: false,
+        disabled: true,
         // TODO: Atualizar icon
         iconSrc: blocksIcon,
         label: 'Firefox',
@@ -129,7 +129,7 @@ export const controllerItems: ControllerItem[] = [
         value: 'open-firefox',
       },
       {
-        disabled: false,
+        disabled: true,
         // TODO: Atualizar icon
         iconSrc: blocksIcon,
         label: 'Windows Media Center',
@@ -138,7 +138,7 @@ export const controllerItems: ControllerItem[] = [
       },
       separatorItem,
       {
-        disabled: false,
+        disabled: true,
         label: 'Escolher programa...',
         shortcut: null,
         value: 'open-choose-program',

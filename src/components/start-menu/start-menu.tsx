@@ -30,13 +30,13 @@ function StartMenu() {
           <div className="start-menu-app-controller">
             <div className="start-menu-app-divider" />
 
-            <div className="start-menu-app-all-apps">
-              <img src={indicationArrowIcon} />
-              <span>Todos os programas</span>
+            <div className="start-menu-app-all-apps disabled">
+              <img src={indicationArrowIcon} className="disabled" />
+              <span className="disabled">Todos os programas</span>
             </div>
 
             <div className="start-menu-app-search">
-              <InputAndIcon type="text" placeholder="Pesquisar programas e arquivos" />
+              <InputAndIcon type="text" placeholder="Pesquisar programas e arquivos" disabled />
             </div>
           </div>
         </div>
@@ -62,11 +62,19 @@ function StartMenu() {
           </div>
 
           <div className="start-menu-right-bottom">
-            <div className="start-menu-buttons-container">
-              <button className="start-menu-button button-turn-off" onClick={() => console.log('DESLIGAR')}>
+            <div className="start-menu-buttons-container disabled">
+              <button
+                className="start-menu-button button-turn-off disabled"
+                disabled={true}
+                onClick={() => console.log('DESLIGAR')}
+              >
                 Desligar
               </button>
-              <button className="start-menu-button button-more-options" onClick={() => console.log('LIMPAR')}>
+              <button
+                className="start-menu-button button-more-options disabled"
+                disabled={true}
+                onClick={() => console.log('LIMPAR')}
+              >
                 <img src={indicationArrowIcon} />
               </button>
             </div>

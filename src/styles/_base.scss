@@ -21,7 +21,13 @@ body {
   *:disabled {
     * {
       cursor: not-allowed !important;
-      filter: grayscale(1) opacity(0.75) !important;
+      filter: grayscale(1) !important;
+    }
+
+    .disabled,
+    h1, h2, h3, h4, h5,
+    span, p, label, a, em, b, input, button {
+      filter: grayscale(1) opacity(.65) !important;
     }
   }
 }

@@ -25,9 +25,20 @@ body {
     }
 
     .disabled,
-    h1, h2, h3, h4, h5,
-    span, p, label, a, em, b, input, button {
-      filter: grayscale(1) opacity(.65) !important;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    span,
+    p,
+    label,
+    a,
+    em,
+    b,
+    input,
+    button {
+      filter: grayscale(1) opacity(0.65) !important;
     }
   }
 }

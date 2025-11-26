@@ -133,8 +133,8 @@ function MediaCenterImage({
       </div>
       <div className="media-center-image-footer-container">
         <div className="media-center-image-footer">
-          <img className="media-center-image-footer-icon" src={mediaCenterZoomMore} />
-          <img className="media-center-image-footer-icon" src={mediaCenterExpandIcon} />
+          <img className="media-center-image-footer-icon disabled" src={mediaCenterZoomMore} />
+          <img className="media-center-image-footer-icon disabled" src={mediaCenterExpandIcon} />
           <div className="media-center-image-footer-player-container">
             {showPlayerControls && (
               <>
@@ -144,7 +144,7 @@ function MediaCenterImage({
                   onClick={handlePrevious}
                 />
                 <img
-                  className="media-center-image-footer-player-icon main"
+                  className="media-center-image-footer-player-icon main disabled"
                   src={mediaCenterImageBtnIcon}
                   onClick={(event) => onClickImageBtn && onClickImageBtn(event)}
                 />
@@ -152,10 +152,10 @@ function MediaCenterImage({
               </>
             )}
           </div>
-          <img className="media-center-image-footer-icon" src={mediaCenterUndoIcon} />
-          <img className="media-center-image-footer-icon" src={mediaCenterRedoIcon} />
+          <img className="media-center-image-footer-icon disabled" src={mediaCenterUndoIcon} />
+          <img className="media-center-image-footer-icon disabled" src={mediaCenterRedoIcon} />
           <div className="vertical-line" />
-          <img className="media-center-image-footer-icon" src={excludeIcon} />
+          <img className="media-center-image-footer-icon disabled" src={excludeIcon} />
         </div>
       </div>
     </div>

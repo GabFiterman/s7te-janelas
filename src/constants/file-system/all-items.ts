@@ -6,13 +6,14 @@ import {
   folderIcon,
   internetExplorerIcon,
   musicsIcon,
-  networkIcon,
   notepadIcon,
   pictureIcon,
-  sheetMusicIcon,
   videosIcon,
   workspaceIcon,
   GithubExternalLogo,
+  LinkedinExternalLogo,
+  WhatsappExternalLogo,
+  internetExplorerExternalLinkIcon,
 } from '@/assets';
 import { type FileSystemItem } from '../file-system-map';
 
@@ -165,24 +166,6 @@ export const ITEMS_MAP_FITERMAN: Record<string, FileSystemItem> = {
 
 // ROOT LEVEL 4 [ DOCUMENTOS ]
 export const ITEMS_MAP_DOCUMENTS: Record<string, FileSystemItem> = {
-  'C:/USUARIOS/FITERMAN/DOCUMENTOS/PRIMEIRO_DOCUMENTO.TXT': {
-    extension: '.txt',
-    iconSrc: sheetMusicIcon,
-    label: 'Primeiro Documento',
-    path: 'C:/Usuários/Fiterman/Documentos/Primeiro_Documento.txt',
-    type: 'file',
-    uri: 'documentos/primeiro_documento.txt',
-  },
-
-  'C:/USUARIOS/FITERMAN/DOCUMENTOS/SEGUNDO_DOCUMENTO.TXT': {
-    extension: '.txt',
-    iconSrc: networkIcon,
-    label: 'Segundo Documento',
-    path: 'C:/Usuários/Fiterman/Documentos/Segundo_Documento.txt',
-    type: 'file',
-    uri: 'documentos/segundo_documento.txt',
-  },
-
   'C:/USUARIOS/FITERMAN/DOCUMENTOS/SOBRE_MIM': {
     extension: '/',
     iconSrc: folderIcon,
@@ -229,6 +212,15 @@ export const ITEMS_MAP_IMAGES: Record<string, FileSystemItem> = {
     path: 'C:/Usuários/Fiterman/Imagens/flower.jpg',
     type: 'file',
     uri: 'imagens/flower.jpg',
+  },
+
+  'C:/USUARIOS/FITERMAN/IMAGENS/DEVFITERMAN.WEBP': {
+    extension: '.webp',
+    iconSrc: pictureIcon,
+    label: 'Dev.Fiterman',
+    path: 'C:/Usuários/Fiterman/Imagens/dev-fiterman.webp',
+    type: 'file',
+    uri: 'imagens/dev-fiterman.webp',
   },
 };
 
@@ -316,7 +308,7 @@ export const ITEMS_MAP_PROJETO_1_CHALLENGELETT: Record<string, FileSystemItem> =
     path: 'C:/Usuários/Fiterman/Projetos/ChallengeLett/challengelett.html',
     type: 'link',
     uri: 'https://gabfiterman.github.io/ChallengeLett/',
-    miniature: GithubExternalLogo,
+    miniature: internetExplorerExternalLinkIcon,
   },
 
   'C:/USUARIOS/FITERMAN/PROJETOS/CHALLENGELETT/REPOCHALLENGELETT.HTML': {
@@ -374,7 +366,7 @@ export const ITEMS_MAP_PROJETO_2_LOCAWEB: Record<string, FileSystemItem> = {
     path: 'C:/Usuários/Fiterman/Projetos/LocaWeb/locaweb.html',
     type: 'link',
     uri: 'https://loca-web.vercel.app/',
-    miniature: GithubExternalLogo,
+    miniature: internetExplorerExternalLinkIcon,
   },
 
   'C:/USUARIOS/FITERMAN/PROJETOS/LOCAWEB/REPOLOCAWEB.HTML': {
@@ -468,7 +460,7 @@ export const ITEMS_MAP_PROJETO_3_LEAFLETZEN: Record<string, FileSystemItem> = {
     path: 'C:/Usuários/Fiterman/Projetos/LeafletZen/LeafletZen.html',
     type: 'link',
     uri: 'https://leaflet-zen.vercel.app/',
-    miniature: GithubExternalLogo,
+    miniature: internetExplorerExternalLinkIcon,
   },
 
   'C:/USUARIOS/FITERMAN/PROJETOS/LEAFLETZEN/REPOLEAFLETZEN.HTML': {
@@ -487,9 +479,33 @@ export const ITEMS_MAP_PROJETO_4_SETEJANELAS: Record<string, FileSystemItem> = {
     extension: '.html',
     iconSrc: GithubExternalLogo,
     label: 'Github Repo Sete Janelas',
-    path: 'C:/Usuários/Fiterman/Projetos/LeafletZen/reposetejanelas.html',
+    path: 'C:/Usuários/Fiterman/Projetos/SeteJanelas/reposetejanelas.html',
     type: 'externalLink',
     uri: 'https://github.com/GabFiterman/s7te-janelas/',
+  },
+  'C:/USUARIOS/FITERMAN/PROJETOS/SETEJANELAS/BACKLOG.MD': {
+    extension: '.md',
+    iconSrc: notepadIcon,
+    label: 'Backlog - Sete Janelas',
+    path: 'C:/Usuários/Fiterman/Projetos/SeteJanelas/backlog.md',
+    type: 'file',
+    uri: '/projetos/SeteJanelas/backlog.md',
+  },
+  'C:/USUARIOS/FITERMAN/PROJETOS/SETEJANELAS/CHANGELOG.MD': {
+    extension: '.md',
+    iconSrc: notepadIcon,
+    label: 'Changelog - Sete Janelas',
+    path: 'C:/Usuários/Fiterman/Projetos/SeteJanelas/changelog.md',
+    type: 'file',
+    uri: '/projetos/SeteJanelas/changelog.md',
+  },
+  'C:/USUARIOS/FITERMAN/PROJETOS/SETEJANELAS/ABOUT.MD': {
+    extension: '.md',
+    iconSrc: notepadIcon,
+    label: 'Sobre o Sete Janelas',
+    path: 'C:/Usuários/Fiterman/Projetos/SeteJanelas/about.md',
+    type: 'file',
+    uri: '/projetos/SeteJanelas/about.md',
   },
 };
 
@@ -502,6 +518,33 @@ export const ITEMS_MAP_ABOUT_ME: Record<string, FileSystemItem> = {
     path: 'C:/Usuários/Fiterman/Documentos/Sobre_Mim/README.md',
     type: 'file',
     uri: 'documentos/sobre_mim/README.md',
+  },
+  'C:/USUARIOS/FITERMAN/DOCUMENTOS/SOBRE_MIM/DEVFITERMAN.WEBP': {
+    ...ITEMS_MAP_IMAGES['C:/USUARIOS/FITERMAN/IMAGENS/DEVFITERMAN.WEBP'],
+  },
+  'C:/USUARIOS/FITERMAN/DOCUMENTOS/SOBRE_MIM/LINKEDIN.HTML': {
+    extension: '.html',
+    iconSrc: LinkedinExternalLogo,
+    label: 'Linkedin',
+    path: 'C:/Usuários/Fiterman/Documentos/Sobre_Mim/linkedin.html',
+    type: 'externalLink',
+    uri: 'https://www.linkedin.com/in/gabfiterman/',
+  },
+  'C:/USUARIOS/FITERMAN/DOCUMENTOS/SOBRE_MIM/GITHUB.HTML': {
+    extension: '.html',
+    iconSrc: GithubExternalLogo,
+    label: 'Github',
+    path: 'C:/Usuários/Fiterman/Documentos/Sobre_Mim/github.html',
+    type: 'externalLink',
+    uri: 'https://github.com/GabFiterman',
+  },
+  'C:/USUARIOS/FITERMAN/DOCUMENTOS/SOBRE_MIM/WHATSAPP.HTML': {
+    extension: '.html',
+    iconSrc: WhatsappExternalLogo,
+    label: 'Whatsapp',
+    path: 'C:/Usuários/Fiterman/Documentos/Sobre_Mim/whatsapp.html',
+    type: 'externalLink',
+    uri: 'https://wa.me/5562984602348',
   },
 };
 

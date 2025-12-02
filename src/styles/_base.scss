@@ -17,27 +17,26 @@ body {
   line-height: 1.5;
   text-rendering: optimizeLegibility;
 
+  img.disabled,
   .disabled,
   *:disabled {
-    * {
-      cursor: not-allowed !important;
-      filter: grayscale(1) !important;
-    }
+    filter: grayscale(1) !important;
+    cursor: not-allowed !important;
 
-    .disabled,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    span,
-    p,
-    label,
-    a,
-    em,
-    b,
-    input,
-    button {
+    &.disabled,
+    &h1,
+    &h2,
+    &h3,
+    &h4,
+    &h5,
+    &span,
+    &p,
+    &label,
+    &a,
+    &em,
+    &b,
+    &input,
+    &button {
       filter: grayscale(1) opacity(0.65) !important;
     }
   }

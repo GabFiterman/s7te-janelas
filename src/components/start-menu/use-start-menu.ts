@@ -1,4 +1,4 @@
-import { fileExplorerIcon, internetExplorerIcon } from '@/assets';
+import { fileExplorerIcon, internetExplorerIcon, mediaCenterImageIcon } from '@/assets';
 
 import { type AppName } from '@/components/apps/app-config';
 
@@ -8,10 +8,12 @@ import { ITEMS_MAP_ALL } from '@/constants';
 
 const INTERNET_EXPLORER_WINDOW_ID = 'internet-explorer-window';
 const FILE_EXPLORER_WINDOW_ID = `file-explorer-window`;
+const MEDIA_CENTER_IMAGE_WINDOW_ID = `media-center-image-window`;
 
 const FILE_EXPLORER_INITIAL_PATH = ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/PROJETOS'].path;
 const FILE_EXPLORER_DOCUMENTS_PATH = ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/DOCUMENTOS'].path;
 const FILE_EXPLORER_IMAGES_PATH = ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/IMAGENS'].path;
+const MEDIA_CENTER_IMAGE_FITERMAN = ITEMS_MAP_ALL['C:/USUARIOS/FITERMAN/IMAGENS/GABRIEL1.WEBP'];
 
 function useStartMenuStates() {
   const { openWindow, toggleIsStartMenuOpen, activeWindowsByApp } = useUIStore();
@@ -54,7 +56,18 @@ function useStartMenuStates() {
     {
       id: 1,
       label: 'Fiterman',
-      action: () => console.log('Fiterman Shortcut'),
+      action: () => {
+        openWindow({
+          id: MEDIA_CENTER_IMAGE_WINDOW_ID,
+          title: 'gabriel(2).webp',
+          appName: 'MediaCenterImage' as AppName,
+          iconSrc: mediaCenterImageIcon,
+          appProps: {
+            initialItem: MEDIA_CENTER_IMAGE_FITERMAN,
+            playlist: [MEDIA_CENTER_IMAGE_FITERMAN],
+          },
+        });
+      },
     },
     {
       id: 2,

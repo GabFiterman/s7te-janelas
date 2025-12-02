@@ -1,4 +1,5 @@
 export { default as FixedMenu } from './fixed-menu/fixed-menu';
+export { default as MobileFallback } from './mobile-fallback/mobile-fallback';
 export { default as StartMenu } from './start-menu/start-menu';
 export { default as Workspace } from './workspace/workspace';
 

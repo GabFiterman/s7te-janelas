@@ -222,6 +222,33 @@ export const ITEMS_MAP_IMAGES: Record<string, FileSystemItem> = {
     type: 'file',
     uri: 'imagens/dev-fiterman.webp',
   },
+
+  'C:/USUARIOS/FITERMAN/IMAGENS/GABRIEL1.WEBP': {
+    extension: '.webp',
+    iconSrc: pictureIcon,
+    label: 'Gabriel(1)',
+    path: 'C:/Usuários/Fiterman/Imagens/gabriel(1).webp',
+    type: 'file',
+    uri: 'imagens/gabriel(1).webp',
+  },
+
+  'C:/USUARIOS/FITERMAN/IMAGENS/GABRIEL2.WEBP': {
+    extension: '.webp',
+    iconSrc: pictureIcon,
+    label: 'Gabriel(2)',
+    path: 'C:/Usuários/Fiterman/Imagens/gabriel(2).webp',
+    type: 'file',
+    uri: 'imagens/gabriel(2).webp',
+  },
+
+  'C:/USUARIOS/FITERMAN/IMAGENS/GABRIEL3.WEBP': {
+    extension: '.webp',
+    iconSrc: pictureIcon,
+    label: 'Gabriel(3)',
+    path: 'C:/Usuários/Fiterman/Imagens/gabriel(3).webp',
+    type: 'file',
+    uri: 'imagens/gabriel(3).webp',
+  },
 };
 
 // ROOT LEVEL 4 [ VIDEOS ]
@@ -521,6 +548,15 @@ export const ITEMS_MAP_ABOUT_ME: Record<string, FileSystemItem> = {
   },
   'C:/USUARIOS/FITERMAN/DOCUMENTOS/SOBRE_MIM/DEVFITERMAN.WEBP': {
     ...ITEMS_MAP_IMAGES['C:/USUARIOS/FITERMAN/IMAGENS/DEVFITERMAN.WEBP'],
+  },
+  'C:/USUARIOS/FITERMAN/DOCUMENTOS/SOBRE_MIM/GABRIEL1.WEBP': {
+    ...ITEMS_MAP_IMAGES['C:/USUARIOS/FITERMAN/IMAGENS/GABRIEL1.WEBP'],
+  },
+  'C:/USUARIOS/FITERMAN/DOCUMENTOS/SOBRE_MIM/GABRIEL2.WEBP': {
+    ...ITEMS_MAP_IMAGES['C:/USUARIOS/FITERMAN/IMAGENS/GABRIEL2.WEBP'],
+  },
+  'C:/USUARIOS/FITERMAN/DOCUMENTOS/SOBRE_MIM/GABRIEL3.WEBP': {
+    ...ITEMS_MAP_IMAGES['C:/USUARIOS/FITERMAN/IMAGENS/GABRIEL3.WEBP'],
   },
   'C:/USUARIOS/FITERMAN/DOCUMENTOS/SOBRE_MIM/LINKEDIN.HTML': {
     extension: '.html',

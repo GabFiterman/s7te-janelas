@@ -4,7 +4,7 @@
   - `v1.0`
     - (MVP Estável) Transparência no desenvolvimento: Priorizo a entrega contínua de valor e a evolução incremental da arquitetura.
 
--------------------------
+---
 
 ## 🚀 Core & Arquitetura
 

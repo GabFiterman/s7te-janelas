@@ -1,9 +1,34 @@
 # Sete Janelas - Web Operating System
+<div align="center">
+  <img src="https://img.shields.io/github/v/release/GabFiterman/s7te-janelas?style=for-the-badge&label=Vers%C3%A3o&color=blueviolet" alt="Versão" />
+  <img src="https://img.shields.io/github/last-commit/GabFiterman/s7te-janelas?style=for-the-badge&label=Atualizado&color=blue" alt="Last Commit" />
+  <img src="https://img.shields.io/github/repo-size/GabFiterman/s7te-janelas?style=for-the-badge&label=Tamanho&color=success" alt="Repo Size" />
+  <img src="https://img.shields.io/badge/Status-Em_Desenvolvimento-yellow?style=for-the-badge" alt="Status" />
 
-<!--
-INSERIR BADGES;
-INSERIR IMAGEM DO SISTEMA;
---->
+  <br>
+  <br>
+
+  <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" alt="React" />
+  <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+  <img src="https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white" alt="SASS" />
+  
+  <br>
+
+  <img src="https://img.shields.io/badge/State_Man.-Zustand-orange?style=for-the-badge&logo=redux&logoColor=white" alt="Zustand" />
+  <img src="https://img.shields.io/badge/Motion-Framer-black?style=for-the-badge&logo=framer&logoColor=white" alt="Framer Motion" />
+</div>
+
+<table>
+  <tr>
+    <td><img width="1920" height="959" alt="image" src="https://github.com/user-attachments/assets/44c1c431-0553-44b5-af64-8ac6c23c9968" /></td>
+    <td><img width="1920" height="959" alt="image" src="https://github.com/user-attachments/assets/ed98249d-2a6d-4497-93e1-623de9db99b5" /></td>
+  </tr>
+</table>
+
+
+
+
 
 ## 🖥️ O Conceito
 
@@ -56,18 +81,19 @@ npm run dev
 
 ## 🗺️ Roadmap de Evolução
 
-- **Versão Atual**: `v1.0` (_MVP Estável_) Transparência no desenvolvimento: Priorizo a entrega contínua de valor e a evolução incremental da arquitetura.
+### **Versão Atual**: 
+`v1.0` (_MVP Estável_) Transparência no desenvolvimento: Priorizo a entrega contínua de valor e a evolução incremental da arquitetura.
 
-- **🚀 Core & Arquitetura**
+### **🚀 Core & Arquitetura**
 - [ ] **Persistência de Sessão**: Implementar salvamento de estado das janelas abertas e posição dos ícones via LocalStorage ou IndexedDB.
 - [ ] **Multitarefa Real**: Refatorar processos pesados para Web Workers.
 - [ ] **Sistema de Temas**: Migrar variáveis SCSS para CSS Variables dinâmicas (Dark/Light Mode).
 
-- **📦 Aplicações & Features**
+### **📦 Aplicações & Features**
 - [ ] **Terminal Emulator**: Implementar um terminal interativo (bash-like).
 - [ ] **Mecânica de Drag-and-Drop Global**: Permitir arrastar arquivos do File Explorer para o Desktop.
 
-- **🛠️ DX & Qualidade**
+### **🛠️ DX & Qualidade**
 - [ ] **Testes E2E** (Cypress): Automatizar fluxos críticos de abertura e fechamento de janelas.
 - [ ] **Bundle Splitting**: Lazy loading de aplicações (Code Splitting por rota/componente).
 

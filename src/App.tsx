@@ -1,9 +1,16 @@
 import { Routes, Route } from 'react-router-dom';
 import RouteHandler from '@/RouteHandler';
-import { Workspace } from '@/components';
+import { Workspace, MobileFallback } from '@/components';
+import { useIsMobile } from '@/hooks';
 import './styles/index.scss';
 
 function App() {
+  const isMobile = useIsMobile();
+
+  if (isMobile) {
+    return <MobileFallback />;
+  }
+
   return (
     <>
       <div className="App">

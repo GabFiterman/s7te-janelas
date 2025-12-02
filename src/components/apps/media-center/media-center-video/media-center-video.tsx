@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import defaultVideo from '@/../public/media-center/Videos/Jimmy_Hendrix.mp4';
+import defaultVideo from '@/assets/media-center/The-Jimi-Hendrix-Experience-Purple-Haze_240p.mp4';
 import { type FileSystemItem, ITEMS_MAP_ALL } from '@/constants';
 import { LoaderCircle } from '@/components';
 import './media-center-video.scss';

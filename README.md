@@ -1,69 +1,82 @@
-# React + TypeScript + Vite
+# Sete Janelas - Web Operating System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<!--
+INSERIR BADGES;
+INSERIR IMAGEM DO SISTEMA;
+--->
 
-Currently, two official plugins are available:
+## 🖥️ O Conceito
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+O Sete Janelas não é apenas um portfólio; é uma simulação de sistema operacional via web, projetada para quebrar a barreira entre a navegação passiva e a interação funcional.
 
-## Expanding the ESLint configuration
+A proposta é oferecer diferentes "janelas" ou perspectivas sobre minha atuação profissional, onde cada seção reflete uma faceta da minha intersecção entre Engenharia de Software e Design Gráfico. É a materialização da tese de que código robusto e estética não competem, mas se potencializam.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## ⚙️ Arquitetura e Engenharia
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Este projeto foi construído para demonstrar autonomia e domínio do ecossistema JavaScript moderno, simulando comportamentos complexos de sistemas operacionais nativos dentro do DOM.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Destaques Técnicos
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+- **Kernel Simulado** (Zustand): Implementação de uma Store centralizada que atua como o núcleo do sistema, orquestrando janelas, gerenciamento de processos (z-index, foco, minimização) e estado global sem prop drilling.
+- **Virtual File System (VFS)**: Arquitetura de dados baseada em grafos para simular diretórios, permitindo navegação real (`C:/Users/...`), histórico e mapeamento de assets estáticos e dinâmicos.
+- **Window Manager & Singleton Pattern**: Sistema de janelas inteligente que previne múltiplas instâncias de aplicações únicas e gerencia o ciclo de vida (mount/unmount) e hierarquia visual.
+- **Race Condition Mitigation**: Tratamento rigoroso de operações assíncronas (especialmente no Media Center) utilizando refs e cleanup functions para evitar atualizações de estado em componentes desmontados durante o carregamento de assets locais e remotos.
+- **Design System Atômico**: UI proprietária construída com SASS/SCSS modular, sem dependência excessiva de bibliotecas de componentes externas.
+
+## 🚀 Funcionalidades (v1.0)
+
+### 📂 File Explorer
+
+Navegação completa por diretórios, suporte a histórico (voltar/avançar), barra de endereços funcional e visualização de ícones dinâmicos baseados no tipo de arquivo.
+
+### 📺 Media Center
+
+Player de vídeo e visualizador de imagens com suporte a playlists, controles de reprodução e tratamento de loading states para assets pesados.
+
+### 🪟 Window Management
+
+- **Drag & Drop**: Janelas arrastáveis com restrições de viewport.
+- **Multitarefa**: Minimização, Maximização e Foco dinâmico.
+- **Taskbar**: Menu Iniciar e gerenciamento de janelas ativas.
+
+## 🛠️ Instalação e Execução
+
+- **Pré-requisitos**: `Node.js (v18+)`
+
+```Bash
+# 1. Clone o repositório
+git clone https://github.com/gabfiterman/sete-janelas.git
+
+# 2. Instale as dependências
+npm install
+
+# 3. Execute em modo de desenvolvimento
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🗺️ Roadmap de Evolução
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
+- **Versão Atual**: `v1.0` (_MVP Estável_) Transparência no desenvolvimento: Priorizo a entrega contínua de valor e a evolução incremental da arquitetura.
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+- **🚀 Core & Arquitetura**
+- [ ] **Persistência de Sessão**: Implementar salvamento de estado das janelas abertas e posição dos ícones via LocalStorage ou IndexedDB.
+- [ ] **Multitarefa Real**: Refatorar processos pesados para Web Workers.
+- [ ] **Sistema de Temas**: Migrar variáveis SCSS para CSS Variables dinâmicas (Dark/Light Mode).
+
+- **📦 Aplicações & Features**
+- [ ] **Terminal Emulator**: Implementar um terminal interativo (bash-like).
+- [ ] **Mecânica de Drag-and-Drop Global**: Permitir arrastar arquivos do File Explorer para o Desktop.
+
+- **🛠️ DX & Qualidade**
+- [ ] **Testes E2E** (Cypress): Automatizar fluxos críticos de abertura e fechamento de janelas.
+- [ ] **Bundle Splitting**: Lazy loading de aplicações (Code Splitting por rota/componente).
+
+## 👨‍💻 Autor
+
+**Gabriel Fiterman** - _Product-Oriented Software Engineer_
+
+Desenvolvedor Full Stack focado na intersecção entre alta performance técnica e experiência de usuário excepcional.
+
+[LinkedIn](https://www.linkedin.com/in/gabfiterman/) • [GitHub](https://github.com/GabFiterman)
+
+> _Feito com 💙 e muito café._
